@@ -1,0 +1,9 @@
+.DS_Store
+# Jupyter Notebook
+.ipynb_checkpoints
+# dataset
+*/data/
+*/__pycache__/
+__pycache__
+data
+*.svg
