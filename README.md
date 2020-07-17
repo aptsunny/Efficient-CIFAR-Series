@@ -19,9 +19,48 @@ XXXX>1024
 nnictl create --config config.yml --port XXXX 
 ```
 
+Search space configuration: 
+Then edit `search_space.json`, you can add the hyper-parameters as follows:
+```
++-----------------+------------+-------------------------------------------------------------------------------+
+|      Name       |   default  |                        Module Name                                            |
++-----------------+------------+-------------------------------------------------------------------------------+
+| peak_lr         | 0.4        |    "peak_lr":{"_type": "loguniform", "_value": [4e-5, 4e-1]},                 |
++-----------------+------------+-------------------------------------------------------------------------------+
+| base_wd         | 5e-4       |    "base_wd":{"_type": "loguniform", "_value": [5e-5, 5e-3]},                 |
++-----------------+------------+-------------------------------------------------------------------------------+
+| logits_weight   | 0.125      |    "logits_weight":{"_type":"choice", "_value":[0.0625, 0.125, 0.25, 0.5, 1]},|
++-----------------+------------+-------------------------------------------------------------------------------+
+| peak_epoch      | 5          |    "peak_epoch":{"_type":"choice", "_value":[5, 10, 15, 20]},                 |
++-----------------+------------+-------------------------------------------------------------------------------+
+| cutout          | 8          |    "cutout":{"_type":"choice", "_value":[10, 8, 6, 4]},                       |
++-----------------+------------+-------------------------------------------------------------------------------+
+| total_epoch     | 24         |    "total_epoch":{"_type":"choice", "_value":[24, 32, 40]}                    |
++-----------------+------------+-------------------------------------------------------------------------------+
+| prep            | 64         |    "prep":{"_type":"choice", "_value":[16, 32, 48, 64]},                      |
++-----------------+------------+-------------------------------------------------------------------------------+
+| layer1          | 128        |    "layer1":{"_type":"choice", "_value":[64, 80, 96, 112, 128]},              |
++-----------------+------------+-------------------------------------------------------------------------------+
+| layer2          | 256        |    "layer2":{"_type":"choice", "_value":[128, 160, 192, 224, 256]},           |
++-----------------+------------+-------------------------------------------------------------------------------+
+| layer3          | 512        |    "layer3":{"_type":"choice", "_value":[256, 320, 384, 448, 512]}            |
++-----------------+------------+-------------------------------------------------------------------------------+
+```
+
+Now you can use the TPE in experiment configuration file:
+
+```yaml
+tuner:
+  builtinTunerName: TPE
+  classArgs:
+    #choice: maximize, minimize
+    optimize_mode: maximize
+```
+
 
 ##[cifar10-fast](https://github.com/davidcpage/cifar10-fast)
- Demonstration of training a small ResNet on CIFAR10 to 94% test accuracy in 79 seconds as described [in this blog series](https://myrtle.ai/learn/how-to-train-your-resnet-1-baseline/).
+
+Demonstration of training a small ResNet on CIFAR10 to 94% test accuracy in 79 seconds as described [in this blog series](https://myrtle.ai/learn/how-to-train-your-resnet-1-baseline/).
 
 <img src="net.svg">
 

@@ -87,7 +87,8 @@ def net(channels=None,
         # extra_layers=('prep', 'layer1', 'layer2' ,'layer3'), # 0:3.0; 1,3:3.4; 1,2,3:3.6; p,1,2,3:4.0->94.15 ;
         extra_layers=(),
         concat_pool=False,
-        res_layers=('prep', 'layer2'), # 'layer1', 'layer3',7.1 'prep', 'layer2'7.6
+        # res_layers=('prep', 'layer2'), # 'layer1', 'layer3',7.1 'prep', 'layer2'7.6
+        res_layers=('layer1', 'layer3'), # 'layer1', 'layer3',7.1 'prep', 'layer2'7.6
         **kw):
 
     channels = channels or {'prep': 64, 'layer1': 128, 'layer2': 256, 'layer3': 512}
@@ -144,19 +145,6 @@ if __name__ == '__main__':
         # _logger.debug(RCV_CONFIG)
 
         """
-        "peak_lr":{"_type": "loguniform", "_value": [4e-5, 4e-1]},
-        "base_wd":{"_type": "loguniform", "_value": [5e-5, 5e-3]},
-        "logits_weight":{"_type":"choice", "_value":[0.0625, 0.125, 0.25, 0.5, 1]},
-        "peak_epoch":{"_type":"choice", "_value":[5, 10, 15, 20]},
-        "cutout":{"_type":"choice", "_value":[10, 8, 6, 4]}
-        "concat_pool":{"_type":"choice", "_value":["concat_pool", "Maxpooling"]},
-        "total_epoch":{"_type":"choice", "_value":[24, 32, 40]}
-        "prep":{"_type":"choice", "_value":[16, 32, 48, 64]},
-        "layer1":{"_type":"choice", "_value":[64, 80, 96, 112, 128]},
-        "layer2":{"_type":"choice", "_value":[128, 160, 192, 224, 256]},
-        "layer3":{"_type":"choice", "_value":[256, 320, 384, 448, 512]}
-            
-        
         peak_lr = RCV_CONFIG['peak_lr']
         base_wd = RCV_CONFIG['base_wd']
         logits_weight = RCV_CONFIG['logits_weight']
@@ -194,10 +182,7 @@ if __name__ == '__main__':
         # search space
         # peak_lr = RCV_CONFIG['peak_lr']
 
-
         # considerate training time
-
-        #
         batch_norm = partial(BatchNorm, weight_init=None, bias_init=None)
         remove_identity_nodes = lambda net: remove_by_type(net, Identity)
 
