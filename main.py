@@ -67,7 +67,7 @@ def conv_bn(c_in, c_out, bn_weight_init=1.0, **kw):
         'relu': nn.ReLU(True)
     }
 
-def basic_net(channels, weight, pool, **kw):
+def basic_net(channels, weight, pool, num_classes, **kw):
 
     return {
         'input': (None, []),
@@ -77,7 +77,7 @@ def basic_net(channels, weight, pool, **kw):
         'layer3': dict(conv_bn(channels['layer2'], channels['layer3'], **kw), pool=pool),
         'pool': nn.MaxPool2d(4),
         'flatten': Flatten(),
-        'linear': nn.Linear(channels['layer3'], 10, bias=False),
+        'linear': nn.Linear(channels['layer3'], num_classes, bias=False),
         'logits': Mul(weight),
     }
 
@@ -89,6 +89,7 @@ def net(channels=None,
         concat_pool=False,
         # res_layers=('prep', 'layer2'), # 'layer1', 'layer3',7.1 'prep', 'layer2'7.6
         res_layers=('layer1', 'layer3'), # 'layer1', 'layer3',7.1 'prep', 'layer2'7.6
+        num_classes=10,
         **kw):
 
     channels = channels or {'prep': 64, 'layer1': 128, 'layer2': 256, 'layer3': 512}
@@ -96,7 +97,7 @@ def net(channels=None,
                                 'res1': conv_bn(c, c, **kw),
                                 'res2': conv_bn(c, c, **kw),
                                 'add': (Add(), ['in', 'res2/relu'])}
-    n = basic_net(channels, weight, pool, **kw)
+    n = basic_net(channels, weight, pool, num_classes, **kw)
     for layer in res_layers:
         n[layer]['residual'] = residual(channels[layer], **kw)
     for layer in extra_layers:
@@ -176,7 +177,7 @@ if __name__ == '__main__':
         logits_weight = 0.125
         peak_epoch = 5
         cutout_size = 8
-        total_epoch = 24
+        total_epoch = 200 # 10:24, 100,
         channels = {'prep': 64, 'layer1': 112, 'layer2': 256, 'layer3': 384} # 2.83* 24 = 67.92
 
         # search space
@@ -186,8 +187,19 @@ if __name__ == '__main__':
         batch_norm = partial(BatchNorm, weight_init=None, bias_init=None)
         remove_identity_nodes = lambda net: remove_by_type(net, Identity)
 
-        DATA_DIR = './data'
-        dataset = cifar10(DATA_DIR)
+        # DATA_DIR = './data'
+        # classes = 10
+        # dataset = cifar10(DATA_DIR)
+
+        DATA_DIR = './data_cifar100'
+        classes= 100
+        dataset = cifar100(DATA_DIR) # 10:74
+
+        # 24
+        # 24       0.0000       2.8351       0.4122       0.8929       0.1890       0.8823       0.7459       3.0241
+        # 100epoch
+        # 100       0.0000       2.8506       0.0687       0.9884       0.1872       0.9639       0.7572       3.0378
+
 
         timer = Timer()
         print('Preprocessing training data')
@@ -205,7 +217,7 @@ if __name__ == '__main__':
         lr_schedule = PiecewiseLinear([0, peak_epoch, total_epoch], [0, peak_lr, 0])
         batch_size = 512
 
-        n = net(channels=channels, weight=logits_weight)
+        n = net(channels=channels, weight=logits_weight, num_classes=classes)
         # draw(build_graph(n))
         model = Network(n).to(device).half()
         train_set_x = Transform(train_set, [Crop(32, 32), FlipLR(), Cutout(cutout_size, cutout_size)])

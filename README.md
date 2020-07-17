@@ -23,7 +23,7 @@ Search space configuration:
 Then edit `search_space.json`, you can add the hyper-parameters as follows:
 ```
 +-----------------+------------+-------------------------------------------------------------------------------+
-|      Name       |   default  |                        Module Name                                            |
+| Name            | default    |                        Hyper-parameters                                       |
 +-----------------+------------+-------------------------------------------------------------------------------+
 | peak_lr         | 0.4        |    "peak_lr":{"_type": "loguniform", "_value": [4e-5, 4e-1]},                 |
 +-----------------+------------+-------------------------------------------------------------------------------+
@@ -58,7 +58,7 @@ tuner:
 ```
 
 
-##[cifar10-fast](https://github.com/davidcpage/cifar10-fast)
+## [cifar10-fast](https://github.com/davidcpage/cifar10-fast)
 
 Demonstration of training a small ResNet on CIFAR10 to 94% test accuracy in 79 seconds as described [in this blog series](https://myrtle.ai/learn/how-to-train-your-resnet-1-baseline/).
 

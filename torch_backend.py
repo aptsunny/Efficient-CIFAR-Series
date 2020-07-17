@@ -38,6 +38,21 @@ def _(x):
 #####################
 from functools import lru_cache as cache
 
+
+@cache(None)
+def cifar100(root='./data_cifar100'):
+    try:
+        import torchvision
+        download = lambda train: torchvision.datasets.CIFAR100(root=root, train=train, download=True)
+        return {k: {'data': v.data, 'targets': v.targets} for k,v in [('train', download(train=True)), ('valid', download(train=False))]}
+    except ImportError:
+        from tensorflow.keras import datasets
+        (train_images, train_labels), (valid_images, valid_labels) = datasets.cifar100.load_data()
+        return {
+            'train': {'data': train_images, 'targets': train_labels.squeeze()},
+            'valid': {'data': valid_images, 'targets': valid_labels.squeeze()}
+        }
+
 @cache(None)
 def cifar10(root='./data'):
     try: 
