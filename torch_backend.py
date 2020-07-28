@@ -147,9 +147,23 @@ class Network(nn.Module):
     def nodes(self):
         return (node for node, _ in self.graph.values())
     
+    # def forward(self, inputs, architecture):
     def forward(self, inputs):
+        # re0
+        # print('arch:', architecture)
+        # assert self.archLen == len(architecture)
+        # for archs, arch_id in zip(self.features, architecture):
+        #     x = archs[arch_id](x)
+
         outputs = dict(inputs)
         for k, (node, ins) in self.graph.items():
+            # re1
+            # if k.startswith('prep/extra'):
+            #     continue
+            # elif k=='layer1/conv':
+            #     ins = ['prep/relu']
+
+
             #only compute nodes that are not supplied as inputs.
             if k not in outputs: 
                 outputs[k] = node(*[outputs[x] for x in ins])
@@ -160,6 +174,9 @@ class Network(nn.Module):
             if isinstance(node, nn.Module) and not isinstance(node, nn.BatchNorm2d):
                 node.half()
         return self
+
+    # update network: change model
+
 
 class Identity(namedtuple('Identity', [])):
     def __call__(self, x): return x
@@ -247,7 +264,67 @@ label_smoothing_loss = lambda alpha: Network({
         'acc': (Correct(), ['logits', 'target']),
     })
 
+
 trainable_params = lambda model: {k:p for k,p in model.named_parameters() if p.requires_grad}
+
+def trainable_params_(model):
+    params = {}  # original
+    for name, param in model.named_parameters():
+        # original
+        if param.requires_grad:
+            params[name] = param
+    return params # original
+
+
+def check_split_layer_wise_lr(model, split_list):
+    """
+    compare learning rate to params
+    :param model:
+    :param split_list:
+    :param conv_lr:
+    :return:
+    """
+    lr_group = [0.1] * 7 + [0.2] * 7 + [0.3] * 7 + [0.4] * 7
+    name_group = []
+    params_group = []
+    for name, param in model.named_parameters():
+        name_group.append(name)
+        params_group.append(param)
+
+    # get the true
+    figure_choice = []
+    choice = []
+    layerwise_lr = []
+    if len(params_group) == 28:
+        loc = 0
+        for i in range(0, len(split_list), 1):
+            st = loc
+            en = loc + split_list[i]
+            # print(loc, loc + split_list[i])
+            b = name_group[st:en]
+            a = params_group[st:en]
+            c = lr_group[st:en]
+            loc = en
+            figure_choice.append(b)
+            choice.append(a)
+            layerwise_lr.append(c)
+    return layerwise_lr
+
+
+def split_layer_wise_lr(split_list, conv_lr):
+    """
+    Given the true learning rate
+    :param split_list:
+    :param conv_lr: random sample layer-wise learning rate
+    :return:
+    """
+    true_lr = []
+    for j in range(len(conv_lr)):
+        for k in range(split_list[j]):
+            true_lr.append(conv_lr[j])
+    return true_lr
+
+
 
 #####################
 ## Optimisers
@@ -255,10 +332,22 @@ trainable_params = lambda model: {k:p for k,p in model.named_parameters() if p.r
 
 from functools import partial
 
-def nesterov_update(w, dw, v, lr, weight_decay, momentum):
+
+def nesterov_update(w, dw, v, weight_id, lr, weight_decay, momentum,
+                    lr_instead=False):
+    # print(weight_id, lr_instead[weight_id])
+    if lr_instead:
+        lr = lr/0.4 * lr_instead[weight_id]
+
     dw.add_(weight_decay, w).mul_(-lr)
     v.mul_(momentum).add_(dw)
     w.add_(dw.add_(momentum, v))
+
+
+# def nesterov_update(w, dw, v, lr, weight_decay, momentum):
+#     dw.add_(weight_decay, w).mul_(-lr)
+#     v.mul_(momentum).add_(dw)
+#     w.add_(dw.add_(momentum, v))
 
 norm = lambda x: torch.norm(x.reshape(x.size(0),-1).float(), dim=1)[:,None,None,None]
 
@@ -269,17 +358,51 @@ def zeros_like(weights):
     return [torch.zeros_like(w) for w in weights]
 
 def optimiser(weights, param_schedule, update, state_init):
-    weights = list(weights)
-    return {'update': update, 'param_schedule': param_schedule, 'step_number': 0, 'weights': weights,  'opt_state': state_init(weights)}
+    weights = list(weights) #dict_values-> list # weights drop/freeze
+    # weights = weights[0:3]+ weights[15:]
+
+    return {'update': update,
+            'param_schedule': param_schedule,
+            'step_number': 0,
+            'weights': weights,
+            'opt_state': state_init(weights)}
 
 def opt_step(update, param_schedule, step_number, weights, opt_state):
     step_number += 1
+
+    # need update by f
     param_values = {k: f(step_number) for k, f in param_schedule.items()}
+
+    """
+    # original
     for w, v in zip(weights, opt_state):
         if w.requires_grad:
             update(w.data, w.grad.data, v, **param_values)
-    return {'update': update, 'param_schedule': param_schedule, 'step_number': step_number, 'weights': weights,  'opt_state': opt_state}
+    """
+    # re2    
+    weight_id=0
+    for w, v in zip(weights, opt_state):
 
+        # re2
+        # 超过固定层 extra 0，1，2，3,一共12个 3->14
+        # if weight_id<15 and weight_id>2:
+        #     weight_id = weight_id + 1
+        #     continue
+
+        if w.requires_grad:
+            # re4
+            # update(w.data, w.grad.data, v, **param_values)
+            update(w.data, w.grad.data, v, weight_id, **param_values)
+
+        weight_id=weight_id+1
+
+    return {'update': update,
+            'param_schedule': param_schedule,
+            'step_number': step_number,
+            'weights': weights,
+            'opt_state': opt_state}
+
+# design optim
 LARS = partial(optimiser, update=LARS_update, state_init=zeros_like)
 SGD = partial(optimiser, update=nesterov_update, state_init=zeros_like)
   
@@ -296,7 +419,10 @@ def reduce(batches, state, steps):
     for batch in chain(batches, [None]): 
     #we send an extra batch=None at the end for steps that 
     #need to do some tidying-up (e.g. log_activations)
-        for step in steps:
+        # path=2
+        # print(path, steps)
+        for step in steps: # func
+            # updates = step(batch, state, path) # batch (512, 3, 32, 32)
             updates = step(batch, state) # batch (512, 3, 32, 32)
             if updates:
                 for k,v in updates.items():
@@ -312,14 +438,27 @@ OPTS = 'optimisers'
 ACT_LOG = 'activation_log'
 WEIGHT_LOG = 'weight_log'
 
-#step definitions
+#step definitions # 1
 def forward(training_mode):
     def step(batch, state):
+    # def step(batch, state, path):
+        #     print('forward: ', path)
         if not batch: return
         model = state[MODEL] if training_mode or (VALID_MODEL not in state) else state[VALID_MODEL] # network
         if model.training != training_mode: #without the guard it's slow!
             model.train(training_mode)
+
+        # re5
+        # get_random_cand = lambda: tuple(np.random.randint(4) for i in range(7)) # 7 layers
+        # architecture = get_random_cand()
+
+        # for arch_id in zip(architecture):
+        #     print(arch_id)
+
+        # re3
+        # output = model(batch, architecture)
         output = model(batch)
+
         return {OUTPUT: state[LOSS](output)}
     return step
 
@@ -332,9 +471,11 @@ def forward_tta(tta_transforms):
         logits = torch.mean(torch.stack([model({'input': transform(batch['input'].clone())})['logits'].detach() for transform in tta_transforms], dim=0), dim=0)
         return {OUTPUT: state[LOSS](dict(batch, logits=logits))}
     return step
-
+# 3
 def backward(dtype=None):
-    def step(batch, state):
+    def step(batch, state): #
+    # def step(batch, state, path): #
+        # print('backward: ', path)
         state[MODEL].zero_grad()
         if not batch: return
         loss = state[OUTPUT][LOSS]
@@ -342,11 +483,11 @@ def backward(dtype=None):
             loss = loss.to(dtype)
         loss.sum().backward()
     return step
-
+# 4
 def opt_steps(batch, state):
     if not batch: return
     return {OPTS: [opt_step(**opt) for opt in state[OPTS]]}
-
+# 2
 def log_activations(node_names=('loss', 'acc')):
     def step(batch, state):
         if '_tmp_logs_' not in state: 
@@ -373,6 +514,7 @@ def update_ema(momentum, update_freq=1):
             ema_v += (1-rho)*v
     return step
 
+# train:4, valid:2
 default_train_steps = (forward(training_mode=True), log_activations(('loss', 'acc')), backward(), opt_steps)
 default_valid_steps = (forward(training_mode=False), log_activations(('loss', 'acc')))
 

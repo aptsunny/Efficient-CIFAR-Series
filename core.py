@@ -1,9 +1,9 @@
 from inspect import signature
 import copy
-from collections import namedtuple, defaultdict
 import time
 import numpy as np
 import pandas as pd
+from collections import namedtuple, defaultdict
 from functools import singledispatch
 
 #####################
@@ -200,8 +200,21 @@ def normpath(path):
 
 has_inputs = lambda node: type(node) is tuple
 
-def pipeline(net):
-    return [(sep.join(path), (node if has_inputs(node) else (node, [-1]))) for (path, node) in path_iter(net)]
+# def pipeline(net): # 构造相邻关系 , 3,5相连肯定不行
+#     return [(sep.join(path), (node if has_inputs(node) else (node, [-1]))) for (path, node) in path_iter(net)]
+
+def pipeline(net): # 构造相邻关系 , 3,5相连肯定不行
+    target = []
+    for (path, node) in path_iter(net):
+        if has_inputs(node):
+            target.append((sep.join(path), (node))) # at first
+        # elif 'conv' in path and '5' in path: # [3, 5]
+        #     target.append((sep.join(path), (node, [-4])))
+        else:
+            target.append((sep.join(path), (node, [-1])))
+    return target
+
+
 
 def build_graph(net):
     flattened = pipeline(net)
@@ -223,7 +236,7 @@ def to_numpy(x):
 class PiecewiseLinear(namedtuple('PiecewiseLinear', ('knots', 'vals'))):
     def __call__(self, t):
         return np.interp([t], self.knots, self.vals)[0]
- 
+
 class Const(namedtuple('Const', ['val'])):
     def __call__(self, x):
         return self.val
