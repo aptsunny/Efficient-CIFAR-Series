@@ -118,11 +118,9 @@ def net(weight=0.125,
 
     for layer in extra_layers:
         n[layer]['extra'] = conv_bn(channels[layer], channels[layer], **kw)
-        # n[layer]['extra_1'] = conv_bn(channels[layer], channels[layer], **kw)
+        n[layer]['extra_1'] = conv_bn(channels[layer], channels[layer], **kw)
         # n[layer]['extra_2'] = conv_bn(channels[layer], channels[layer], **kw)
         # n[layer]['extra_3'] = conv_bn(channels[layer], channels[layer], **kw)
-
-
 
     return n
 

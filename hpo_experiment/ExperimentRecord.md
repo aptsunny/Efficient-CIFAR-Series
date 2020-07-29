@@ -1,5 +1,82 @@
 # 实验记录
 
+## baseline
+
+```python
+        n = net(weight=logits_weight,
+                channels=channels,
+                extra_layers=('layer1', 'layer3',),
+                # res_layers=('layer1', 'layer3'),
+                ks=3, # [3, 5],
+                num_classes=classes)
+```
+
+```text
+Network(
+  (prep_conv): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (prep_bn): BatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (prep_relu): ReLU(inplace=True)
+  (layer1_conv): Conv2d(64, 112, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer1_bn): BatchNorm(112, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer1_relu): ReLU(inplace=True)
+  (layer1_pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (layer1_extra_conv): Conv2d(112, 112, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer1_extra_bn): BatchNorm(112, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer1_extra_relu): ReLU(inplace=True)
+  (layer1_extra_1_conv): Conv2d(112, 112, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer1_extra_1_bn): BatchNorm(112, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer1_extra_1_relu): ReLU(inplace=True)
+  (layer2_conv): Conv2d(112, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer2_bn): BatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer2_relu): ReLU(inplace=True)
+  (layer2_pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (layer3_conv): Conv2d(256, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer3_bn): BatchNorm(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer3_relu): ReLU(inplace=True)
+  (layer3_pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (layer3_extra_conv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer3_extra_bn): BatchNorm(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer3_extra_relu): ReLU(inplace=True)
+  (layer3_extra_1_conv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (layer3_extra_1_bn): BatchNorm(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer3_extra_1_relu): ReLU(inplace=True)
+  (pool): MaxPool2d(kernel_size=4, stride=4, padding=0, dilation=1, ceil_mode=False)
+  (flatten): Flatten()
+  (linear): Linear(in_features=384, out_features=100, bias=False)
+  (logits): Mul()
+)
+```
+
+```text
+       epoch           lr   train time   train loss    train acc   valid time   valid loss    valid acc   epoch time
+           1       0.0800       5.4308       4.3200       0.0666       0.4296       3.8676       0.1033       5.8605
+           2       0.1600       3.8228       3.4148       0.1801       0.2146       3.1490       0.2142       4.0374
+           3       0.2400       3.6557       2.7415       0.2983       0.2078       2.4465       0.3502       3.8636
+           4       0.3200       3.5254       2.3293       0.3807       0.2084       2.5319       0.3470       3.7338
+           5       0.4000       3.3378       2.0901       0.4350       0.2115       2.1002       0.4358       3.5493
+           6       0.3789       3.2168       1.8867       0.4825       0.2845       2.0987       0.4330       3.5014
+           7       0.3579       3.3421       1.7172       0.5248       0.2246       1.9047       0.4885       3.5667
+           8       0.3368       3.8336       1.5958       0.5544       0.2160       1.7638       0.5165       4.0496
+           9       0.3158       3.7607       1.4897       0.5822       0.2056       2.0610       0.4658       3.9663
+          10       0.2947       3.5481       1.4178       0.6033       0.1956       1.5872       0.5565       3.7437
+          11       0.2737       3.7660       1.3460       0.6197       0.2092       1.5229       0.5753       3.9752
+          12       0.2526       3.6411       1.2718       0.6387       0.2188       1.4178       0.6047       3.8599
+          13       0.2316       3.7753       1.2046       0.6577       0.1931       1.6000       0.5671       3.9685
+          14       0.2105       3.3390       1.1458       0.6747       0.2506       1.4272       0.5999       3.5896
+          15       0.1895       3.7230       1.0816       0.6916       0.2084       1.3414       0.6155       3.9314
+          16       0.1684       3.7872       1.0272       0.7064       0.2164       1.4668       0.5949       4.0036
+          17       0.1474       3.6444       0.9623       0.7257       0.2084       1.3790       0.6215       3.8528
+          18       0.1263       3.7156       0.8918       0.7449       0.2574       1.2262       0.6478       3.9730
+          19       0.1053       3.5679       0.8218       0.7671       0.2128       1.2067       0.6609       3.7807
+          20       0.0842       3.5874       0.7543       0.7838       0.2128       1.1597       0.6762       3.8002
+          21       0.0632       3.4981       0.6776       0.8073       0.2233       1.0803       0.6965       3.7214
+          22       0.0421       3.1418       0.5971       0.8316       0.1936       1.0140       0.7089       3.3354
+          23       0.0211       3.3943       0.5162       0.8577       0.2057       0.9453       0.7278       3.5999
+          24       0.0000       3.5504       0.4518       0.8790       0.2108       0.9004       0.7402       3.7612
+Finished Train/Valid in 93.03 seconds
+```
+
+
 ## layer-wise lr
 
 ```text
@@ -60,6 +137,7 @@
         peak_epoch = RCV_CONFIG['peak_epoch']
         cutout_size = RCV_CONFIG['cutout']
         total_epoch = RCV_CONFIG['total_epoch']
+        
         c_prep = RCV_CONFIG['prep']
         c_layer1 = RCV_CONFIG['layer1']
         c_layer2 = RCV_CONFIG['layer2']

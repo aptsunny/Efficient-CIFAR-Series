@@ -6,6 +6,11 @@ from core import *
 from torch_backend import *
 from network import net
 
+def tsv(logs):
+    data = [(output['epoch'], output['epoch time']/3600, output['valid']['acc']*100) for output in logs]
+    return '\n'.join(['epoch\thours\ttop1Accuracy']+[f'{epoch}\t{hours:.8f}\t{acc:.2f}' for (epoch, hours, acc) in data])
+
+
 def train(model, lr_schedule, train_set, test_set, base_wd, batch_size, num_workers=0):
 
     train_batches = DataLoader(train_set, batch_size, shuffle=True, set_random_choices=True, num_workers=num_workers)
@@ -20,10 +25,10 @@ def train(model, lr_schedule, train_set, test_set, base_wd, batch_size, num_work
                  'momentum': Const(0.9),
                  })]
 
-    # layer-wise learning rate
-    split_list = [3, 3, 3, 3, 3, 3, 3, 3, 3, 1]
-    aaa = check_split_layer_wise_lr(model, split_list)
 
+    # layer-wise learning rate
+    # split_list = [3, 3, 3, 3, 3, 3, 3, 3, 3, 1]
+    # aaa = check_split_layer_wise_lr(model, split_list)
     """
     # conv_lr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     conv_lr = [0.4]*10
@@ -49,7 +54,7 @@ def train(model, lr_schedule, train_set, test_set, base_wd, batch_size, num_work
                            'lr': lr_schedule(epoch + 1)},
                            result))
 
-        # nni.report_intermediate_result(result['valid']['acc'])
+        nni.report_intermediate_result(result['valid']['acc'])
 
 
         if result['valid']['acc'] > best_acc:
@@ -64,24 +69,30 @@ def train(model, lr_schedule, train_set, test_set, base_wd, batch_size, num_work
 
 if __name__ == '__main__':
     try:
-        # RCV_CONFIG = nni.get_next_parameter()
-        # _logger.debug(RCV_CONFIG)
+        RCV_CONFIG = nni.get_next_parameter()
+        _logger.debug(RCV_CONFIG)
 
         task = 'cifar100_dataset'
 
-        peak_lr = 0.4
         base_wd = 5e-4
         logits_weight = 0.125
         peak_epoch = 5
         cutout_size = 8
         total_epoch = 24
-        channels = {'prep': 64, 'layer1': 112, 'layer2': 256, 'layer3': 384}
         batch_size = 512
-        lr_schedule = PiecewiseLinear([0, peak_epoch, total_epoch], [0, peak_lr, 0])
 
+
+        # peak_lr = 0.4
+        # channels = {'prep': 64, 'layer1': 112, 'layer2': 256, 'layer3': 384}
         # search space
-        # peak_lr = RCV_CONFIG['peak_lr']
+        c_prep = RCV_CONFIG['prep']
+        c_layer1 = RCV_CONFIG['layer1']
+        c_layer2 = RCV_CONFIG['layer2']
+        c_layer3 = RCV_CONFIG['layer3']
+        channels = {'prep': c_prep, 'layer1': c_layer1, 'layer2': c_layer2, 'layer3': c_layer3}
+        peak_lr = RCV_CONFIG['peak_lr']
 
+        lr_schedule = PiecewiseLinear([0, peak_epoch, total_epoch], [0, peak_lr, 0])
         # dataset
         if task == 'cifar100_dataset':
             DATA_DIR = './data_cifar100'
@@ -114,8 +125,8 @@ if __name__ == '__main__':
         # Design search space
         n = net(weight=logits_weight,
                 channels=channels,
-                # extra_layers=('prep',),
-                res_layers=('layer1', 'layer3'),
+                extra_layers=('layer1', 'layer3',),
+                # res_layers=('layer1', 'layer3'),
                 ks=3, # [3, 5],
                 num_classes=classes)
 
@@ -134,9 +145,12 @@ if __name__ == '__main__':
         # train pipeline
         summary, best_acc, total_time = train(model, lr_schedule, train_set_x, test_set, base_wd, batch_size=batch_size, num_workers=0)
 
+        # import os
+        # with open(os.path.join(os.path.expanduser('.'), 'cifar100_training_logs.tsv'), 'w') as f:
+        #     f.write(tsv(summary.log))
         print('Finished Train/Valid in {:.2f} seconds'.format(total_time))
 
-        # nni.report_final_result(best_acc)
+        nni.report_final_result(best_acc)
     except Exception as exception:
         _logger.exception(exception)
         raise

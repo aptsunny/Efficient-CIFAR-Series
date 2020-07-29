@@ -1,0 +1,34 @@
+{
+  "conv2": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1"
+    ]
+  },
+  "conv3": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1"
+    ]
+  },
+  "conv4": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1"
+    ]
+  },
+  "skip": {
+    "_type": "input_choice",
+    "_value": {
+      "candidates": [
+        "conv2",
+        "conv3",
+        "conv4"
+      ],
+      "n_chosen": 1
+    }
+  }
+}

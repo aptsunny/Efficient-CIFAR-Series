@@ -1,23 +1,65 @@
 # Efficient-CIFAR-Series
 
-## [NNI Experiment](https://github.com/microsoft/nni)
-
-### Install
+### Install NNI
 NNI supports and is tested on Ubuntu >= 16.04, macOS >= 10.14.1, and Windows 10 >= 1809. Simply run the following `pip install` in an environment that has `python 64-bit >= 3.5`.
 
-Linux or macOS
-
+[NNI Experiment](https://github.com/microsoft/nni) Linux or macOS
 ```bash
 python3 -m pip install --upgrade nni
 ```
 
-### Start Experiment
-
-XXXX>1024
-
+[apex 混合精度训练](https://github.com/NVIDIA/apex)
 ```bash
-nnictl create --config config.yml --port XXXX 
+$ git clone https://github.com/NVIDIA/apex
+$ cd apex
+$ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 ```
+
+```python
+# Initialization
+opt_level = 'O1'
+model, optimizer = amp.initialize(model, optimizer, opt_level=opt_level)
+
+# Train your model
+...
+with amp.scale_loss(loss, optimizer) as scaled_loss:
+    scaled_loss.backward()
+...
+``` 
+
+应具有以下代码结构：
+
+```
+Efficient-CIFAR-Series
+├── core.py
+├── torch_backend.py
+├── README.md
+├── main.py 超参程序
+├── network.py 字典网络定义
+├── search_space.json 定义超参搜索空间 
+├── config_search.yml 开启超参配置实验
+├── data_cifar100 数据集
+└── architecture_search 单路径 One-Shot-Cifar 超网训练
+    ├── cifar_spos
+    │   ├── evolution_cifar.py
+    │   ├── trainer_cifar.py
+    │   └── mutator_cifar.py
+    ├── nni_auto_gen_search_space.json 导出网络结构
+    ├── architecture_final.json
+    ├── blocks.py
+    ├── config_search_cifar.yml
+    ├── dataloader.py
+    ├── network.py
+    ├── readme.md
+    ├── scratch.py
+    ├── supernet.py
+    ├── tester.py
+    ├── tuner.py
+    ├── random_nas_tuner.py
+    └── utils.py
+```
+
+### 1. Start HPO Experiment
 
 Search space configuration: 
 Then edit `search_space.json`, you can add the hyper-parameters as follows:
@@ -56,6 +98,86 @@ tuner:
     #choice: maximize, minimize
     optimize_mode: maximize
 ```
+
+端口:XXXX>1024
+
+开启 Hyperparameter Optimization 实验，找到最好的超参组合，并且记录下来。
+```bash
+nnictl create --config config.yml --port XXXX 
+```
+
+浏览器打开
+```bash
+http://127.0.0.1:XXXX/detail
+```
+
+在metric拉不开差距的时候优先选择Duration小的trial
+
+
+### 2. Start Train Supernet
+
+查看超网的搜索空间
+
+```text
+1. example path options:
+    choice_block = LayerChoice([
+        ConvBnReluPool(inp, oup, stride=stride, k=3),
+        ConvBnReluPool(inp, oup, stride=stride, k=5),
+        ConvBnRelu(inp, oup, stride=stride, k=3),
+        ConvBnRelu(inp, oup, stride=stride, k=5)
+        ])
+        
+2. depth shortcut:
+    self.input_switch = InputChoice(n_candidates=4,
+                                    n_chosen=1,
+                                    key='skip')
+           
+    skip_x = self.input_switch([zero_x, conv3_input, conv4_input, conv4_output]) 
+```
+
+训练超网权重
+
+```bash
+python supernet_cifar.py
+
+python supernet_cifar.py --load-checkpoint --spos-preprocessing
+```
+
+save checkpoint "../checkpoints/epoch_29.pth.tar"
+
+
+继承筛选 undone
+
+```text
+
+
+```
+
+
+
+### 3. Search Best Architecture
+
+生成 搜索空间待选
+
+```bash
+nnictl ss_gen -t "python tester_cifar.py"
+```
+
+启实验
+```bash
+nnictl create --config config_search_cifar.yml --port 7700
+
+```
+
+### 4. Train from Scratch
+
+对于超网训练效果
+
+```bash
+python scratch.py
+```
+
+
 
 
 ## [cifar10-fast](https://github.com/davidcpage/cifar10-fast)

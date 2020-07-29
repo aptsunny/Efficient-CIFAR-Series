@@ -8,3 +8,6 @@ __pycache__
 data
 data_cifar100
 *.svg
+architecture_search/apex
+architecture_search/apex/
+checkpoints/*
