@@ -76,7 +76,7 @@ def evaluate_acc(model, criterion, args, loader_train, loader_test):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("SPOS Candidate Tester")
 
-    parser.add_argument("--checkpoint", type=str, default="../checkpoints/epoch_29.pth.tar")
+    parser.add_argument("--checkpoint", type=str, default="../checkpoints/epoch_39.pth.tar")
     # parser.add_argument("--checkpoint", type=str, default="../checkpoints/epoch_0.pth.tar")
     # parser.add_argument("--spos-preprocessing", action="store_true", default=False,
     #                     help="When true, image values will range from 0 to 255 and use BGR "
@@ -87,6 +87,7 @@ if __name__ == "__main__":
     parser.add_argument("--train-iters", type=int, default=200) # bn
     parser.add_argument("--test-batch-size", type=int, default=512)
     parser.add_argument("--log-frequency", type=int, default=10)
+    parser.add_argument("--classes", type=int, default=100)
 
     args = parser.parse_args()
 
@@ -99,7 +100,21 @@ if __name__ == "__main__":
 
     assert torch.cuda.is_available()
 
-    model = CIFAR100_OneShot(n_classes=100)
+
+    hp_result = {
+        "peak_lr": 0.3897305297777246,
+        "prep": 48,
+        "layer1": 84,
+        "layer2": 256,
+        "layer3": 384
+    }
+    c_prep = hp_result['prep']
+    c_layer1 = hp_result['layer1']
+    c_layer2 = hp_result['layer2']
+    c_layer3 = hp_result['layer3']
+    channels = [c_prep, c_layer1, c_layer2, c_layer3]
+
+    model = CIFAR100_OneShot(channels=channels, n_classes=args.classes)
 
     criterion = nn.CrossEntropyLoss()
     # criterion = CrossEntropyLabelSmooth(10, 0.1)

@@ -76,6 +76,13 @@ Network(
 Finished Train/Valid in 93.03 seconds
 ```
 
+```text
+
+
+```
+
+
+
 
 ## layer-wise lr
 

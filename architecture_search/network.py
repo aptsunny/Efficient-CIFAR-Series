@@ -122,9 +122,9 @@ class CIFAR100_OneShot(nn.Module):
 
             choice_block = LayerChoice([
                 ConvBnReluPool(inp, oup, stride=stride, k=3),
-                # ConvBnReluPool(inp, oup, stride=stride, k=5),
-                # ConvBnRelu(inp, oup, stride=stride, k=3),
-                # ConvBnRelu(inp, oup, stride=stride, k=5)
+                ConvBnReluPool(inp, oup, stride=stride, k=5),
+                ConvBnRelu(inp, oup, stride=stride, k=3),
+                ConvBnRelu(inp, oup, stride=stride, k=5)
 
                 # ConvBnRelu(inp, oup, stride=stride, k=5),
                 # ConvBnRelu(inp, oup, stride=stride, k=7)

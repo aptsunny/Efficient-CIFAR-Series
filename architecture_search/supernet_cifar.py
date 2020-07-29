@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser.add_argument("--load-checkpoint", action="store_true", default=False)
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=512)
-    parser.add_argument("--epochs", type=int, default=24)
+    parser.add_argument("--epochs", type=int, default=40) #24
     parser.add_argument("--learning-rate", type=float, default=0.4)
     parser.add_argument("--momentum", type=float, default=0.9)
     parser.add_argument("--weight-decay", type=float, default=5e-4)

@@ -139,11 +139,18 @@ http://127.0.0.1:XXXX/detail
 
 ```bash
 python supernet_cifar.py
-
-python supernet_cifar.py --load-checkpoint --spos-preprocessing
 ```
 
-save checkpoint "../checkpoints/epoch_29.pth.tar"
+save checkpoint 
+
+```python
+"../checkpoints/epoch_29.pth.tar"
+```
+
+断点训练 学习率重载 undone
+```bash
+python supernet_cifar.py --load-checkpoint --spos-preprocessing
+```  
 
 
 继承筛选 undone
@@ -157,7 +164,7 @@ save checkpoint "../checkpoints/epoch_29.pth.tar"
 
 ### 3. Search Best Architecture
 
-生成 搜索空间待选
+生成 搜索空间待选 retrain bn
 
 ```bash
 nnictl ss_gen -t "python tester_cifar.py"

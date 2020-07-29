@@ -11,3 +11,4 @@ data_cifar100
 architecture_search/apex
 architecture_search/apex/
 checkpoints/*
+architecture_search/logs/*

@@ -1,34 +1,65 @@
 {
-  "conv2": {
+  "LayerChoice1": {
     "_type": "layer_choice",
     "_value": [
       "0",
-      "1"
+      "1",
+      "2",
+      "3"
     ]
   },
-  "conv3": {
+  "LayerChoice2": {
     "_type": "layer_choice",
     "_value": [
       "0",
-      "1"
+      "1",
+      "2",
+      "3"
     ]
   },
-  "conv4": {
+  "LayerChoice3": {
     "_type": "layer_choice",
     "_value": [
       "0",
-      "1"
+      "1",
+      "2",
+      "3"
     ]
   },
-  "skip": {
-    "_type": "input_choice",
-    "_value": {
-      "candidates": [
-        "conv2",
-        "conv3",
-        "conv4"
-      ],
-      "n_chosen": 1
-    }
+  "LayerChoice4": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "LayerChoice5": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "LayerChoice6": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "LayerChoice7": {
+    "_type": "layer_choice",
+    "_value": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ]
   }
 }
