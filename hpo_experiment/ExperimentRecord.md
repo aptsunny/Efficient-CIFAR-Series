@@ -1,3 +1,40 @@
+
+
+# 引言
+
+一组优良的超参数可以极大程度上提升网络训练，除了本身超参数搜索的算法外(如何得到下一组超参数组合)，对网络进行高效训练也是十分必要的，这里提到如何用单独的GPU，在CIFAR-10/CIFAR-100 图像分类数据集上高效地训练残差网络（Residual networks）, 这对网络结构搜索以及超参数优化的效率提升有巨大好处。
+
+# Content
+
+# [Baseline](../notebook/demo.ipynb)
+
+## Network visualisation
+
+```python
+        remove_identity_nodes = lambda net: remove_by_type(net, Identity)
+        colors = ColorMap()
+        draw = lambda graph: DotGraph(
+            {p: ({'fillcolor': colors[type(v)], 'tooltip': repr(v)}, inputs) for p, (v, inputs) in graph.items() if
+             v is not None})
+        draw(build_graph(n))
+```
+
+
+# 
+
+# 
+
+
+
+
+
+
+
+
+
+
+
+
 # 实验记录
 
 ## baseline
@@ -162,7 +199,25 @@ Finished Train/Valid in 93.03 seconds
               'layer1': 128,
               'layer2': 256,
               'layer3': 512}
-              
+
+
+        # logits_weight = 0.125
+        # peak_epoch = 5
+        # cutout_size = 8
+        # total_epoch = 24
+        # batch_size = 512
+        # peak_lr = 0.4
+        # channels = {'prep': 64, 'layer1': 112, 'layer2': 256, 'layer3': 384}
+   
+   
+        channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'], 'layer3': RCV_CONFIG['layer3']}
+        peak_lr = RCV_CONFIG['peak_lr']  
+        
+        
+    "prep":{"_type": "choice", "_value": [16, 32, 48, 64]},
+    "layer1":{"_type": "choice", "_value": [28, 56, 84, 112]},
+    "layer2":{"_type": "choice", "_value": [64, 128, 192, 256]},
+    "layer3":{"_type": "choice", "_value": [96, 192, 288, 384]}         
 ```
 
 ## operations

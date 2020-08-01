@@ -80,12 +80,10 @@ def basic_net(ks, channels, weight, pool, num_classes, **kw):
 
     return {
         'input': (None, []),
-
         'prep': conv_bn(3, channels['prep'], ks=ks, bn_weight_init=1.0, **kw),
         'layer1': dict(conv_bn(channels['prep'], channels['layer1'], ks=ks, **kw), pool=pool), # 32->16
         'layer2': dict(conv_bn(channels['layer1'], channels['layer2'], ks=ks, **kw), pool=pool), # 16->8
         'layer3': dict(conv_bn(channels['layer2'], channels['layer3'], ks=ks, **kw), pool=pool), # 8->4
-
         'pool': nn.MaxPool2d(4),
         'flatten': Flatten(),
         'linear': nn.Linear(channels['layer3'], num_classes, bias=False),
@@ -103,8 +101,9 @@ def net(weight=0.125,
         **kw):
 
     channels = channels or {'prep': 64, 'layer1': 128, 'layer2': 256, 'layer3': 512}
+    assignment = {'prep': 1, 'layer1': 1, 'layer2': 1, 'layer3': 1}
 
-    # defined in +(res1+res2+relu) = add
+    # defined residual: in+(res1+res2+relu)
     residual = lambda c, **kw: {'in': Identity(),
                                 'res1': conv_bn(c, c, **kw),
                                 'res2': conv_bn(c, c, **kw),
@@ -112,16 +111,18 @@ def net(weight=0.125,
 
     n = basic_net(ks, channels, weight, pool, num_classes, **kw)
 
-    #
-    for layer in res_layers:
+    for layer in res_layers: # residual
         n[layer]['residual'] = residual(channels[layer], **kw)
+        assignment[layer]+=2
 
-    for layer in extra_layers:
+    for layer in extra_layers: # extra
         n[layer]['extra'] = conv_bn(channels[layer], channels[layer], **kw)
-        n[layer]['extra_1'] = conv_bn(channels[layer], channels[layer], **kw)
+        # n[layer]['extra_1'] = conv_bn(channels[layer], channels[layer], **kw)
         # n[layer]['extra_2'] = conv_bn(channels[layer], channels[layer], **kw)
         # n[layer]['extra_3'] = conv_bn(channels[layer], channels[layer], **kw)
+        assignment[layer] += 1
 
+    print(assignment)
     return n
 
 

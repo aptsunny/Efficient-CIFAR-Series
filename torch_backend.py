@@ -291,6 +291,7 @@ def check_split_layer_wise_lr(model, split_list):
         name_group.append(name)
         params_group.append(param)
 
+    print((len(name_group)-1)//3)
     # get the true
     figure_choice = []
     choice = []
@@ -533,7 +534,8 @@ def train_epoch(state, timer, train_batches, valid_batches,
     return {
         'train': union({'time': train_time}, train_summary), 
         'valid': union({'time': valid_time}, valid_summary), 
-        'epoch time': timer.total_time
+        'train time': train_time,
+        'total time': timer.total_time
     }
 
 #on_epoch_end
@@ -577,3 +579,4 @@ def whitening_filter(Λ, V, eps=1e-2):
     filt.weight.data = (V/torch.sqrt(Λ+eps)[:,None,None,None])
     filt.weight.requires_grad = False 
     return filt
+

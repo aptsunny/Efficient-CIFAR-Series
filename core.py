@@ -23,7 +23,6 @@ class Timer():
         delta_t = self.times[-1] - self.times[-2]
         if include_in_total:
             self.total_time += delta_t
-        # print('{}/{}'.format(delta_t, self.total_time))
         return delta_t
     
 localtime = lambda: time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -60,8 +59,8 @@ class Table():
 ## data preprocessing
 #####################
 def preprocess(dataset, transforms):
-    dataset = copy.copy(dataset) #shallow copy
-    for transform in transforms:
+    dataset = copy.copy(dataset) #shallow copy (50000,32,32,3)-> (50000,1)
+    for transform in transforms: # pad + normalise + transpose
         dataset['data'] = transform(dataset['data'])
     return dataset
 
@@ -298,6 +297,7 @@ class DotGraph():
 
     def svg(self, **kwargs):
         return self.dot_graph(**kwargs).create(format='svg').decode('utf-8')
+
     try:
         import pydot
         _repr_svg_ = svg
@@ -311,3 +311,29 @@ def remove_by_type(net, node_type):
     graph = build_graph(net)
     remap = {k: i[0] for k,(v,i) in graph.items() if isinstance(v, node_type)}
     return {k: (v, [walk(remap, x) for x in i]) for k, (v,i) in graph.items() if not isinstance(v, node_type)}
+
+
+
+#####################
+# summary
+#####################
+
+def tsv(logs, entire=True):
+    if entire:
+        data = [(output['epoch'], output['lr'], output['train time'], output['train']['acc']*100, output['valid']['acc']*100) \
+                for output in logs]
+
+        return '\n'.join([ 'epoch\tlr\ttrain time\ttrain Accuracy\ttop1Accuracy']+ \
+                         [f'{epoch}\t{lr:.4f}\t{train_time:.4f}\t\t{train_acc:.2f}\t\t{val_acc:.2f}' \
+                                                                     for (epoch, lr, train_time, train_acc, val_acc) in data])
+
+    else:
+        data = [(output['epoch'], output['train time'], output['valid']['acc']*100) for output in logs]
+        return '\n'.join(['epoch\t seconds\t top1Accuracy']+[f'{epoch}\t {seconds:.8f} \t{acc:.2f}' for (epoch, seconds, acc) in data])
+
+def record(summary, task, tag):
+    import os
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), \
+                           'hpo_experiment/{}_{}_training_logs.tsv'.format(task, tag)), 'w') as f:
+        f.write(tsv(summary.log))
+    return

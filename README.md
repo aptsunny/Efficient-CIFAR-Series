@@ -8,7 +8,7 @@ NNI supports and is tested on Ubuntu >= 16.04, macOS >= 10.14.1, and Windows 10 
 python3 -m pip install --upgrade nni
 ```
 
-[apex 混合精度训练](https://github.com/NVIDIA/apex)
+[apex 混合精度训练](https://github.com/NVIDIA/apex) 用于结构搜索部分
 ```bash
 $ git clone https://github.com/NVIDIA/apex
 $ cd apex
@@ -153,7 +153,7 @@ python supernet_cifar.py --load-checkpoint --spos-preprocessing
 ```  
 
 
-继承筛选 undone
+继承筛选 Search space shrinking
 
 ```text
 

@@ -1,4 +1,5 @@
-from core import *
+import sys
+sys.path.append("..")
 from torch_backend import *
 from dawn_utils import net, tsv
 import argparse

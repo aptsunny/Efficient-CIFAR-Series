@@ -43,20 +43,55 @@ if __name__ == "__main__":
 
     lr = args.learning_rate
 
-
-    hp_result = {
-        "peak_lr": 0.3897305297777246,
+    #
+    # hp_result = {
+    #     "peak_lr": 0.3897305297777246,
+    #     "prep": 48,
+    #     "layer1": 84,
+    #     "layer2": 256,
+    #     "layer3": 384
+    # }
+    # hp_result ={
+    #     "peak_lr": 0.36057638714284174,
+    #     "prep": 48,
+    #     "layer1": 84,
+    #     "layer2": 256,
+    #     "layer3": 384
+    # }
+    hp_result ={
+        "peak_lr": 0.4,
         "prep": 48,
-        "layer1": 84,
+        "layer1": 112,
         "layer2": 256,
         "layer3": 384
     }
+
     c_prep = hp_result['prep']
     c_layer1 = hp_result['layer1']
     c_layer2 = hp_result['layer2']
     c_layer3 = hp_result['layer3']
     channels = [c_prep, c_layer1, c_layer2, c_layer3]
     lr = hp_result['peak_lr']
+
+    timer = Timer()
+    print('Preprocessing training data')
+    dataset_train, dataset_valid = get_dataset("cifar100", cutout_length=8)
+    train_loader = torch.utils.data.DataLoader(dataset_train,
+                                               shuffle=True,
+                                               batch_size=args.batch_size,
+                                               num_workers=args.workers)
+
+    print(f'Finished in {timer():.2} seconds')
+
+    print('Preprocessing test data')
+    valid_loader = torch.utils.data.DataLoader(dataset_valid,
+                                               shuffle=False,
+                                               batch_size=args.batch_size,
+                                               num_workers=args.workers)
+    print(f'Finished in {timer():.2} seconds')
+
+    print('Preprocessing training')
+
 
     model = CIFAR100_OneShot(channels=channels, n_classes=args.classes)
 
@@ -87,24 +122,7 @@ if __name__ == "__main__":
                                                   last_epoch=-1)
 
 
-    timer = Timer()
-    print('Preprocessing training data')
-    dataset_train, dataset_valid = get_dataset("cifar100", cutout_length=8)
-    train_loader = torch.utils.data.DataLoader(dataset_train,
-                                               shuffle=True,
-                                               batch_size=args.batch_size,
-                                               num_workers=args.workers)
 
-    print(f'Finished in {timer():.2} seconds')
-
-    print('Preprocessing test data')
-    valid_loader = torch.utils.data.DataLoader(dataset_valid,
-                                               shuffle=False,
-                                               batch_size=args.batch_size,
-                                               num_workers=args.workers)
-    print(f'Finished in {timer():.2} seconds')
-
-    print('Preprocessing training')
     trainer = SPOSSupernetTrainer(model, criterion, accuracy, optimizer, args.epochs, train_loader, valid_loader,
                                   mutator=mutator,
                                   batch_size=args.batch_size,

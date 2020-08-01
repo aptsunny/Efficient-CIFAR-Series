@@ -13,10 +13,6 @@ class Mul(nn.Module):
     def __call__(self, x):
         return x*self.weight
 
-
-
-
-
 class ConvBnReluPool_detail(nn.Module):
     def __init__(self, inplanes, outplanes, stride, k):
         super(ConvBnReluPool_detail, self).__init__()
@@ -142,7 +138,7 @@ class DynamicBasicBlock(nn.Module):
         # out = F.relu(self.bn1(self.conv1(x)))
         # out = self.pooling(out)
 
-        conv2_input = self.conv1(x)
+        conv2_input = self.conv1(x)  #
 
         conv3_input = self.conv2(conv2_input)
 
