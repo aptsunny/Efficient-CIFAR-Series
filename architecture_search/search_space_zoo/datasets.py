@@ -4,7 +4,7 @@
 import numpy as np
 import torch
 from torchvision import transforms
-from torchvision.datasets import CIFAR10
+from torchvision.datasets import CIFAR10, CIFAR100
 
 
 class Cutout(object):
@@ -49,8 +49,12 @@ def get_dataset(cls, cutout_length=0):
     valid_transform = transforms.Compose(normalize)
 
     if cls == "cifar10":
-        dataset_train = CIFAR10(root="./data", train=True, download=True, transform=train_transform)
-        dataset_valid = CIFAR10(root="./data", train=False, download=True, transform=valid_transform)
+        dataset_train = CIFAR10(root="../../data", train=True, download=True, transform=train_transform)
+        dataset_valid = CIFAR10(root="../../data", train=False, download=True, transform=valid_transform)
+
+    elif cls == "cifar100":
+        dataset_train = CIFAR100(root="../../data_cifar100", train=True, download=True, transform=train_transform)
+        dataset_valid = CIFAR100(root="../../data_cifar100", train=False, download=True, transform=valid_transform)
     else:
         raise NotImplementedError
     return dataset_train, dataset_valid
