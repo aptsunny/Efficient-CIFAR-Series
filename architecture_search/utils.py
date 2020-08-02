@@ -58,3 +58,8 @@ def accuracy(output, target, topk=(1, 5)):
         correct_k = correct[:k].view(-1).float().sum(0)
         res["acc{}".format(k)] = correct_k.mul_(1.0 / batch_size).item()
     return res
+
+def reward_accuracy(output, target, topk=(1,)):
+    batch_size = target.size(0)
+    _, predicted = torch.max(output.data, 1)
+    return (predicted == target).sum().item() / batch_size

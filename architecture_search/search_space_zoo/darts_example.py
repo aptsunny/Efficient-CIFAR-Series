@@ -11,7 +11,7 @@ import torch.nn as nn
 import datasets
 from nni.nas.pytorch.callbacks import ArchitectureCheckpoint, LRSchedulerCallback
 from nni.nas.pytorch.darts import DartsTrainer
-from utils import accuracy
+from ..utils import accuracy
 
 # from nni.nas.pytorch.search_space_zoo import DartsCell
 from CELL import DartsCell
@@ -31,9 +31,9 @@ if __name__ == "__main__":
     parser.add_argument("--visualization", default=False, action="store_true")
     args = parser.parse_args()
 
-    dataset_train, dataset_valid = datasets.get_dataset("cifar10")
+    dataset_train, dataset_valid = datasets.get_dataset("cifar100")
 
-    model = DartsStackedCells(3, args.channels, 10, args.layers, DartsCell)
+    model = DartsStackedCells(3, args.channels, 100, args.layers, DartsCell)
     criterion = nn.CrossEntropyLoss()
 
     optim = torch.optim.SGD(model.parameters(), 0.025, momentum=0.9, weight_decay=3.0E-4)

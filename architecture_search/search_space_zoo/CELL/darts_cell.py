@@ -42,7 +42,8 @@ class Node(nn.Module):
                     ("dilconv3x3", DilConv(channels, channels, 3, stride, 2, 2, affine=False)),
                     ("dilconv5x5", DilConv(channels, channels, 5, stride, 4, 2, affine=False))
                 ]), key=choice_keys[-1]))
-        self.drop_path = DropPath()
+
+        self.drop_path = DropPath() # Drop path with probability.
         self.input_switch = mutables.InputChoice(choose_from=choice_keys, n_chosen=2, key="{}_switch".format(node_id))
 
     def forward(self, prev_nodes):
@@ -92,7 +93,9 @@ class DartsCell(nn.Module):
         self.mutable_ops = nn.ModuleList()
         for depth in range(2, self.n_nodes + 2):
             self.mutable_ops.append(Node("{}_n{}".format("reduce" if reduction else "normal", depth),
-                                         depth, channels, 2 if reduction else 0))
+                                         depth,
+                                         channels,
+                                         2 if reduction else 0))
 
     def forward(self, pprev, prev):
         """

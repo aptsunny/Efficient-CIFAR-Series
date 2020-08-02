@@ -1,0 +1,62 @@
+{
+  "normal_n2_p0": "skipconnect",
+  "normal_n2_p1": "sepconv5x5",
+  "normal_n2_switch": [
+    "normal_n2_p0",
+    "normal_n2_p1"
+  ],
+  "normal_n3_p0": "skipconnect",
+  "normal_n3_p1": "skipconnect",
+  "normal_n3_p2": [],
+  "normal_n3_switch": [
+    "normal_n3_p0",
+    "normal_n3_p1"
+  ],
+  "normal_n4_p0": "skipconnect",
+  "normal_n4_p1": "sepconv3x3",
+  "normal_n4_p2": [],
+  "normal_n4_p3": [],
+  "normal_n4_switch": [
+    "normal_n4_p0",
+    "normal_n4_p1"
+  ],
+  "normal_n5_p0": "skipconnect",
+  "normal_n5_p1": "sepconv3x3",
+  "normal_n5_p2": [],
+  "normal_n5_p3": [],
+  "normal_n5_p4": [],
+  "normal_n5_switch": [
+    "normal_n5_p0",
+    "normal_n5_p1"
+  ],
+  "reduce_n2_p0": "maxpool",
+  "reduce_n2_p1": "skipconnect",
+  "reduce_n2_switch": [
+    "reduce_n2_p0",
+    "reduce_n2_p1"
+  ],
+  "reduce_n3_p0": "maxpool",
+  "reduce_n3_p1": [],
+  "reduce_n3_p2": "skipconnect",
+  "reduce_n3_switch": [
+    "reduce_n3_p0",
+    "reduce_n3_p2"
+  ],
+  "reduce_n4_p0": "maxpool",
+  "reduce_n4_p1": [],
+  "reduce_n4_p2": "skipconnect",
+  "reduce_n4_p3": [],
+  "reduce_n4_switch": [
+    "reduce_n4_p0",
+    "reduce_n4_p2"
+  ],
+  "reduce_n5_p0": "maxpool",
+  "reduce_n5_p1": [],
+  "reduce_n5_p2": "skipconnect",
+  "reduce_n5_p3": [],
+  "reduce_n5_p4": [],
+  "reduce_n5_switch": [
+    "reduce_n5_p0",
+    "reduce_n5_p2"
+  ]
+}

@@ -40,7 +40,7 @@ class DartsStackedCells(nn.Module):
         self.n_layers = n_layers
 
         c_cur = stem_multiplier * self.channels
-        self.stem = nn.Sequential(
+        self.stem = nn.Sequential( # 3->48
             nn.Conv2d(in_channels, c_cur, 3, 1, 1, bias=False),
             nn.BatchNorm2d(c_cur)
         )
@@ -51,13 +51,13 @@ class DartsStackedCells(nn.Module):
 
         self.cells = nn.ModuleList()
         reduction_p, reduction = False, False
-        for i in range(n_layers):
+        for i in range(n_layers): # 8
             reduction_p, reduction = reduction, False
             # Reduce featuremap size and double channels in 1/3 and 2/3 layer.
-            if i in [n_layers // 3, 2 * n_layers // 3]:
+            if i in [n_layers // 3, 2 * n_layers // 3]: # 8//3 = 2, 4
                 c_cur *= 2
                 reduction = True
-
+            # design cell
             cell = factory_func(n_nodes, channels_pp, channels_p, c_cur, reduction_p, reduction)
             self.cells.append(cell)
             c_cur_out = c_cur * n_nodes

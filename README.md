@@ -15,8 +15,6 @@ pip install torchvision==0.7.0
 pip install torch==1.6.0
 ```
 
-
-
 应具有以下代码结构：
 
 ```
@@ -24,17 +22,29 @@ Efficient-CIFAR-Series
 ├── core.py
 ├── torch_backend.py
 ├── README.md
-├── main.py 超参程序
-├── network.py 字典网络定义
-├── search_space.json 定义超参搜索空间 
-├── config_search.yml 开启超参配置实验
-├── data_cifar100 数据集
-└── architecture_search 单路径 One-Shot-Cifar 超网训练
+├── main.py                             超参搜索 & 模型结构验证
+├── network.py                          字典网络定义
+├── search_space.json                   定义超参搜索空间 
+├── config_search.yml                   开启超参配置实验
+├── data_cifar100                       数据集
+├── notebook                            实验统计
+│   ├── bag_of_tricks.ipynb
+│   ├── batch_norm_post.ipynb
+│   └── experiments.ipynb
+└── architecture_search                 单路径 One-Shot-Cifar 超网训练
     ├── cifar_spos
+    │   ├── __init__.py
     │   ├── evolution_cifar.py
     │   ├── trainer_cifar.py
     │   └── mutator_cifar.py
-    ├── nni_auto_gen_search_space.json 导出网络结构
+    ├── search_space_zoo
+    │   ├── CELL
+    │   ├── darts_example.py
+    │   ├── darts_stack_cells.py
+    │   ├── enas_macro_example.py
+    │   ├── enas_micro_example.py
+    │   └── utils.py
+    ├── nni_auto_gen_search_space.json  导出网络结构
     ├── architecture_final.json
     ├── blocks.py
     ├── config_search_cifar.yml
@@ -47,6 +57,10 @@ Efficient-CIFAR-Series
     ├── tuner.py
     ├── random_nas_tuner.py
     └── utils.py
+
+    
+    
+    
 ```
 
 ### 1. Start HPO Experiment

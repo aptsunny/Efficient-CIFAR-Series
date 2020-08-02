@@ -86,7 +86,7 @@ class StdConv(nn.Sequential):
     def __init__(self, C_in, C_out, kernel_size, stride, padding, affine=True):
         super().__init__()
         self.net = nn.Sequential
-        for idx, ops in enumerate((nn.ReLU(), nn.Conv2d(C_in, C_out, kernel_size, stride, padding, bias=False),
+        for idx, ops in enumerate((nn.ReLU(),nn.Conv2d(C_in, C_out, kernel_size, stride, padding, bias=False),
                                    nn.BatchNorm2d(C_out, affine=affine))):
             self.add_module(str(idx), ops)
 
@@ -191,6 +191,6 @@ class FactorizedReduce(nn.Module):
 
     def forward(self, x):
         x = self.relu(x)
-        out = torch.cat([self.conv1(x), self.conv2(x[:, :, 1:, 1:])], dim=1)
+        out = torch.cat([self.conv1(x), self.conv2(x[:, :, 1:, 1:])], dim=1) # ?
         out = self.bn(out)
         return out

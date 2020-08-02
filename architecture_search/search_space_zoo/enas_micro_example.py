@@ -8,11 +8,12 @@ from torchvision import transforms
 from torchvision.datasets import CIFAR10
 
 from nni.nas.pytorch import enas
-from utils import accuracy, reward_accuracy
+from ..utils import accuracy, reward_accuracy
 from nni.nas.pytorch.callbacks import (ArchitectureCheckpoint,
                                        LRSchedulerCallback)
 
-from nni.nas.pytorch.search_space_zoo import ENASMicroLayer
+# from nni.nas.pytorch.search_space_zoo import ENASMicroLayer
+from CELL  import ENASMicroLayer
 
 logger = logging.getLogger('nni')
 
@@ -62,7 +63,8 @@ class MicroNetwork(nn.Module):
             reduction = False
             if layer_id in pool_layers:
                 c_cur, reduction = c_p * 2, True
-            self.layers.append(ENASMicroLayer(self.layers, num_nodes, c_pp, c_p, c_cur, reduction))
+            self.layers.append(ENASMicroLayer(num_nodes, c_pp, c_p, c_cur, reduction))
+            # self.layers.append(ENASMicroLayer(self.layers, num_nodes, c_pp, c_p, c_cur, reduction))
             if reduction:
                 c_pp = c_p = c_cur
             c_pp, c_p = c_p, c_cur
@@ -106,7 +108,9 @@ if __name__ == "__main__":
     dataset_train, dataset_valid = get_dataset("cifar10")
 
     model = MicroNetwork(num_layers=6, out_channels=20, num_nodes=5, dropout_rate=0.1)
+
     num_epochs = args.epochs or 150
+
     mutator = enas.EnasMutator(model, tanh_constant=1.1, cell_exit_extra_step=True)
 
     criterion = nn.CrossEntropyLoss()

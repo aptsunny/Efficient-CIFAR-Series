@@ -9,7 +9,7 @@ from torchvision.datasets import CIFAR10
 
 from nni.nas.pytorch import mutables
 from nni.nas.pytorch import enas
-from utils import accuracy, reward_accuracy
+from ..utils import accuracy, reward_accuracy
 from nni.nas.pytorch.callbacks import (ArchitectureCheckpoint,
                                        LRSchedulerCallback)
 from nni.nas.pytorch.search_space_zoo import ENASMacroLayer
