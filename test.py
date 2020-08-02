@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+"""
 def Read_Files(filename):
     X_axis = []  # X
     Y_axis = []  # Y
@@ -30,3 +30,4 @@ X_axis, Y_axis = Read_Files(Filename)
 print(X_axis, Y_axis)
 T = np.arctan2(Y_axis, X_axis)
 plot_PF(X_axis, Y_axis)
+"""

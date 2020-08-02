@@ -213,7 +213,9 @@ Finished Train/Valid in 93.03 seconds
         channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'], 'layer3': RCV_CONFIG['layer3']}
         peak_lr = RCV_CONFIG['peak_lr']  
         
-        
+    "peak_lr":{"_type": "loguniform", "_value": [6e-2, 6e-1]},
+    "peak_epoch":{"_type": "randint", "_value": [3, 10]},
+    "logits_weight":{"_type": "quniform", "_value": [0.1, 0.5, 0.05]},    
     "prep":{"_type": "choice", "_value": [16, 32, 48, 64]},
     "layer1":{"_type": "choice", "_value": [28, 56, 84, 112]},
     "layer2":{"_type": "choice", "_value": [64, 128, 192, 256]},

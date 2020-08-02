@@ -331,9 +331,12 @@ def tsv(logs, entire=True):
         data = [(output['epoch'], output['train time'], output['valid']['acc']*100) for output in logs]
         return '\n'.join(['epoch\t seconds\t top1Accuracy']+[f'{epoch}\t {seconds:.8f} \t{acc:.2f}' for (epoch, seconds, acc) in data])
 
-def record(summary, task, tag):
-    import os
+def record(summary, task, tag, acc, epoch, time, config):
+    import os, json
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), \
-                           'hpo_experiment/{}_{}_training_logs.tsv'.format(task, tag)), 'w') as f:
+                           'hpo_experiment/{:.2f}_{}_{}_e{:d}_t{:.2f}_logs.tsv'.format(acc*100, task, tag, epoch, time)), 'w') as f:
         f.write(tsv(summary.log))
+        for i in config:
+            out = json.dumps(i)
+            f.write('\n'+out)
     return

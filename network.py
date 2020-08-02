@@ -77,7 +77,6 @@ def conv_bn(c_in, c_out, ks=3, bn_weight_init=1.0, **kw):
     }
 
 def basic_net(ks, channels, weight, pool, num_classes, **kw):
-
     return {
         'input': (None, []),
         'prep': conv_bn(3, channels['prep'], ks=ks, bn_weight_init=1.0, **kw),
@@ -94,14 +93,15 @@ def basic_net(ks, channels, weight, pool, num_classes, **kw):
 def net(weight=0.125,
         channels=None,
         pool=nn.MaxPool2d(2),
-        extra_layers=(),
-        res_layers=(),
+        extra_layers={'prep':0, 'layer1':0, 'layer2':0, 'layer3':0},
+        res_layers  ={'prep':0, 'layer1':0, 'layer2':0, 'layer3':0},
         num_classes=10,
         ks=3,
         **kw):
 
     channels = channels or {'prep': 64, 'layer1': 128, 'layer2': 256, 'layer3': 512}
-    assignment = {'prep': 1, 'layer1': 1, 'layer2': 1, 'layer3': 1}
+    layer2assignment = {'prep': '32', 'layer1':'16', 'layer2':'8', 'layer3':'4'} # divided by pooling
+    assignment = {'32': 2, '16': 1, '8': 1, '4': 0}  # pooling+ maxpooling
 
     # defined residual: in+(res1+res2+relu)
     residual = lambda c, **kw: {'in': Identity(),
@@ -112,17 +112,21 @@ def net(weight=0.125,
     n = basic_net(ks, channels, weight, pool, num_classes, **kw)
 
     for layer in res_layers: # residual
-        n[layer]['residual'] = residual(channels[layer], **kw)
-        assignment[layer]+=2
+        times = res_layers[layer]
+        if times==0:
+            continue
+        for i in range(times):
+            n[layer]['residual{}'.format(i+1)] = residual(channels[layer], **kw)
+            assignment[layer2assignment[layer]]+=2
 
     for layer in extra_layers: # extra
-        n[layer]['extra'] = conv_bn(channels[layer], channels[layer], **kw)
-        # n[layer]['extra_1'] = conv_bn(channels[layer], channels[layer], **kw)
-        # n[layer]['extra_2'] = conv_bn(channels[layer], channels[layer], **kw)
-        # n[layer]['extra_3'] = conv_bn(channels[layer], channels[layer], **kw)
-        assignment[layer] += 1
+        times = extra_layers[layer]
+        if times==0:
+            continue
+        for i in range(times):
+            n[layer]['extra{}'.format(i+1)] = conv_bn(channels[layer], channels[layer], **kw)
+            assignment[layer2assignment[layer]]+=1
 
-    print(assignment)
-    return n
+    return n, assignment
 
 

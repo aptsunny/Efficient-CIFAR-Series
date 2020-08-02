@@ -12,3 +12,4 @@ architecture_search/apex
 architecture_search/apex/
 checkpoints/*
 architecture_search/logs/*
+*.tsv

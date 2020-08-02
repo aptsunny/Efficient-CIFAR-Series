@@ -47,7 +47,9 @@ def train(model, lr_schedule, train_set, test_set, base_wd, batch_size, num_work
         actual_time = actual_time + result['total time']
         train_time = train_time + result['train time']
         logs.append(union({'epoch': epoch + 1, 'lr': lr_schedule(epoch + 1)}, result))
-        # nni.report_intermediate_result(result['valid']['acc'])
+
+        nni.report_intermediate_result(result['valid']['acc'])
+
         if result['valid']['acc'] > best_acc:
             best_acc = result['valid']['acc']
 
@@ -56,22 +58,30 @@ def train(model, lr_schedule, train_set, test_set, base_wd, batch_size, num_work
 
 if __name__ == '__main__':
     try:
-        # RCV_CONFIG = nni.get_next_parameter()
-        # _logger.debug(RCV_CONFIG)
-        RCV_CONFIG = {}
+        # RCV_CONFIG = {}
+        RCV_CONFIG = nni.get_next_parameter()
+        _logger.debug(RCV_CONFIG)
 
         task = 'cifar100'
-        tag = 'test'
-
         # search space
         base_wd = RCV_CONFIG['base_wd'] if 'base_wd' in RCV_CONFIG else 5e-4
         logits_weight = RCV_CONFIG['logits_weight'] if 'logits_weight' in RCV_CONFIG else 0.125
         peak_epoch = RCV_CONFIG['peak_epoch'] if 'peak_epoch' in RCV_CONFIG else 5
         cutout_size = RCV_CONFIG['cutout'] if 'cutout' in RCV_CONFIG else 8
-        total_epoch = RCV_CONFIG['total_epoch'] if 'total_epoch' in RCV_CONFIG else 10 # 24
+        total_epoch = RCV_CONFIG['total_epoch'] if 'total_epoch' in RCV_CONFIG else 24
         peak_lr = RCV_CONFIG['peak_lr'] if 'peak_lr' in RCV_CONFIG else 0.4
+
         channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'], 'layer3': RCV_CONFIG['layer3']} if 'prep' in RCV_CONFIG \
             else {'prep': 48, 'layer1': 112, 'layer2': 256, 'layer3': 384}
+
+        extra_layers = {'prep': RCV_CONFIG['extra_prep'], 'layer1': RCV_CONFIG['extra_layer1'], 'layer2': RCV_CONFIG['extra_layer2'], 'layer3': RCV_CONFIG['extra_layer3']} if 'extra_prep' in RCV_CONFIG \
+            else {'prep': 0, 'layer1': 1, 'layer2': 0, 'layer3': 0}
+
+        res_layers = {'prep': RCV_CONFIG['res_prep'], 'layer1': RCV_CONFIG['res_layer1'], 'layer2': RCV_CONFIG['res_layer2'], 'layer3': RCV_CONFIG['res_layer3']} if 'res_prep' in RCV_CONFIG \
+            else {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 2}
+
+        config = [channels, extra_layers, res_layers]
+
 
         # dataset
         if task == 'cifar100':
@@ -98,11 +108,10 @@ if __name__ == '__main__':
 
 
         # Design search space
-        n = net(weight=logits_weight,
+        n, assignment = net(weight=logits_weight,
                 channels=channels,
-                extra_layers=('layer1', 'layer3',),
-                res_layers=('layer1', 'layer3'),
-                ks=3, # [3, 5],
+                extra_layers=extra_layers,
+                res_layers=res_layers,
                 num_classes=classes)
 
         # selected path
@@ -111,10 +120,10 @@ if __name__ == '__main__':
         # train pipeline
         lr_schedule = PiecewiseLinear([0, peak_epoch, total_epoch], [0, peak_lr, 0])
         summary, best_acc, total_time, train_time = train(model, lr_schedule, train_set_x, test_set, base_wd, batch_size=512, num_workers=0)
-        record(summary, task, tag)
+        record(summary, task, tag='_'.join([str(assignment[i]) for i in assignment]), acc=float(best_acc), epoch=total_epoch, time=total_time, config=config)
         print('Finished Train/Valid in {:.2f} seconds, actual training time in {:.2f} seconds'.format(total_time, train_time))
+        nni.report_final_result(best_acc)
 
-        # nni.report_final_result(best_acc)
     except Exception as exception:
         _logger.exception(exception)
         raise
