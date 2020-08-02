@@ -296,11 +296,18 @@ class DotGraph():
         return make_dot_graph(self.nodes, self.edges, size=self.size, direction=self.direction,  **kwargs)
 
     def svg(self, **kwargs):
+        self.dot_graph(**kwargs).write('a.svg', prog='dot', format='svg')
         return self.dot_graph(**kwargs).create(format='svg').decode('utf-8')
+
+    def save(self, **kwargs):
+        self.dot_graph(**kwargs).write_png('test.png')
+        print('save test.png')
+        return
 
     try:
         import pydot
         _repr_svg_ = svg
+
     except ImportError:
         def __repr__(self): return 'pydot is needed for network visualisation'
 

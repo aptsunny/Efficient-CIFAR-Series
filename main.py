@@ -68,17 +68,17 @@ if __name__ == '__main__':
         logits_weight = RCV_CONFIG['logits_weight'] if 'logits_weight' in RCV_CONFIG else 0.125
         peak_epoch = RCV_CONFIG['peak_epoch'] if 'peak_epoch' in RCV_CONFIG else 5
         cutout_size = RCV_CONFIG['cutout'] if 'cutout' in RCV_CONFIG else 8
-        total_epoch = RCV_CONFIG['total_epoch'] if 'total_epoch' in RCV_CONFIG else 24
+        total_epoch = RCV_CONFIG['total_epoch'] if 'total_epoch' in RCV_CONFIG else 2 # 24
         peak_lr = RCV_CONFIG['peak_lr'] if 'peak_lr' in RCV_CONFIG else 0.4
 
         channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'], 'layer3': RCV_CONFIG['layer3']} if 'prep' in RCV_CONFIG \
             else {'prep': 48, 'layer1': 112, 'layer2': 256, 'layer3': 384}
 
         extra_layers = {'prep': RCV_CONFIG['extra_prep'], 'layer1': RCV_CONFIG['extra_layer1'], 'layer2': RCV_CONFIG['extra_layer2'], 'layer3': RCV_CONFIG['extra_layer3']} if 'extra_prep' in RCV_CONFIG \
-            else {'prep': 0, 'layer1': 1, 'layer2': 0, 'layer3': 0}
+            else {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0}
 
         res_layers = {'prep': RCV_CONFIG['res_prep'], 'layer1': RCV_CONFIG['res_layer1'], 'layer2': RCV_CONFIG['res_layer2'], 'layer3': RCV_CONFIG['res_layer3']} if 'res_prep' in RCV_CONFIG \
-            else {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 2}
+            else {'prep': 0, 'layer1': 1, 'layer2': 0, 'layer3': 1}
 
         config = [channels, extra_layers, res_layers]
 
@@ -116,6 +116,15 @@ if __name__ == '__main__':
 
         # selected path
         model = Network(n).to(device).half() # graph building
+
+        # remove identity_nodes compare before
+        remove_identity_nodes = lambda net: remove_by_type(net, Identity)
+        colors = ColorMap()
+        draw = lambda graph: DotGraph(
+            {p: ({'fillcolor': colors[type(v)], 'tooltip': repr(v)}, inputs) for p, (v, inputs) in graph.items() if
+             v is not None})
+        draw(remove_identity_nodes(n))
+
 
         # train pipeline
         lr_schedule = PiecewiseLinear([0, peak_epoch, total_epoch], [0, peak_lr, 0])

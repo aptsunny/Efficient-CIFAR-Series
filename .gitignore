@@ -14,3 +14,5 @@ checkpoints/*
 architecture_search/logs/*
 *.tsv
 architecture_search/*.json
+architecture_search/search_space_zoo/checkpoints/*.json
+hpo_experiment/test.py
