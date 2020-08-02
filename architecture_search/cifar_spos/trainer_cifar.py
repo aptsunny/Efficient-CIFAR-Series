@@ -8,7 +8,7 @@ from nni.nas.pytorch.utils import AverageMeterGroup
 
 from .mutator_cifar import SPOSSupernetTrainingMutator
 
-from apex import amp # fp16
+# from apex import amp # old fp16
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ class SPOSSupernetTrainer(Trainer):
 
     def __init__(self, model, loss, metrics, optimizer, num_epochs, train_loader, valid_loader,
                  mutator=None, batch_size=64, workers=4, device=None, log_frequency=None,
-                 callbacks=None):
+                 callbacks=None, scaler=None):
         assert torch.cuda.is_available()
         super().__init__(model, mutator if mutator is not None else SPOSSupernetTrainingMutator(model),
                          loss, metrics, optimizer, num_epochs, None, None,
@@ -57,6 +57,7 @@ class SPOSSupernetTrainer(Trainer):
 
         self.train_loader = train_loader
         self.valid_loader = valid_loader
+        self.scaler = scaler
 
     def train_one_epoch(self, epoch):
         self.model.train()
@@ -68,15 +69,28 @@ class SPOSSupernetTrainer(Trainer):
 
             self.optimizer.zero_grad()
             self.mutator.reset() # sample_search nni_sy/examples/nas/spos_randa_fair/cifar_spos/mutator_cifar.py
-            logits = self.model(x)
-            loss = self.loss(logits, y)
 
-            # loss.backward()
-            # fp16
-            with amp.scale_loss(loss, self.optimizer) as scaled_loss:
-                scaled_loss.backward()
+            # NEW
+            with torch.cuda.amp.autocast():
+                logits = self.model(x).squeeze()
+                loss = self.loss(logits, y)
 
-            self.optimizer.step()
+
+            # logits = self.model(x)
+            # loss = self.loss(logits, y)
+
+
+
+            # old fp16
+            # with amp.scale_loss(loss, self.optimizer) as scaled_loss:
+            #     scaled_loss.backward()
+
+            # new
+            self.scaler.scale(loss).backward() # loss.backward()
+            self.scaler.step(self.optimizer) # self.optimizer.step()
+            self.scaler.update()
+
+
             metrics = self.metrics(logits, y)
             metrics["loss"] = loss.item()
             meters.update(metrics)

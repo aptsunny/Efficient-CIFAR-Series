@@ -62,15 +62,15 @@ class CIFAR100_OneShot(nn.Module):
         # struct 1
         p_channels = first_conv_channels
         for num_blocks, channels in zip(self.stage_blocks, layers_channels):
-            if channels == 84:
+            if channels == 84:#32:#
                 layer1 = self._make_blocks(num_blocks, p_channels, channels)
                 self.layer1 = nn.Sequential(*layer1)
             
-            elif channels == 256:
+            elif channels == 256:#48:#
                 layer2 = self._make_blocks(num_blocks, p_channels, channels)
                 self.layer2 = nn.Sequential(*layer2)
 
-            elif channels == 384:
+            elif channels == 384:#96:#
                 layer3 = self._make_blocks(num_blocks, p_channels, channels)
                 self.layer3 = nn.Sequential(*layer3)
 
@@ -122,9 +122,9 @@ class CIFAR100_OneShot(nn.Module):
 
             choice_block = LayerChoice([
                 ConvBnReluPool(inp, oup, stride=stride, k=3),
-                ConvBnReluPool(inp, oup, stride=stride, k=5),
-                ConvBnRelu(inp, oup, stride=stride, k=3),
-                ConvBnRelu(inp, oup, stride=stride, k=5)
+                # ConvBnReluPool(inp, oup, stride=stride, k=5),
+                # ConvBnRelu(inp, oup, stride=stride, k=3),
+                # ConvBnRelu(inp, oup, stride=stride, k=5)
 
                 # ConvBnRelu(inp, oup, stride=stride, k=5),
                 # ConvBnRelu(inp, oup, stride=stride, k=7)

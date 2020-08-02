@@ -22,14 +22,22 @@
 
 # 
 
-# 
+# Architecture Search
 
+有问题，有其他程序在跑
 
+test train time fp32
+[16, 32, 48, 96] * 3 epoch = 5.3e+01
+[16, 32, 48, 96] * 5 epoch = 5.9e+01
+[16, 32, 48, 96] * 7 epoch = 1.1e+02
 
+old fp16
+[16, 32, 48, 96] * 5 epoch = 6e+01
+[16, 32, 48, 96] * 7 epoch = 1.2e+02
 
-
-
-
+new
+[16, 32, 48, 96] * 5 epoch = 5.2e+01
+[16, 32, 48, 96] * 7 epoch = 7.1e+01
 
 
 
@@ -391,6 +399,26 @@ original:(64,112,256,384)
           24       0.0000       2.8410       0.4042       0.8955       0.1868       0.8943       0.7446       3.0279
 Finished Train/Valid in 74.43 seconds
 ```
+
+
+[apex 混合精度训练](https://github.com/NVIDIA/apex) 用于结构搜索部分
+```bash
+$ git clone https://github.com/NVIDIA/apex
+$ cd apex
+$ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+```
+
+```python
+# Initialization
+opt_level = 'O1'
+model, optimizer = amp.initialize(model, optimizer, opt_level=opt_level)
+
+# Train your model
+...
+with amp.scale_loss(loss, optimizer) as scaled_loss:
+    scaled_loss.backward()
+...
+``` 
 
 
 ## [快速入门](https://github.com/microsoft/nni/blob/master/docs/zh_CN/Tutorial/QuickStart.md)

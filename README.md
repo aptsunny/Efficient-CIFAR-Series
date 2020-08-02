@@ -1,6 +1,6 @@
 # Efficient-CIFAR-Series
 
-### Install NNI
+### Install 
 NNI supports and is tested on Ubuntu >= 16.04, macOS >= 10.14.1, and Windows 10 >= 1809. Simply run the following `pip install` in an environment that has `python 64-bit >= 3.5`.
 
 [NNI Experiment](https://github.com/microsoft/nni) Linux or macOS
@@ -8,24 +8,14 @@ NNI supports and is tested on Ubuntu >= 16.04, macOS >= 10.14.1, and Windows 10 
 python3 -m pip install --upgrade nni
 ```
 
-[apex 混合精度训练](https://github.com/NVIDIA/apex) 用于结构搜索部分
+PyTorch 1.6上发布的 torch.cuda.amp 混合精度训练模块
+[Typical Mixed Precision Training](https://pytorch.org/docs/master/notes/amp_examples.html#amp-examples) Linux or macOS
 ```bash
-$ git clone https://github.com/NVIDIA/apex
-$ cd apex
-$ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+pip install torchvision==0.7.0
+pip install torch==1.6.0
 ```
 
-```python
-# Initialization
-opt_level = 'O1'
-model, optimizer = amp.initialize(model, optimizer, opt_level=opt_level)
 
-# Train your model
-...
-with amp.scale_loss(loss, optimizer) as scaled_loss:
-    scaled_loss.backward()
-...
-``` 
 
 应具有以下代码结构：
 

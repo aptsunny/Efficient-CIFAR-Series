@@ -14,7 +14,8 @@ from cifar_spos import SPOSSupernetTrainingMutator, SPOSSupernetTrainer
 from network import CIFAR100_OneShot, load_and_parse_state_dict
 from utils import *
 from dataset_cifar import *
-from apex import amp
+
+# from apex import amp # old fp16
 
 logger = logging.getLogger("nni.spos.supernet")
 
@@ -51,20 +52,30 @@ if __name__ == "__main__":
     #     "layer2": 256,
     #     "layer3": 384
     # }
-    # hp_result ={
-    #     "peak_lr": 0.36057638714284174,
-    #     "prep": 48,
-    #     "layer1": 84,
-    #     "layer2": 256,
-    #     "layer3": 384
-    # }
     hp_result ={
-        "peak_lr": 0.4,
+        "peak_lr": 0.36057638714284174,
         "prep": 48,
-        "layer1": 112,
+        "layer1": 84,
         "layer2": 256,
         "layer3": 384
     }
+    # hp_result ={
+    #     "peak_lr": 0.4,
+    #     "prep": 48,
+    #     "layer1": 112,
+    #     "layer2": 256,
+    #     "layer3": 384
+    # }
+
+
+    # test
+    # hp_result ={
+    #     "peak_lr": 0.4,
+    #     "prep": 16,
+    #     "layer1": 32,
+    #     "layer2": 48,
+    #     "layer3": 96
+    # }
 
     c_prep = hp_result['prep']
     c_layer1 = hp_result['layer1']
@@ -114,7 +125,11 @@ if __name__ == "__main__":
                                 momentum=args.momentum, weight_decay=args.weight_decay)
 
     # fp16
-    model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
+    # model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
+
+    # new 16
+    scaler = torch.cuda.amp.GradScaler()
+
 
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer,
                                                   lambda step: (1.0 - step / args.epochs)
@@ -129,7 +144,8 @@ if __name__ == "__main__":
                                   log_frequency=args.log_frequency,
                                   workers=args.workers,
                                   callbacks=[LRSchedulerCallback(scheduler),
-                                             ModelCheckpoint("../checkpoints")])
+                                             ModelCheckpoint("../checkpoints")],
+                                  scaler=scaler)
 
     trainer.train()
     print(f'Finished in {timer():.2} seconds')
