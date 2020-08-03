@@ -299,9 +299,9 @@ class DotGraph():
         self.dot_graph(**kwargs).write('a.svg', prog='dot', format='svg')
         return self.dot_graph(**kwargs).create(format='svg').decode('utf-8')
 
-    def save(self, **kwargs):
-        self.dot_graph(**kwargs).write_png('test.png')
-        print('save test.png')
+    def save(self, name='test',**kwargs):
+        print('save {}.png'.format(name))
+        self.dot_graph(**kwargs).write_png('{}.png'.format(name))
         return
 
     try:

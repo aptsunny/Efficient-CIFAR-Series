@@ -68,7 +68,7 @@ if __name__ == '__main__':
         logits_weight = RCV_CONFIG['logits_weight'] if 'logits_weight' in RCV_CONFIG else 0.125
         peak_epoch = RCV_CONFIG['peak_epoch'] if 'peak_epoch' in RCV_CONFIG else 5
         cutout_size = RCV_CONFIG['cutout'] if 'cutout' in RCV_CONFIG else 8
-        total_epoch = RCV_CONFIG['total_epoch'] if 'total_epoch' in RCV_CONFIG else 2 # 24
+        total_epoch = RCV_CONFIG['total_epoch'] if 'total_epoch' in RCV_CONFIG else 24
         peak_lr = RCV_CONFIG['peak_lr'] if 'peak_lr' in RCV_CONFIG else 0.4
 
         channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'], 'layer3': RCV_CONFIG['layer3']} if 'prep' in RCV_CONFIG \
