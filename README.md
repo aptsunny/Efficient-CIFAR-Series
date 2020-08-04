@@ -212,83 +212,55 @@ python scratch.py
 
 ## Result
 
-<img src="notebook/test.svg">
-
+Basic network architecture: input_size=32, prep+ layer1->layer3 +maxpooling+ fc.
 ```text
-网络扩增且权重复用的顺序:
-resolution:[32,    32->16,            16->8,             8->4         ,     4->1      ]
-layers    :[prep,  layer1,            layer2,            layer3       ,     pooling   ]
-conv      :[conv3, conv3+pooling,     conv3+pooling,     conv3+pooling,     maxpooling]
-
-1. without residual only extra: +conv
-
-conv      :[conv3, conv3+pooling       +[E],  conv3+pooling       +[E], conv3+pooling       +[E], maxpooling]
-
-2. without residual only extra *3: +2conv
-
-conv      :[conv3, conv3+pooling      +[3E],  conv3+pooling      +[3E], conv3+pooling      +[3E], maxpooling]
-
-3. with residual :  +shortcut
-
-conv      :[conv3, conv3+pooling       +[R],  conv3+pooling       +[R], conv3+pooling       +[R], maxpooling]
-
-4. residual(default=2) + extra: +conv
-
-conv      :[conv3, conv3+pooling+ [R]+  [E],  conv3+pooling+ [R]+  [E], conv3+pooling+ [R]+  [E], maxpooling]
-
-5. the order between [R] and [E]: change chortcut
-
-conv      :[conv3, conv3+pooling+ [E]+  [R],  conv3+pooling+ [E]+  [R], conv3+pooling+ [E]+  [R], maxpooling]
-
-6. the order between [R] and [3R]: multi-shortcut
-
-conv      :[conv3, conv3+pooling+ [E]+ [3R],  conv3+pooling+ [E]+ [3R], conv3+pooling+ [E]+ [3R], maxpooling]
-
+resolution                                        :[32,    32->16,            16->8,             8->4         ,     4->1      ]
+layers                                            :[prep,  layer1,            layer2,            layer3       ,     pooling   ]
+basic component                                   :[conv3, conv3+pooling,     conv3+pooling,     conv3+pooling,     maxpooling]
 ```
 
+Make network deeper and get better performance.
+```text
+1. without residual only extra: +conv             :[conv3, conv3+pooling       +[E],  conv3+pooling       +[E], conv3+pooling       +[E], maxpooling]
 
-<table class="tg">
-  <tr>
-    <th class="tg-0pky">Roles</th>
-    <th class="tg-0pky">Assignment</th>
-    <th class="tg-0pky">Target</th>
-  </tr>
-  <tr>
-    <td rowspan="3" class="tg-0pky">architecture</td>
-    <td class="tg-0pky">resolution</td>
-    <td class="tg-0pky">[32,    32->16,            16->8,             8->4         ,     4->1      ]</td>
- </tr>
-  <tr>
-    <td class="tg-0lax">layers</td>
-    <td class="tg-0lax"><b>[prep,  layer1,            layer2,            layer3       ,     pooling   ]</b></td>
-  </tr> 
-  <tr>
-    <td class="tg-0lax">conv</td>
-    <td class="tg-0lax"><b>[conv3, conv3+pooling,     conv3+pooling,     conv3+pooling,     maxpooling]</b></td>
-  </tr>
-  <tr>
-    <td rowspan="6" class="tg-0lax">XXXX</td>
-    <td class="tg-0lax">without residual only extra: +conv</td>
-    <td class="tg-0lax">[conv3, conv3+pooling       +[E],  conv3+pooling       +[E], conv3+pooling       +[E], maxpooling]</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">without residual only extra *3: +2conv</td>
-    <td class="tg-0lax">[conv3, conv3+pooling      +[3E],  conv3+pooling      +[3E], conv3+pooling      +[3E], maxpooling]</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">with residual :  +shortcut</td>
-    <td class="tg-0lax">[conv3, conv3+pooling       +[R],  conv3+pooling       +[R], conv3+pooling       +[R], maxpooling]</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">residual(default=2) + extra: +conv</td>
-    <td class="tg-0lax">[conv3, conv3+pooling+ [R]+  [E],  conv3+pooling+ [R]+  [E], conv3+pooling+ [R]+  [E], maxpooling]</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">the order between [R] and [E]: change chortcut</td>
-    <td class="tg-0lax">[conv3, conv3+pooling+ [E]+  [R],  conv3+pooling+ [E]+  [R], conv3+pooling+ [E]+  [R], maxpooling]</td>
-  </tr>
-    <tr>
-    <td class="tg-0lax">the order between [R] and [3R]: multi-shortcut</td>
-    <td class="tg-0lax">[conv3, conv3+pooling+ [E]+ [3R],  conv3+pooling+ [E]+ [3R], conv3+pooling+ [E]+ [3R], maxpooling]</td>
-  </tr>
-</table>
+2. without residual only extra *3: +2conv         :[conv3, conv3+pooling      +[3E],  conv3+pooling      +[3E], conv3+pooling      +[3E], maxpooling]
+
+3. with residual :  +shortcut                     :[conv3, conv3+pooling       +[R],  conv3+pooling       +[R], conv3+pooling       +[R], maxpooling]
+
+4. residual(default=2) + extra: +conv             :[conv3, conv3+pooling+ [R]+  [E],  conv3+pooling+ [R]+  [E], conv3+pooling+ [R]+  [E], maxpooling]
+
+5. the order between [R] and [E]: change chortcut :[conv3, conv3+pooling+ [E]+  [R],  conv3+pooling+ [E]+  [R], conv3+pooling+ [E]+  [R], maxpooling]
+
+6. the order between [R] and [3R]: multi-shortcut :[conv3, conv3+pooling+ [E]+ [3R],  conv3+pooling+ [E]+ [3R], conv3+pooling+ [E]+ [3R], maxpooling]
+```
+
+Neural architecture tweak result.
+```json
+{
+    "peak_lr": 0.6499631190592446,
+    "prep": 64,
+    "layer1": 112,
+    "layer2": 256,
+    "layer3": 512,
+    "extra_prep": 1,
+    "extra_layer1": 0,
+    "extra_layer2": 0,
+    "extra_layer3": 0,
+    "res_prep": 2,
+    "res_layer1": 3,
+    "res_layer2": 3,
+    "res_layer3": 1
+}
+```
+
+Example layer assignment
+```text
+    input size :[32, 16, 8, 4]
+    assignment :[ 2,  1, 1, 0] +
+    [E]        :[ 1,  1, 1, 1] * [1, 0, 0, 0]
+    [R]        :[ 2,  2, 2, 2] * [2, 3, 3, 1]
+    final      :[ 7,  7, 7, 2]
+    78.01_cifar100_7_7_7_2_e24_t210.49_logs.tsv
+```
+
+           
