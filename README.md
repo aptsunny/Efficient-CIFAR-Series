@@ -13,8 +13,7 @@ NNI supports and is tested on Ubuntu >= 16.04, macOS >= 10.14.1, and Windows 10 
 python3 -m pip install --upgrade nni
 ```
 
-PyTorch 1.6上发布的 torch.cuda.amp 混合精度训练模块
-[Typical Mixed Precision Training](https://pytorch.org/docs/master/notes/amp_examples.html#amp-examples) Linux or macOS
+PyTorch 1.6 Release torch.cuda.amp module: [Typical Mixed Precision Training](https://pytorch.org/docs/master/notes/amp_examples.html#amp-examples) 
 ```bash
 pip install torchvision==0.7.0
 pip install torch==1.6.0
@@ -187,12 +186,6 @@ python supernet_cifar.py --load-checkpoint --spos-preprocessing
 
 继承筛选 Search space shrinking
 
-```text
-
-
-```
-
-
 
 ### 3. Search Best Architecture
 
@@ -217,3 +210,85 @@ python scratch.py
 ```
 
 
+## Result
+
+<img src="notebook/test.svg">
+
+```text
+网络扩增且权重复用的顺序:
+resolution:[32,    32->16,            16->8,             8->4         ,     4->1      ]
+layers    :[prep,  layer1,            layer2,            layer3       ,     pooling   ]
+conv      :[conv3, conv3+pooling,     conv3+pooling,     conv3+pooling,     maxpooling]
+
+1. without residual only extra: +conv
+
+conv      :[conv3, conv3+pooling       +[E],  conv3+pooling       +[E], conv3+pooling       +[E], maxpooling]
+
+2. without residual only extra *3: +2conv
+
+conv      :[conv3, conv3+pooling      +[3E],  conv3+pooling      +[3E], conv3+pooling      +[3E], maxpooling]
+
+3. with residual :  +shortcut
+
+conv      :[conv3, conv3+pooling       +[R],  conv3+pooling       +[R], conv3+pooling       +[R], maxpooling]
+
+4. residual(default=2) + extra: +conv
+
+conv      :[conv3, conv3+pooling+ [R]+  [E],  conv3+pooling+ [R]+  [E], conv3+pooling+ [R]+  [E], maxpooling]
+
+5. the order between [R] and [E]: change chortcut
+
+conv      :[conv3, conv3+pooling+ [E]+  [R],  conv3+pooling+ [E]+  [R], conv3+pooling+ [E]+  [R], maxpooling]
+
+6. the order between [R] and [3R]: multi-shortcut
+
+conv      :[conv3, conv3+pooling+ [E]+ [3R],  conv3+pooling+ [E]+ [3R], conv3+pooling+ [E]+ [3R], maxpooling]
+
+```
+
+
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">Roles</th>
+    <th class="tg-0pky">Assignment</th>
+    <th class="tg-0pky">Target</th>
+  </tr>
+  <tr>
+    <td rowspan="3" class="tg-0pky">architecture</td>
+    <td class="tg-0pky">resolution</td>
+    <td class="tg-0pky">[32,    32->16,            16->8,             8->4         ,     4->1      ]</td>
+ </tr>
+  <tr>
+    <td class="tg-0lax">layers</td>
+    <td class="tg-0lax"><b>[prep,  layer1,            layer2,            layer3       ,     pooling   ]</b></td>
+  </tr> 
+  <tr>
+    <td class="tg-0lax">conv</td>
+    <td class="tg-0lax"><b>[conv3, conv3+pooling,     conv3+pooling,     conv3+pooling,     maxpooling]</b></td>
+  </tr>
+  <tr>
+    <td rowspan="6" class="tg-0lax">XXXX</td>
+    <td class="tg-0lax">without residual only extra: +conv</td>
+    <td class="tg-0lax">[conv3, conv3+pooling       +[E],  conv3+pooling       +[E], conv3+pooling       +[E], maxpooling]</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">without residual only extra *3: +2conv</td>
+    <td class="tg-0lax">[conv3, conv3+pooling      +[3E],  conv3+pooling      +[3E], conv3+pooling      +[3E], maxpooling]</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">with residual :  +shortcut</td>
+    <td class="tg-0lax">[conv3, conv3+pooling       +[R],  conv3+pooling       +[R], conv3+pooling       +[R], maxpooling]</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">residual(default=2) + extra: +conv</td>
+    <td class="tg-0lax">[conv3, conv3+pooling+ [R]+  [E],  conv3+pooling+ [R]+  [E], conv3+pooling+ [R]+  [E], maxpooling]</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">the order between [R] and [E]: change chortcut</td>
+    <td class="tg-0lax">[conv3, conv3+pooling+ [E]+  [R],  conv3+pooling+ [E]+  [R], conv3+pooling+ [E]+  [R], maxpooling]</td>
+  </tr>
+    <tr>
+    <td class="tg-0lax">the order between [R] and [3R]: multi-shortcut</td>
+    <td class="tg-0lax">[conv3, conv3+pooling+ [E]+ [3R],  conv3+pooling+ [E]+ [3R], conv3+pooling+ [E]+ [3R], maxpooling]</td>
+  </tr>
+</table>
