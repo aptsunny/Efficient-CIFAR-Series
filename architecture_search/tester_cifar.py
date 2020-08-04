@@ -101,13 +101,14 @@ if __name__ == "__main__":
     assert torch.cuda.is_available()
 
 
-    hp_result = {
-        "peak_lr": 0.3897305297777246,
+    hp_result ={
+        "peak_lr": 0.36057638714284174,
         "prep": 48,
         "layer1": 84,
         "layer2": 256,
-        "layer3": 384
+        "layer3": 512
     }
+
     c_prep = hp_result['prep']
     c_layer1 = hp_result['layer1']
     c_layer2 = hp_result['layer2']

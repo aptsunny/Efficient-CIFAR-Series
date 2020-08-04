@@ -64,7 +64,7 @@ class ConvBnRelu(nn.Module):
         self.op = nn.Sequential(
             nn.Conv2d(inplanes, outplanes, kernel_size=k, stride=stride, padding=k // 2, bias=False),
             nn.BatchNorm2d(outplanes),
-            nn.ReLU()
+            nn.ReLU(inplace=True)
         )
 
     def forward(self, x):
@@ -82,9 +82,9 @@ class DynamicBasicBlock(nn.Module):
                                     nn.MaxPool2d(2)
         )
 
+
         self.conv2 = nn.Sequential(
             # nn.Conv2d(planes, planes, kernel_size=3, stride=1, padding=1, bias=False),
-
             LayerChoice([
                 nn.Conv2d(planes, planes, kernel_size=3, stride=1, padding=1, bias=False),
                 nn.Conv2d(planes, planes, kernel_size=5, stride=1, padding=2, bias=False)
@@ -155,6 +155,67 @@ class DynamicBasicBlock(nn.Module):
         out = torch.add(conv2_input, skip_x)
         return out
 
+
+class Residual(nn.Module):
+    def __init__(self, in_planes, planes, stride=1):
+        super(Residual, self).__init__()
+        self.shortcut = nn.Sequential(
+            nn.Conv2d(in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False),
+            nn.BatchNorm2d(planes),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False),
+            nn.BatchNorm2d(planes),
+            nn.ReLU(inplace=True)
+        )
+
+    def forward(self, x):
+        # x += self.shortcut(x)
+        x = x + self.shortcut(x)
+        return x
+
+
+class DynamicResidualBlock(nn.Module):
+    expansion = 1
+
+    def __init__(self, in_planes, planes):
+        super(DynamicResidualBlock, self).__init__()
+
+        # b
+        # self.conv1 = LayerChoice([ConvBnReluPool(in_planes, planes, stride=2, k=3),
+        #                           ConvBnRelu(in_planes, planes, stride=2, k=3)], key='conv1')
+        # self.conv2 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
+        #                           Residual(planes, planes)], key='conv2')
+        # self.conv3 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
+        #                           Residual(planes, planes)], key='conv3')
+        # self.conv4 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
+        #                           Residual(planes, planes)], key='conv4')
+
+        # a
+        self.conv1 = LayerChoice([ConvBnReluPool(in_planes, planes, stride=2, k=3)] ,key = 'conv1')
+        self.conv2 = LayerChoice([Residual(planes, planes)], key='conv2')
+        self.conv3 = LayerChoice([Residual(planes, planes)], key='conv3')
+        self.conv4 = LayerChoice([Residual(planes, planes)], key='conv4')
+
+
+        self.input_switch = InputChoice(
+            choose_from=["conv1", "conv2", "conv3", "conv4"],
+            n_candidates=4,
+            n_chosen=1,
+            key='skip')
+        # self.input_switch = InputChoice(
+        #     choose_from=["conv3", "conv4"],
+        #     n_candidates=2,
+        #     n_chosen=1,
+        #     key='skip')
+
+    def forward(self, x):
+        conv2_input = self.conv1(x)  # fix
+        conv3_input = self.conv2(conv2_input)
+        conv4_input = self.conv3(conv3_input)
+        conv4_output = self.conv4(conv4_input)
+        out = self.input_switch([conv2_input, conv3_input, conv4_input, conv4_output])
+        # out = self.input_switch([conv4_input, conv4_output])
+        return out
 
 class BasicBlock(nn.Module):
     expansion = 1

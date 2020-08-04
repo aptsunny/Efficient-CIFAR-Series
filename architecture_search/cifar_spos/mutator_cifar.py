@@ -52,6 +52,12 @@ class SPOSSupernetTrainingMutator(RandomMutator):
             for times in range(self._flops_sample_timeout):
                 idx = np.random.randint(self._flops_bin_num)
                 cand = super().sample_search() # RandomMutator 每轮random 一个one hot
+
+                # import torch
+                # cand = {'conv1': torch.tensor([True, False]), 'conv2': torch.tensor([False, True]),
+                #                 'conv3': torch.tensor([False, True]), 'conv4': torch.tensor([False, True]),
+                #                 'skip': torch.tensor([False, False, True, False])}
+
                 if self._flops_bins[idx] <= self._flops_func(cand) <= self._flops_bins[idx + 1]:
                     _logger.debug("Sampled candidate flops %f in %d times.", cand, times)
                     return cand

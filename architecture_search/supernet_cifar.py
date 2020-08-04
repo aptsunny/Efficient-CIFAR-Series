@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument("--load-checkpoint", action="store_true", default=False)
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=512)
-    parser.add_argument("--epochs", type=int, default=40) #24
+    parser.add_argument("--epochs", type=int, default=100) #24
     parser.add_argument("--learning-rate", type=float, default=0.4)
     parser.add_argument("--momentum", type=float, default=0.9)
     parser.add_argument("--weight-decay", type=float, default=5e-4)
@@ -44,38 +44,13 @@ if __name__ == "__main__":
 
     lr = args.learning_rate
 
-    #
-    # hp_result = {
-    #     "peak_lr": 0.3897305297777246,
-    #     "prep": 48,
-    #     "layer1": 84,
-    #     "layer2": 256,
-    #     "layer3": 384
-    # }
     hp_result ={
         "peak_lr": 0.36057638714284174,
         "prep": 48,
         "layer1": 84,
         "layer2": 256,
-        "layer3": 384
+        "layer3": 512
     }
-    # hp_result ={
-    #     "peak_lr": 0.4,
-    #     "prep": 48,
-    #     "layer1": 112,
-    #     "layer2": 256,
-    #     "layer3": 384
-    # }
-
-
-    # test
-    # hp_result ={
-    #     "peak_lr": 0.4,
-    #     "prep": 16,
-    #     "layer1": 32,
-    #     "layer2": 48,
-    #     "layer3": 96
-    # }
 
     c_prep = hp_result['prep']
     c_layer1 = hp_result['layer1']
@@ -102,8 +77,6 @@ if __name__ == "__main__":
     print(f'Finished in {timer():.2} seconds')
 
     print('Preprocessing training')
-
-
     model = CIFAR100_OneShot(channels=channels, n_classes=args.classes)
 
     if args.load_checkpoint:
@@ -111,32 +84,24 @@ if __name__ == "__main__":
             logger.warning("You might want to use SPOS preprocessing if you are loading their checkpoints.")
         model.load_state_dict(load_and_parse_state_dict("../checkpoints/epoch_29.pth.tar"))
 
-
     model.cuda()
     if torch.cuda.device_count() > 1:  # exclude last gpu, saving for data preprocessing on gpu
         model = nn.DataParallel(model, device_ids=list(range(0, torch.cuda.device_count() - 1)))
 
+    # mutator
     mutator = SPOSSupernetTrainingMutator(model, flops_func=model.get_candidate_flops, flops_lb=0, flops_ub=360E6)
 
-    # criterion = CrossEntropyLabelSmooth(args.classes, args.label_smoothing)
     criterion = nn.CrossEntropyLoss()
 
     optimizer = torch.optim.SGD(model.parameters(), lr=lr,
                                 momentum=args.momentum, weight_decay=args.weight_decay)
 
-    # fp16
-    # model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
-
-    # new 16
     scaler = torch.cuda.amp.GradScaler()
-
 
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer,
                                                   lambda step: (1.0 - step / args.epochs)
                                                   if step <= args.epochs else 0,
                                                   last_epoch=-1)
-
-
 
     trainer = SPOSSupernetTrainer(model, criterion, accuracy, optimizer, args.epochs, train_loader, valid_loader,
                                   mutator=mutator,

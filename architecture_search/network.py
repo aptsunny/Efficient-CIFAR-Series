@@ -10,7 +10,8 @@ import torch.nn as nn
 
 from nni.nas.pytorch.mutables import LayerChoice, InputChoice
 
-from blocks import ShuffleNetBlock, ShuffleXceptionBlock, BasicBlock, Bottleneck, ConvBnRelu, ConvBnReluPool, Mul, DynamicBasicBlock, ConvBnReluPool_detail
+from blocks import ShuffleNetBlock, ShuffleXceptionBlock, BasicBlock, Bottleneck, ConvBnRelu, \
+    ConvBnReluPool, Mul, DynamicBasicBlock, ConvBnReluPool_detail, DynamicResidualBlock
 
 class CIFAR100_OneShot(nn.Module):
     def __init__(self,
@@ -27,8 +28,8 @@ class CIFAR100_OneShot(nn.Module):
 
         # layer
         self.stage_blocks = [3, 1, 3]
-        # self.stage_channels = [112, 256, 384]
-        # self.stage_channels = [128, 256, 512]
+
+
         self.stage_channels = channels or [64, 128, 256, 512]
         first_conv_channels = self.stage_channels[0]
         layers_channels = self.stage_channels[1:]
@@ -58,7 +59,7 @@ class CIFAR100_OneShot(nn.Module):
         #     p_channels = channels
         # self.features = nn.Sequential(*features)
 
-
+        """
         # struct 1
         p_channels = first_conv_channels
         for num_blocks, channels in zip(self.stage_blocks, layers_channels):
@@ -75,7 +76,7 @@ class CIFAR100_OneShot(nn.Module):
                 self.layer3 = nn.Sequential(*layer3)
 
             p_channels = channels
-        """
+        
         # struct 3
         p_channels = first_conv_channels
         for num_blocks, channels in zip(self.stage_blocks, self.stage_channels):
@@ -92,13 +93,20 @@ class CIFAR100_OneShot(nn.Module):
                 self.layer3 = nn.Sequential(*layer3)
             p_channels = channels
        
-
+        """
 
         # struct 2
-        self.layer1 = DynamicBasicBlock(first_conv_channels, layers_channels[0])
-        self.layer2 = DynamicBasicBlock(layers_channels[0], layers_channels[1])
-        self.layer3 = DynamicBasicBlock(layers_channels[1], layers_channels[2])
-        """
+        # self.layer1 = DynamicBasicBlock(first_conv_channels, layers_channels[0])
+        # self.layer2 = DynamicBasicBlock(layers_channels[0], layers_channels[1])
+        # self.layer3 = DynamicBasicBlock(layers_channels[1], layers_channels[2])
+
+
+        # struct 4
+        self.layer1 = DynamicResidualBlock(first_conv_channels, layers_channels[0])
+        self.layer2 = DynamicResidualBlock(layers_channels[0], layers_channels[1])
+        self.layer3 = DynamicResidualBlock(layers_channels[1], layers_channels[2])
+
+
 
 
 
