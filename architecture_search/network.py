@@ -11,13 +11,16 @@ import torch.nn as nn
 from nni.nas.pytorch.mutables import LayerChoice, InputChoice
 
 from blocks import ShuffleNetBlock, ShuffleXceptionBlock, BasicBlock, Bottleneck, ConvBnRelu, \
-    ConvBnReluPool, Mul, DynamicBasicBlock, ConvBnReluPool_detail, DynamicResidualBlock
+    ConvBnReluPool, Mul, DynamicBasicBlock, ConvBnReluPool_detail, DynamicResidualBlock, Residual
 
 class CIFAR100_OneShot(nn.Module):
     def __init__(self,
+                 mode='',
                  input_size=32,
                  n_classes=1000,
                  channels = None,
+                 extra_layers={'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0},
+                 res_layers={'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0},
                  weight=0.125,
                  op_flops_path="/home/ubuntu/0_datasets/op_flops_dict.pkl"):
         super().__init__()
@@ -26,27 +29,23 @@ class CIFAR100_OneShot(nn.Module):
         with open(os.path.join(os.path.dirname(__file__), op_flops_path), "rb") as fp:
             self._op_flops_dict = pickle.load(fp)
 
+        self.extra_layers = extra_layers
+        self.res_layers = res_layers
         # layer
         self.stage_blocks = [3, 1, 3]
+        # self.stage_channels = channels or [64, 128, 256, 512]
+        self.stage_channels = channels or {'prep': 64, 'layer1': 128, 'layer2': 256, 'layer3': 512}
 
-
-        self.stage_channels = channels or [64, 128, 256, 512]
-        first_conv_channels = self.stage_channels[0]
-        layers_channels = self.stage_channels[1:]
+        # first_conv_channels = self.stage_channels[0]
+        # layers_channels = self.stage_channels[1:]
 
         self._parsed_flops = dict()
         self._input_size = input_size
         self._feature_map_size = input_size
-        self._first_conv_channels = first_conv_channels
+        # self._first_conv_channels = first_conv_channels
         # self._last_conv_channels = last_conv_channels
         self._n_classes = n_classes
 
-        # building first layer
-        self.prep = nn.Sequential(
-            nn.Conv2d(3, first_conv_channels, 3, 1, 1, bias=False),
-            nn.BatchNorm2d(first_conv_channels, affine=False),
-            nn.ReLU(inplace=True),
-        )
 
         # self.pool = nn.MaxPool2d(2)
         # self._feature_map_size //= 2
@@ -102,17 +101,51 @@ class CIFAR100_OneShot(nn.Module):
 
 
         # struct 4
-        self.layer1 = DynamicResidualBlock(first_conv_channels, layers_channels[0])
-        self.layer2 = DynamicResidualBlock(layers_channels[0], layers_channels[1])
-        self.layer3 = DynamicResidualBlock(layers_channels[1], layers_channels[2])
+        if mode == 'normal':
+            # building first layer
+            prep_extra = self.extra_layers['prep']
+            prep_res = self.res_layers['prep']
 
+            www = [nn.Conv2d(3, self.stage_channels['prep'], 3, 1, 1, bias=False),
+                nn.BatchNorm2d(self.stage_channels['prep'], affine=False),
+                nn.ReLU(inplace=True)]
+            if prep_extra == 0:
+                pass
+            else:
+                for i in range(prep_extra):
+                    www.append(Residual(self.stage_channels['prep'], self.stage_channels['prep']))
+            if prep_res == 0:
+                pass
+            else:
+                for i in range(prep_res):
+                    www.append(ConvBnRelu(self.stage_channels['prep'], self.stage_channels['prep'], stride=1, k=3))
+            self.prep = nn.Sequential(*www)
 
+            self.layer1 = DynamicResidualBlock(self.stage_channels['prep'],   self.stage_channels['layer1'],
+                                               extra=self.extra_layers['layer1'], res=self.res_layers['layer1'])
 
+            self.layer2 = DynamicResidualBlock(self.stage_channels['layer1'], self.stage_channels['layer2'],
+                                               extra=self.extra_layers['layer2'], res=self.res_layers['layer2'])
 
+            self.layer3 = DynamicResidualBlock(self.stage_channels['layer2'], self.stage_channels['layer3'],
+                                               extra=self.extra_layers['layer3'], res=self.res_layers['layer3'])
+        else:
+            # building first layer
+            self.prep = nn.Sequential(
+                nn.Conv2d(3, self.stage_channels['prep'], 3, 1, 1, bias=False),
+                nn.BatchNorm2d(self.stage_channels['prep'], affine=False),
+                nn.ReLU(inplace=True),
+            )
+
+            self.layer1 = DynamicResidualBlock(self.stage_channels['prep'], self.stage_channels['layer1'])
+
+            self.layer2 = DynamicResidualBlock(self.stage_channels['layer1'], self.stage_channels['layer2'])
+
+            self.layer3 = DynamicResidualBlock(self.stage_channels['layer2'], self.stage_channels['layer3'])
 
         self.globalpool = nn.MaxPool2d(4)
         self.classifier = nn.Sequential(
-            nn.Linear(layers_channels[-1], n_classes, bias=False),
+            nn.Linear(self.stage_channels['layer3'], n_classes, bias=False),
             Mul(weight)
         )
         self._initialize_weights()
@@ -174,7 +207,6 @@ class CIFAR100_OneShot(nn.Module):
         bs = x.size(0)
         x = self.prep(x)
         # x = self.pool(x)
-
         # x = self.features(x)
         x = self.layer1(x)
         x = self.layer2(x)
@@ -186,7 +218,6 @@ class CIFAR100_OneShot(nn.Module):
         return x
 
     def get_candidate_flops(self, candidate):
-
         """
         conv1_flops = self._op_flops_dict["conv1"][(3, self._first_conv_channels,
                                                     self._input_size, self._input_size, 2)]

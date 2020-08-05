@@ -236,6 +236,7 @@ Make network deeper and get better performance.
 
 Neural architecture tweak result.
 ```json
+//78.01
 {
     "peak_lr": 0.6499631190592446,
     "prep": 64,
@@ -251,16 +252,40 @@ Neural architecture tweak result.
     "res_layer2": 3,
     "res_layer3": 1
 }
+
+//78.16
+{
+    "peak_lr": 0.678478986324988,
+    "prep": 64,
+    "layer1": 112,
+    "layer2": 256,
+    "layer3": 512,
+    "extra_prep": 0,
+    "extra_layer1": 0,
+    "extra_layer2": 0,
+    "extra_layer3": 0,
+    "res_prep": 3,
+    "res_layer1": 3,
+    "res_layer2": 3,
+    "res_layer3": 1
+}
+
 ```
 
 Example layer assignment
 ```text
     input size :[32, 16, 8, 4]
     assignment :[ 2,  1, 1, 0] +
+    
     [E]        :[ 1,  1, 1, 1] * [1, 0, 0, 0]
     [R]        :[ 2,  2, 2, 2] * [2, 3, 3, 1]
     final      :[ 7,  7, 7, 2]
     78.01_cifar100_7_7_7_2_e24_t210.49_logs.tsv
+        
+    [E]        :[ 1,  1, 1, 1] * [0, 0, 0, 0]
+    [R]        :[ 2,  2, 2, 2] * [3, 3, 3, 1]
+    final      :[ 8,  7, 7, 2]
+    78.16_cifar100_8_7_7_2_e24_t220.94_logs.tsv
 ```
 
            
