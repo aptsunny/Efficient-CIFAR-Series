@@ -11,10 +11,9 @@ from nni.nas.pytorch.callbacks import LRSchedulerCallback
 from nni.nas.pytorch.callbacks import ModelCheckpoint
 
 from cifar_spos import SPOSSupernetTrainingMutator, SPOSSupernetTrainer
-from network import CIFAR100_OneShot, load_and_parse_state_dict
+from network import Superresnet, load_and_parse_state_dict
 from utils import *
 from dataset_cifar import *
-
 
 logger = logging.getLogger("nni.spos.supernet")
 
@@ -24,8 +23,6 @@ if __name__ == "__main__":
                         help="When true, image values will range from 0 to 255 and use BGR (as in original repo).")
     parser.add_argument("--load-checkpoint", action="store_true", default=False)
     parser.add_argument("--workers", type=int, default=8)
-    parser.add_argument("--batch-size", type=int, default=512) # 512
-    parser.add_argument("--epochs", type=int, default=200) #24
     parser.add_argument("--learning-rate", type=float, default=0.4)
     parser.add_argument("--momentum", type=float, default=0.9)
     parser.add_argument("--weight-decay", type=float, default=5e-4)
@@ -33,6 +30,12 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--label-smoothing", type=float, default=0.1)
     parser.add_argument("--classes", type=int, default=100)
+
+    # Modification
+    parser.add_argument("--batch-size", type=int, default=512) # 512
+    parser.add_argument("--epochs", type=int, default=400) #24 # 40
+    parser.add_argument("--lr-scheduler", type=str, default='linear')
+    parser.add_argument("--mode", type=str, default='', help="normal")
     args = parser.parse_args()
 
     torch.manual_seed(args.seed)
@@ -43,20 +46,8 @@ if __name__ == "__main__":
 
     lr = args.learning_rate
 
-    # save a/a4/b_4
-    # hp_result ={
-    #     "peak_lr": 0.36057638714284174,
-    #     "prep": 48,
-    #     "layer1": 84,
-    #     "layer2": 256,
-    #     "layer3": 512
-    # }
-    # c_prep = hp_result['prep']
-    # c_layer1 = hp_result['layer1']
-    # c_layer2 = hp_result['layer2']
-    # c_layer3 = hp_result['layer3']
-    # channels = [c_prep, c_layer1, c_layer2, c_layer3]
-
+    # Derive from Hyperparameter tuning
+    # 78.01_cifar100_7_7_7_2_e24_t210.49_logs.tsv
     RCV_CONFIG = {
         "peak_lr": 0.6499631190592446,
         "prep": 64,
@@ -73,20 +64,20 @@ if __name__ == "__main__":
         "res_layer3": 1
     }
 
+    # Network Configuration
     channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'],
                 'layer3': RCV_CONFIG['layer3']} if 'prep' in RCV_CONFIG \
         else {'prep': 48, 'layer1': 112, 'layer2': 256, 'layer3': 384}
-
     extra_layers = {'prep': RCV_CONFIG['extra_prep'], 'layer1': RCV_CONFIG['extra_layer1'],
                     'layer2': RCV_CONFIG['extra_layer2'],
                     'layer3': RCV_CONFIG['extra_layer3']} if 'extra_prep' in RCV_CONFIG \
         else {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0}
-
     res_layers = {'prep': RCV_CONFIG['res_prep'], 'layer1': RCV_CONFIG['res_layer1'],
                   'layer2': RCV_CONFIG['res_layer2'], 'layer3': RCV_CONFIG['res_layer3']} if 'res_prep' in RCV_CONFIG \
         else {'prep': 0, 'layer1': 1, 'layer2': 0, 'layer3': 1}
 
-    lr = RCV_CONFIG['peak_lr']*0.2
+    # Train supernet 30% Initial learning rate
+    lr = RCV_CONFIG['peak_lr']*0.3
 
     timer = Timer()
     print('Preprocessing training data')
@@ -106,34 +97,43 @@ if __name__ == "__main__":
     print(f'Finished in {timer():.2} seconds')
 
     print('Preprocessing training')
-    model = CIFAR100_OneShot(channels=channels, extra_layers=extra_layers, res_layers=res_layers, n_classes=args.classes)
+    model = Superresnet(mode=args.mode, channels=channels, extra_layers=extra_layers, res_layers=res_layers, n_classes=args.classes)
 
     if args.load_checkpoint:
         if not args.spos_preprocessing:
             logger.warning("You might want to use SPOS preprocessing if you are loading their checkpoints.")
         model.load_state_dict(load_and_parse_state_dict("../checkpoints/epoch_29.pth.tar"))
+        # update optimizer undone
 
     model.cuda()
     if torch.cuda.device_count() > 1:  # exclude last gpu, saving for data preprocessing on gpu
         model = nn.DataParallel(model, device_ids=list(range(0, torch.cuda.device_count() - 1)))
 
-    # mutator
-    mutator = SPOSSupernetTrainingMutator(model, flops_func=model.get_candidate_flops, flops_lb=0, flops_ub=360E6)
+    # Get mutator from search space design
+    mutator = SPOSSupernetTrainingMutator(model, flops_func=model.get_candidate_flops, flops_lb=0, flops_ub=360E6, starting_line=2)
 
     criterion = nn.CrossEntropyLoss()
 
-    optimizer = torch.optim.SGD(model.parameters(), lr=lr,
-                                momentum=args.momentum, weight_decay=args.weight_decay)
+    # Optimizer
+    optimizer = torch.optim.SGD(model.parameters(),
+                                lr=lr,
+                                momentum=args.momentum,
+                                weight_decay=args.weight_decay)
 
+    # Mixed Precision Training
     scaler = torch.cuda.amp.GradScaler()
 
-    # lr_scheduler
+    # Warm-up && LR scheduler
     from warmup_scheduler import GradualWarmupScheduler
-    scheduler_steplr = torch.optim.lr_scheduler.StepLR(optimizer, step_size=2, gamma=0.8)
-    # scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda step: (1.0 - step / args.epochs) if step <= args.epochs else 0, last_epoch=-1)
-    # scheduler = GradualWarmupScheduler(optimizer, multiplier=1, total_epoch=5, after_scheduler=scheduler_steplr)
-    # scheduler_linear = LinearLR(optimizer, args.epochs-6)
-    scheduler = GradualWarmupScheduler(optimizer, multiplier=1, total_epoch=5, after_scheduler=scheduler_steplr) # scheduler_linear # scheduler_steplr
+    scheduler_linear = LinearLR(optimizer, args.epochs-6)
+    scheduler_step = torch.optim.lr_scheduler.StepLR(optimizer, step_size=2, gamma=0.8)
+    if args.lr_scheduler == 'linear': # scheduler_linear # scheduler_steplr
+        scheduler = GradualWarmupScheduler(optimizer, multiplier=1, total_epoch=5, after_scheduler=scheduler_linear)
+    elif args.lr_scheduler == 'step':
+        scheduler = GradualWarmupScheduler(optimizer, multiplier=1, total_epoch=5, after_scheduler=scheduler_step)
+    elif args.lr_scheduler == 'lambda':
+        scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda step: (1.0 - step / args.epochs) if step <= args.epochs else 0, last_epoch=-1)
+
 
     trainer = SPOSSupernetTrainer(model, criterion, accuracy, optimizer, args.epochs, train_loader, valid_loader,
                                   mutator=mutator,
@@ -144,7 +144,6 @@ if __name__ == "__main__":
                                   scaler=scaler)
 
     trainer.train()
-    # trainer.plot_curve(name='24test')
     print(f'Finished in {timer():.2} seconds')
 
 

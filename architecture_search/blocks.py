@@ -38,7 +38,6 @@ class ConvBnReluPool_detail(nn.Module):
     def forward(self, x):
         return self.op(x)
 
-
 class ConvBnReluPool(nn.Module):
     def __init__(self, inplanes, outplanes, stride, k):
         super(ConvBnReluPool, self).__init__()
@@ -155,7 +154,6 @@ class DynamicBasicBlock(nn.Module):
         out = torch.add(conv2_input, skip_x)
         return out
 
-
 class Residual(nn.Module):
     def __init__(self, in_planes, planes, stride=1):
         super(Residual, self).__init__()
@@ -169,16 +167,36 @@ class Residual(nn.Module):
         )
 
     def forward(self, x):
-        # x += self.shortcut(x)
         x = x + self.shortcut(x)
         return x
 
+class DynamicResidualBlock_fix(nn.Module):
+    def __init__(self, in_planes, planes, extra=None, res=None):
+        super(DynamicResidualBlock_fix, self).__init__()
+        self.conv1 = ConvBnReluPool(in_planes, planes, stride=2, k=3)
+        www = []
+        if extra==0:
+            pass
+        else:
+            for i in range(extra):
+                www.append(Residual(planes, planes))
+        if res==0:
+            pass
+        else:
+            for i in range(res):
+                www.append(ConvBnRelu(planes, planes, stride=1, k=3))
+        self.feature = nn.Sequential(*www)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        out = self.feature(x)
+        return out
 
 class DynamicResidualBlock(nn.Module):
-    expansion = 1
-
     def __init__(self, in_planes, planes, extra=None, res=None):
         super(DynamicResidualBlock, self).__init__()
+        # a
+        # self.conv1 = LayerChoice([ConvBnReluPool(in_planes, planes, stride=2, k=3)] ,key = 'conv1')
         # b
         self.conv1 = LayerChoice([ConvBnReluPool(in_planes, planes, stride=2, k=3),
                                   ConvBnRelu(in_planes, planes, stride=2, k=3)], key='conv1')
@@ -189,51 +207,30 @@ class DynamicResidualBlock(nn.Module):
         self.conv4 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
                                   Residual(planes, planes)], key='conv4')
 
-        # a
-        # self.conv1 = LayerChoice([ConvBnReluPool(in_planes, planes, stride=2, k=3)] ,key = 'conv1')
         # self.conv2 = LayerChoice([Residual(planes, planes)], key='conv2')
         # self.conv3 = LayerChoice([Residual(planes, planes)], key='conv3')
         # self.conv4 = LayerChoice([Residual(planes, planes)], key='conv4')
 
-        self.input_switch = InputChoice(
-            choose_from=["conv1", "conv2", "conv3", "conv4"],
-            n_candidates=4,
-            n_chosen=1,
-            key='skip')
         # self.input_switch = InputChoice(
-        #     choose_from=["conv3", "conv4"],
-        #     n_candidates=2,
+        #     choose_from=["conv1", "conv2", "conv3", "conv4"],
+        #     n_candidates=4,
         #     n_chosen=1,
         #     key='skip')
-
-        # c
-        # print(extra, res)
-        # self.conv1 = ConvBnReluPool(in_planes, planes, stride=2, k=3)
-        # www = []
-        # if extra==0:
-        #     pass
-        # else:
-        #     for i in range(extra):
-        #         www.append(Residual(planes, planes))
-        # if res==0:
-        #     pass
-        # else:
-        #     for i in range(res):
-        #         www.append(ConvBnRelu(planes, planes, stride=1, k=3))
-        # self.feature = nn.Sequential(*www)
+        #
+        self.input_switch = InputChoice(
+            choose_from=["conv3", "conv4"],
+            n_candidates=2,
+            n_chosen=1,
+            key='skip')
 
     def forward(self, x):
         # a/b
-        conv2_input = self.conv1(x)  # fix
+        conv2_input = self.conv1(x)
         conv3_input = self.conv2(conv2_input)
         conv4_input = self.conv3(conv3_input)
         conv4_output = self.conv4(conv4_input)
-        out = self.input_switch([conv2_input, conv3_input, conv4_input, conv4_output])
-        # out = self.input_switch([conv4_input, conv4_output])
-
-        # c
-        # x = self.conv1(x)
-        # out = self.feature(x)
+        # out = self.input_switch([conv2_input, conv3_input, conv4_input, conv4_output])
+        out = self.input_switch([conv4_input, conv4_output])
         return out
 
 class BasicBlock(nn.Module):
@@ -364,6 +361,5 @@ class ShuffleNetBlock(nn.Module):
         return x[0], x[1]
 
 class ShuffleXceptionBlock(ShuffleNetBlock):
-
     def __init__(self, inp, oup, mid_channels, stride):
         super().__init__(inp, oup, mid_channels, 3, stride, "dpdpdp")

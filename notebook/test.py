@@ -71,3 +71,23 @@ for i in range(max_iter):
     print('Iter %3d: lr: %g' % (i, scheduler.get_lr()[0]))
     # update scheduler (pytorch >= 1.1)
     scheduler.step()
+
+import numpy as np
+X=np.abs(np.random.rand(5, 2))
+print(type(X[1]))
+print(np.random.rand(5, 3))
+
+
+print('\n')
+print(np.random.rand(255, 2))
+print((np.random.rand(255) + 1.5).astype(int))
+
+print(np.random.randint(0, 255, (2, 3,)))
+
+
+X=np.abs(np.random.rand(5, 2))
+
+epoch_list = range(1,40)
+for epoch in epoch_list:
+    if epoch == 24 or epoch == 40:
+        print(epoch)

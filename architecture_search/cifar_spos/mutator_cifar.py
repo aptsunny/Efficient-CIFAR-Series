@@ -29,15 +29,25 @@ class SPOSSupernetTrainingMutator(RandomMutator):
         Maximum number of attempts to sample before giving up and use a random candidate.
     """
     def __init__(self, model, flops_func=None, flops_lb=None, flops_ub=None,
-                 flops_bin_num=7, flops_sample_timeout=500):
-
+                 flops_bin_num=7, flops_sample_timeout=500, starting_line=2):
         super().__init__(model)
+
         self._flops_func = flops_func
         if self._flops_func is not None:
             self._flops_bin_num = flops_bin_num
             # ensure the uniformity
             self._flops_bins = [flops_lb + (flops_ub - flops_lb) / flops_bin_num * i for i in range(flops_bin_num + 1)]
             self._flops_sample_timeout = flops_sample_timeout
+
+        # record
+        cand = super().sample_search()  # RandomMutator
+        self.record_cand = cand
+
+        self.epoch = 0
+        self.target_epoch = starting_line
+
+    def update(self, epoch):
+        self.epoch = epoch
 
     def sample_search(self):
         """
@@ -48,18 +58,17 @@ class SPOSSupernetTrainingMutator(RandomMutator):
         -------
         dict
         """
+
         if self._flops_func is not None:
             for times in range(self._flops_sample_timeout):
                 idx = np.random.randint(self._flops_bin_num)
-                cand = super().sample_search() # RandomMutator 每轮random 一个one hot
-
-                # import torch
-                # cand = {'conv1': torch.tensor([True, False]), 'conv2': torch.tensor([False, True]),
-                #                 'conv3': torch.tensor([False, True]), 'conv4': torch.tensor([False, True]),
-                #                 'skip': torch.tensor([False, False, True, False])}
-
+                if self.epoch < self.target_epoch:
+                    cand = self.record_cand
+                else:
+                    cand = super().sample_search()  # RandomMutator
                 if self._flops_bins[idx] <= self._flops_func(cand) <= self._flops_bins[idx + 1]:
                     _logger.debug("Sampled candidate flops %f in %d times.", cand, times)
+                    # print('a:', cand)
                     return cand
             _logger.warning("Failed to sample a flops-valid candidate within %d tries.", self._flops_sample_timeout)
         return super().sample_search()

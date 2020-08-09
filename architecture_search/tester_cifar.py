@@ -14,18 +14,17 @@ import torch.nn as nn
 from nni.nas.pytorch.classic_nas import get_and_apply_next_architecture
 from nni.nas.pytorch.utils import AverageMeterGroup
 
-from network import CIFAR100_OneShot, load_and_parse_state_dict
+from network import Superresnet, load_and_parse_state_dict
 from utils import CrossEntropyLabelSmooth, accuracy
 from dataset_cifar import *
 
 logger = logging.getLogger("nni.spos.tester")
 
-
 def retrain_bn(model, criterion, max_iters, log_freq, loader):
     with torch.no_grad():
         logger.info("Clear BN statistics...")
         for m in model.modules():
-            if isinstance(m, nn.BatchNorm2d):
+            if isinstance(m, nn.BatchNorm2d): # initial
                 m.running_mean = torch.zeros_like(m.running_mean)
                 m.running_var = torch.ones_like(m.running_var)
 
@@ -63,28 +62,31 @@ def test_acc(model, criterion, log_freq, loader):
 
 
 def evaluate_acc(model, criterion, args, loader_train, loader_test):
+    # val
     acc_before = test_acc(model, criterion, args.log_frequency, loader_test)
     nni.report_intermediate_result(acc_before)
 
+    # retrain bn
     retrain_bn(model, criterion, args.train_iters, args.log_frequency, loader_train)
     acc = test_acc(model, criterion, args.log_frequency, loader_test)
     assert isinstance(acc, float)
+
+    # val
     nni.report_intermediate_result(acc)
     nni.report_final_result(acc)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("SPOS Candidate Tester")
-
-    parser.add_argument("--checkpoint", type=str, default="../checkpoints/epoch_39.pth.tar")
     # parser.add_argument("--checkpoint", type=str, default="../checkpoints/epoch_0.pth.tar")
+    parser.add_argument("--checkpoint", type=str, default="../checkpoints/baseline_32/epoch_199.pth.tar")
     # parser.add_argument("--spos-preprocessing", action="store_true", default=False,
     #                     help="When true, image values will range from 0 to 255 and use BGR "
     #                          "(as in original repo).")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--workers", type=int, default=6)
-    parser.add_argument("--batch-size", type=int, default=128)
-    parser.add_argument("--train-iters", type=int, default=200) # bn
+    parser.add_argument("--batch-size", type=int, default=512) # 128
+    parser.add_argument("--train-iters", type=int, default=100) # bn 200
     parser.add_argument("--test-batch-size", type=int, default=512)
     parser.add_argument("--log-frequency", type=int, default=10)
     parser.add_argument("--classes", type=int, default=100)
@@ -100,25 +102,41 @@ if __name__ == "__main__":
 
     assert torch.cuda.is_available()
 
-
-    hp_result ={
-        "peak_lr": 0.36057638714284174,
-        "prep": 48,
-        "layer1": 84,
+    # Derive from Hyperparameter tuning
+    # 78.01_cifar100_7_7_7_2_e24_t210.49_logs.tsv
+    RCV_CONFIG = {
+        "peak_lr": 0.6499631190592446,
+        "prep": 64,
+        "layer1": 112,
         "layer2": 256,
-        "layer3": 512
+        "layer3": 512,
+        "extra_prep": 1,
+        "extra_layer1": 0,
+        "extra_layer2": 0,
+        "extra_layer3": 0,
+        "res_prep": 2,
+        "res_layer1": 3,
+        "res_layer2": 3,
+        "res_layer3": 1
     }
 
-    c_prep = hp_result['prep']
-    c_layer1 = hp_result['layer1']
-    c_layer2 = hp_result['layer2']
-    c_layer3 = hp_result['layer3']
-    channels = [c_prep, c_layer1, c_layer2, c_layer3]
+    # Network Configuration
+    channels = {'prep': RCV_CONFIG['prep'], 'layer1': RCV_CONFIG['layer1'], 'layer2': RCV_CONFIG['layer2'],
+                'layer3': RCV_CONFIG['layer3']} if 'prep' in RCV_CONFIG \
+        else {'prep': 48, 'layer1': 112, 'layer2': 256, 'layer3': 384}
+    extra_layers = {'prep': RCV_CONFIG['extra_prep'], 'layer1': RCV_CONFIG['extra_layer1'],
+                    'layer2': RCV_CONFIG['extra_layer2'],
+                    'layer3': RCV_CONFIG['extra_layer3']} if 'extra_prep' in RCV_CONFIG \
+        else {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0}
+    res_layers = {'prep': RCV_CONFIG['res_prep'], 'layer1': RCV_CONFIG['res_layer1'],
+                  'layer2': RCV_CONFIG['res_layer2'], 'layer3': RCV_CONFIG['res_layer3']} if 'res_prep' in RCV_CONFIG \
+        else {'prep': 0, 'layer1': 1, 'layer2': 0, 'layer3': 1}
 
-    model = CIFAR100_OneShot(channels=channels, n_classes=args.classes)
+    # Train supernet 30% Initial learning rate
+    lr = RCV_CONFIG['peak_lr']*0.3
+    model = Superresnet(channels=channels, extra_layers=extra_layers, res_layers=res_layers, n_classes=args.classes)
 
     criterion = nn.CrossEntropyLoss()
-    # criterion = CrossEntropyLabelSmooth(10, 0.1)
 
     get_and_apply_next_architecture(model)
 
