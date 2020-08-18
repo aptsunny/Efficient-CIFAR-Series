@@ -1,0 +1,702 @@
+digraph plot {
+	data [label=data fillcolor="#8dd3c7" fixedsize=false height=0.8034 shape=oval style=filled width=1.3]
+	blresnetv11_conv0_fwd [label="Convolution
+7x7/2x2, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm0_fwd [label=blresnetv11_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu0_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_b_branchconv0_fwd [label="Convolution
+3x3/2x2, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_b_branchbatchnorm0_fwd [label=blresnetv11_blmodule_00_b_branchbatchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchconv0_fwd [label="Convolution
+3x3/1x1, 32" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchbatchnorm0_fwd [label=blresnetv11_blmodule_00_l_branchbatchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchrelu0_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchconv1_fwd [label="Convolution
+3x3/2x2, 32" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchbatchnorm1_fwd [label=blresnetv11_blmodule_00_l_branchbatchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchrelu1_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchconv2_fwd [label="Convolution
+1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_l_branchbatchnorm2_fwd [label=blresnetv11_blmodule_00_l_branchbatchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00__plus0 [label=blresnetv11_blmodule_00__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu1_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_make_bl_layerconv0_fwd [label="Convolution
+1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_make_bl_layerbatchnorm0_fwd [label=blresnetv11_blmodule_00_make_bl_layerbatchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule_00_make_bl_layerrelu0_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv2_fwd [label="Convolution
+1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm2_fwd [label=blresnetv11_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu2_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv3_fwd [label="Convolution
+3x3/2x2, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm3_fwd [label=blresnetv11_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu3_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv4_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm4_fwd [label=blresnetv11_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu4_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_pool0_fwd [label="Pooling
+avg, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv1_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm1_fwd [label=blresnetv11_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv10__plus0 [label=blresnetv11_bottleneckv10__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv10_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv5_fwd [label="Convolution
+1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm5_fwd [label=blresnetv11_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu5_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv6_fwd [label="Convolution
+3x3/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm6_fwd [label=blresnetv11_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu6_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv7_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm7_fwd [label=blresnetv11_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu7_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv11__plus0 [label=blresnetv11_bottleneckv11__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule0_bilinearresize2d0 [label=blresnetv11_blmodule0_bilinearresize2d0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv9_fwd [label="Convolution
+1x1/1x1, 32" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm9_fwd [label=blresnetv11_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu8_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv10_fwd [label="Convolution
+3x3/1x1, 32" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm10_fwd [label=blresnetv11_batchnorm10_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu9_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv11_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm11_fwd [label=blresnetv11_batchnorm11_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu10_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv8_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm8_fwd [label=blresnetv11_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv12__plus0 [label=blresnetv11_bottleneckv12__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv12_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv12_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm12_fwd [label=blresnetv11_batchnorm12_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule0__plus0 [label=blresnetv11_blmodule0__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu11_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv13_fwd [label="Convolution
+1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm13_fwd [label=blresnetv11_batchnorm13_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu12_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv14_fwd [label="Convolution
+3x3/2x2, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm14_fwd [label=blresnetv11_batchnorm14_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu13_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv15_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm15_fwd [label=blresnetv11_batchnorm15_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu14_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_pool1_fwd [label="Pooling
+avg, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv13__plus0 [label=blresnetv11_bottleneckv13__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv13_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv17_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm17_fwd [label=blresnetv11_batchnorm17_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu15_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv18_fwd [label="Convolution
+3x3/2x2, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm18_fwd [label=blresnetv11_batchnorm18_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu16_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv19_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm19_fwd [label=blresnetv11_batchnorm19_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu17_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_pool2_fwd [label="Pooling
+avg, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv16_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm16_fwd [label=blresnetv11_batchnorm16_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv14__plus0 [label=blresnetv11_bottleneckv14__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv14_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv20_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm20_fwd [label=blresnetv11_batchnorm20_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu18_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv21_fwd [label="Convolution
+3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm21_fwd [label=blresnetv11_batchnorm21_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu19_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv22_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm22_fwd [label=blresnetv11_batchnorm22_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu20_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv15__plus0 [label=blresnetv11_bottleneckv15__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv15_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv23_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm23_fwd [label=blresnetv11_batchnorm23_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu21_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv24_fwd [label="Convolution
+3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm24_fwd [label=blresnetv11_batchnorm24_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu22_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv25_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm25_fwd [label=blresnetv11_batchnorm25_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu23_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv16__plus0 [label=blresnetv11_bottleneckv16__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule1_bilinearresize2d0 [label=blresnetv11_blmodule1_bilinearresize2d0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv26_fwd [label="Convolution
+1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm26_fwd [label=blresnetv11_batchnorm26_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu24_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv27_fwd [label="Convolution
+3x3/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm27_fwd [label=blresnetv11_batchnorm27_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu25_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv28_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm28_fwd [label=blresnetv11_batchnorm28_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu26_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv17__plus0 [label=blresnetv11_bottleneckv17__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv17_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv29_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm29_fwd [label=blresnetv11_batchnorm29_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule1__plus0 [label=blresnetv11_blmodule1__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu27_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv30_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm30_fwd [label=blresnetv11_batchnorm30_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu28_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv31_fwd [label="Convolution
+3x3/2x2, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm31_fwd [label=blresnetv11_batchnorm31_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu29_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv32_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm32_fwd [label=blresnetv11_batchnorm32_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu30_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_pool3_fwd [label="Pooling
+avg, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv18__plus0 [label=blresnetv11_bottleneckv18__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv18_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv34_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm34_fwd [label=blresnetv11_batchnorm34_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu31_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv35_fwd [label="Convolution
+3x3/2x2, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm35_fwd [label=blresnetv11_batchnorm35_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu32_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv36_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm36_fwd [label=blresnetv11_batchnorm36_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu33_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_pool4_fwd [label="Pooling
+avg, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv33_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm33_fwd [label=blresnetv11_batchnorm33_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv19__plus0 [label=blresnetv11_bottleneckv19__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv19_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv37_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm37_fwd [label=blresnetv11_batchnorm37_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu34_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv38_fwd [label="Convolution
+3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm38_fwd [label=blresnetv11_batchnorm38_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu35_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv39_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm39_fwd [label=blresnetv11_batchnorm39_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu36_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv110__plus0 [label=blresnetv11_bottleneckv110__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv110_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv40_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm40_fwd [label=blresnetv11_batchnorm40_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu37_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv41_fwd [label="Convolution
+3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm41_fwd [label=blresnetv11_batchnorm41_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu38_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv42_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm42_fwd [label=blresnetv11_batchnorm42_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu39_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv111__plus0 [label=blresnetv11_bottleneckv111__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv111_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv43_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm43_fwd [label=blresnetv11_batchnorm43_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu40_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv44_fwd [label="Convolution
+3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm44_fwd [label=blresnetv11_batchnorm44_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu41_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv45_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm45_fwd [label=blresnetv11_batchnorm45_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu42_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv112__plus0 [label=blresnetv11_bottleneckv112__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv112_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv46_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm46_fwd [label=blresnetv11_batchnorm46_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu43_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv47_fwd [label="Convolution
+3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm47_fwd [label=blresnetv11_batchnorm47_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu44_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv48_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm48_fwd [label=blresnetv11_batchnorm48_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu45_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv113__plus0 [label=blresnetv11_bottleneckv113__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule2_bilinearresize2d0 [label=blresnetv11_blmodule2_bilinearresize2d0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv49_fwd [label="Convolution
+1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm49_fwd [label=blresnetv11_batchnorm49_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu46_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv50_fwd [label="Convolution
+3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm50_fwd [label=blresnetv11_batchnorm50_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu47_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv51_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm51_fwd [label=blresnetv11_batchnorm51_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu48_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv114__plus0 [label=blresnetv11_bottleneckv114__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv114_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv52_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm52_fwd [label=blresnetv11_batchnorm52_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_blmodule2__plus0 [label=blresnetv11_blmodule2__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu49_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv53_fwd [label="Convolution
+1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm53_fwd [label=blresnetv11_batchnorm53_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu50_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv54_fwd [label="Convolution
+3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm54_fwd [label=blresnetv11_batchnorm54_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu51_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv55_fwd [label="Convolution
+1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm55_fwd [label=blresnetv11_batchnorm55_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu52_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv115__plus0 [label=blresnetv11_bottleneckv115__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv115_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv56_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm56_fwd [label=blresnetv11_batchnorm56_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu53_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv57_fwd [label="Convolution
+3x3/2x2, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm57_fwd [label=blresnetv11_batchnorm57_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu54_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv58_fwd [label="Convolution
+1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm58_fwd [label=blresnetv11_batchnorm58_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu55_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_downsamplepool0_fwd [label="Pooling
+avg, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_downsampleconv0_fwd [label="Convolution
+1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_downsamplebatchnorm0_fwd [label=blresnetv11_downsamplebatchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv116__plus0 [label=blresnetv11_bottleneckv116__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv116_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv59_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm59_fwd [label=blresnetv11_batchnorm59_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu56_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv60_fwd [label="Convolution
+3x3/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm60_fwd [label=blresnetv11_batchnorm60_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu57_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv61_fwd [label="Convolution
+1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm61_fwd [label=blresnetv11_batchnorm61_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu58_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv117__plus0 [label=blresnetv11_bottleneckv117__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv117_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv62_fwd [label="Convolution
+1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm62_fwd [label=blresnetv11_batchnorm62_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu59_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv63_fwd [label="Convolution
+3x3/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm63_fwd [label=blresnetv11_batchnorm63_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu60_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv64_fwd [label="Convolution
+1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_batchnorm64_fwd [label=blresnetv11_batchnorm64_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_relu61_fwd [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv118__plus0 [label=blresnetv11_bottleneckv118__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_bottleneckv118_activation0 [label="Activation
+relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_pool5_fwd [label="Pooling
+avg, 1x1/1x1" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_flatten0_flatten0 [label=blresnetv11_flatten0_flatten0 fillcolor="#fdb462" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_dense0_fwd [label="FullyConnected
+1000" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	blresnetv11_conv0_fwd -> data [label="3x224x224" arrowtail=open dir=back]
+	blresnetv11_batchnorm0_fwd -> blresnetv11_conv0_fwd [label="64x112x112" arrowtail=open dir=back]
+	blresnetv11_relu0_fwd -> blresnetv11_batchnorm0_fwd [label="64x112x112" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_b_branchconv0_fwd -> blresnetv11_relu0_fwd [label="64x112x112" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_b_branchbatchnorm0_fwd -> blresnetv11_blmodule_00_b_branchconv0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchconv0_fwd -> blresnetv11_relu0_fwd [label="64x112x112" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchbatchnorm0_fwd -> blresnetv11_blmodule_00_l_branchconv0_fwd [label="32x112x112" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchrelu0_fwd -> blresnetv11_blmodule_00_l_branchbatchnorm0_fwd [label="32x112x112" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchconv1_fwd -> blresnetv11_blmodule_00_l_branchrelu0_fwd [label="32x112x112" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchbatchnorm1_fwd -> blresnetv11_blmodule_00_l_branchconv1_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchrelu1_fwd -> blresnetv11_blmodule_00_l_branchbatchnorm1_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchconv2_fwd -> blresnetv11_blmodule_00_l_branchrelu1_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_l_branchbatchnorm2_fwd -> blresnetv11_blmodule_00_l_branchconv2_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00__plus0 -> blresnetv11_blmodule_00_b_branchbatchnorm0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00__plus0 -> blresnetv11_blmodule_00_l_branchbatchnorm2_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_relu1_fwd -> blresnetv11_blmodule_00__plus0 [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_make_bl_layerconv0_fwd -> blresnetv11_relu1_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_make_bl_layerbatchnorm0_fwd -> blresnetv11_blmodule_00_make_bl_layerconv0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule_00_make_bl_layerrelu0_fwd -> blresnetv11_blmodule_00_make_bl_layerbatchnorm0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_conv2_fwd -> blresnetv11_blmodule_00_make_bl_layerrelu0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm2_fwd -> blresnetv11_conv2_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_relu2_fwd -> blresnetv11_batchnorm2_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_conv3_fwd -> blresnetv11_relu2_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm3_fwd -> blresnetv11_conv3_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_relu3_fwd -> blresnetv11_batchnorm3_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_conv4_fwd -> blresnetv11_relu3_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm4_fwd -> blresnetv11_conv4_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_relu4_fwd -> blresnetv11_batchnorm4_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_pool0_fwd -> blresnetv11_blmodule_00_make_bl_layerrelu0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_conv1_fwd -> blresnetv11_pool0_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm1_fwd -> blresnetv11_conv1_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv10__plus0 -> blresnetv11_relu4_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv10__plus0 -> blresnetv11_batchnorm1_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv10_activation0 -> blresnetv11_bottleneckv10__plus0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_conv5_fwd -> blresnetv11_bottleneckv10_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm5_fwd -> blresnetv11_conv5_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_relu5_fwd -> blresnetv11_batchnorm5_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_conv6_fwd -> blresnetv11_relu5_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm6_fwd -> blresnetv11_conv6_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_relu6_fwd -> blresnetv11_batchnorm6_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_conv7_fwd -> blresnetv11_relu6_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm7_fwd -> blresnetv11_conv7_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_relu7_fwd -> blresnetv11_batchnorm7_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv11__plus0 -> blresnetv11_relu7_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv11__plus0 -> blresnetv11_bottleneckv10_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_blmodule0_bilinearresize2d0 -> blresnetv11_bottleneckv11__plus0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_conv9_fwd -> blresnetv11_blmodule_00_make_bl_layerrelu0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm9_fwd -> blresnetv11_conv9_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_relu8_fwd -> blresnetv11_batchnorm9_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_conv10_fwd -> blresnetv11_relu8_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm10_fwd -> blresnetv11_conv10_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_relu9_fwd -> blresnetv11_batchnorm10_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_conv11_fwd -> blresnetv11_relu9_fwd [label="32x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm11_fwd -> blresnetv11_conv11_fwd [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_relu10_fwd -> blresnetv11_batchnorm11_fwd [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_conv8_fwd -> blresnetv11_blmodule_00_make_bl_layerrelu0_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm8_fwd -> blresnetv11_conv8_fwd [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_bottleneckv12__plus0 -> blresnetv11_relu10_fwd [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_bottleneckv12__plus0 -> blresnetv11_batchnorm8_fwd [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_bottleneckv12_activation0 -> blresnetv11_bottleneckv12__plus0 [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_conv12_fwd -> blresnetv11_bottleneckv12_activation0 [label="128x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm12_fwd -> blresnetv11_conv12_fwd [label="256x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule0__plus0 -> blresnetv11_blmodule0_bilinearresize2d0 [label="256x56x56" arrowtail=open dir=back]
+	blresnetv11_blmodule0__plus0 -> blresnetv11_batchnorm12_fwd [label="256x56x56" arrowtail=open dir=back]
+	blresnetv11_relu11_fwd -> blresnetv11_blmodule0__plus0 [label="256x56x56" arrowtail=open dir=back]
+	blresnetv11_conv13_fwd -> blresnetv11_relu11_fwd [label="256x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm13_fwd -> blresnetv11_conv13_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_relu12_fwd -> blresnetv11_batchnorm13_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_conv14_fwd -> blresnetv11_relu12_fwd [label="64x56x56" arrowtail=open dir=back]
+	blresnetv11_batchnorm14_fwd -> blresnetv11_conv14_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_relu13_fwd -> blresnetv11_batchnorm14_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_conv15_fwd -> blresnetv11_relu13_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm15_fwd -> blresnetv11_conv15_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_relu14_fwd -> blresnetv11_batchnorm15_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_pool1_fwd -> blresnetv11_relu11_fwd [label="256x56x56" arrowtail=open dir=back]
+	blresnetv11_bottleneckv13__plus0 -> blresnetv11_relu14_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv13__plus0 -> blresnetv11_pool1_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv13_activation0 -> blresnetv11_bottleneckv13__plus0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_conv17_fwd -> blresnetv11_bottleneckv13_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm17_fwd -> blresnetv11_conv17_fwd [label="128x28x28" arrowtail=open dir=back]
+	blresnetv11_relu15_fwd -> blresnetv11_batchnorm17_fwd [label="128x28x28" arrowtail=open dir=back]
+	blresnetv11_conv18_fwd -> blresnetv11_relu15_fwd [label="128x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm18_fwd -> blresnetv11_conv18_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu16_fwd -> blresnetv11_batchnorm18_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv19_fwd -> blresnetv11_relu16_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm19_fwd -> blresnetv11_conv19_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_relu17_fwd -> blresnetv11_batchnorm19_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_pool2_fwd -> blresnetv11_bottleneckv13_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_conv16_fwd -> blresnetv11_pool2_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm16_fwd -> blresnetv11_conv16_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv14__plus0 -> blresnetv11_relu17_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv14__plus0 -> blresnetv11_batchnorm16_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv14_activation0 -> blresnetv11_bottleneckv14__plus0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv20_fwd -> blresnetv11_bottleneckv14_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm20_fwd -> blresnetv11_conv20_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu18_fwd -> blresnetv11_batchnorm20_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv21_fwd -> blresnetv11_relu18_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm21_fwd -> blresnetv11_conv21_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu19_fwd -> blresnetv11_batchnorm21_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv22_fwd -> blresnetv11_relu19_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm22_fwd -> blresnetv11_conv22_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_relu20_fwd -> blresnetv11_batchnorm22_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv15__plus0 -> blresnetv11_relu20_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv15__plus0 -> blresnetv11_bottleneckv14_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv15_activation0 -> blresnetv11_bottleneckv15__plus0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv23_fwd -> blresnetv11_bottleneckv15_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm23_fwd -> blresnetv11_conv23_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu21_fwd -> blresnetv11_batchnorm23_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv24_fwd -> blresnetv11_relu21_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm24_fwd -> blresnetv11_conv24_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu22_fwd -> blresnetv11_batchnorm24_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv25_fwd -> blresnetv11_relu22_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm25_fwd -> blresnetv11_conv25_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_relu23_fwd -> blresnetv11_batchnorm25_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv16__plus0 -> blresnetv11_relu23_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv16__plus0 -> blresnetv11_bottleneckv15_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_blmodule1_bilinearresize2d0 -> blresnetv11_bottleneckv16__plus0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv26_fwd -> blresnetv11_bottleneckv13_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm26_fwd -> blresnetv11_conv26_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_relu24_fwd -> blresnetv11_batchnorm26_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_conv27_fwd -> blresnetv11_relu24_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm27_fwd -> blresnetv11_conv27_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_relu25_fwd -> blresnetv11_batchnorm27_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_conv28_fwd -> blresnetv11_relu25_fwd [label="64x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm28_fwd -> blresnetv11_conv28_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_relu26_fwd -> blresnetv11_batchnorm28_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv17__plus0 -> blresnetv11_relu26_fwd [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv17__plus0 -> blresnetv11_bottleneckv13_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv17_activation0 -> blresnetv11_bottleneckv17__plus0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_conv29_fwd -> blresnetv11_bottleneckv17_activation0 [label="256x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm29_fwd -> blresnetv11_conv29_fwd [label="512x28x28" arrowtail=open dir=back]
+	blresnetv11_blmodule1__plus0 -> blresnetv11_blmodule1_bilinearresize2d0 [label="512x28x28" arrowtail=open dir=back]
+	blresnetv11_blmodule1__plus0 -> blresnetv11_batchnorm29_fwd [label="512x28x28" arrowtail=open dir=back]
+	blresnetv11_relu27_fwd -> blresnetv11_blmodule1__plus0 [label="512x28x28" arrowtail=open dir=back]
+	blresnetv11_conv30_fwd -> blresnetv11_relu27_fwd [label="512x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm30_fwd -> blresnetv11_conv30_fwd [label="128x28x28" arrowtail=open dir=back]
+	blresnetv11_relu28_fwd -> blresnetv11_batchnorm30_fwd [label="128x28x28" arrowtail=open dir=back]
+	blresnetv11_conv31_fwd -> blresnetv11_relu28_fwd [label="128x28x28" arrowtail=open dir=back]
+	blresnetv11_batchnorm31_fwd -> blresnetv11_conv31_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu29_fwd -> blresnetv11_batchnorm31_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv32_fwd -> blresnetv11_relu29_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm32_fwd -> blresnetv11_conv32_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_relu30_fwd -> blresnetv11_batchnorm32_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_pool3_fwd -> blresnetv11_relu27_fwd [label="512x28x28" arrowtail=open dir=back]
+	blresnetv11_bottleneckv18__plus0 -> blresnetv11_relu30_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv18__plus0 -> blresnetv11_pool3_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv18_activation0 -> blresnetv11_bottleneckv18__plus0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv34_fwd -> blresnetv11_bottleneckv18_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm34_fwd -> blresnetv11_conv34_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_relu31_fwd -> blresnetv11_batchnorm34_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_conv35_fwd -> blresnetv11_relu31_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm35_fwd -> blresnetv11_conv35_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu32_fwd -> blresnetv11_batchnorm35_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv36_fwd -> blresnetv11_relu32_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm36_fwd -> blresnetv11_conv36_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_relu33_fwd -> blresnetv11_batchnorm36_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_pool4_fwd -> blresnetv11_bottleneckv18_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv33_fwd -> blresnetv11_pool4_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm33_fwd -> blresnetv11_conv33_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv19__plus0 -> blresnetv11_relu33_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv19__plus0 -> blresnetv11_batchnorm33_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv19_activation0 -> blresnetv11_bottleneckv19__plus0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_conv37_fwd -> blresnetv11_bottleneckv19_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm37_fwd -> blresnetv11_conv37_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu34_fwd -> blresnetv11_batchnorm37_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv38_fwd -> blresnetv11_relu34_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm38_fwd -> blresnetv11_conv38_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu35_fwd -> blresnetv11_batchnorm38_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv39_fwd -> blresnetv11_relu35_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm39_fwd -> blresnetv11_conv39_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_relu36_fwd -> blresnetv11_batchnorm39_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv110__plus0 -> blresnetv11_relu36_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv110__plus0 -> blresnetv11_bottleneckv19_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv110_activation0 -> blresnetv11_bottleneckv110__plus0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_conv40_fwd -> blresnetv11_bottleneckv110_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm40_fwd -> blresnetv11_conv40_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu37_fwd -> blresnetv11_batchnorm40_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv41_fwd -> blresnetv11_relu37_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm41_fwd -> blresnetv11_conv41_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu38_fwd -> blresnetv11_batchnorm41_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv42_fwd -> blresnetv11_relu38_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm42_fwd -> blresnetv11_conv42_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_relu39_fwd -> blresnetv11_batchnorm42_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv111__plus0 -> blresnetv11_relu39_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv111__plus0 -> blresnetv11_bottleneckv110_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv111_activation0 -> blresnetv11_bottleneckv111__plus0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_conv43_fwd -> blresnetv11_bottleneckv111_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm43_fwd -> blresnetv11_conv43_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu40_fwd -> blresnetv11_batchnorm43_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv44_fwd -> blresnetv11_relu40_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm44_fwd -> blresnetv11_conv44_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu41_fwd -> blresnetv11_batchnorm44_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv45_fwd -> blresnetv11_relu41_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm45_fwd -> blresnetv11_conv45_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_relu42_fwd -> blresnetv11_batchnorm45_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv112__plus0 -> blresnetv11_relu42_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv112__plus0 -> blresnetv11_bottleneckv111_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv112_activation0 -> blresnetv11_bottleneckv112__plus0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_conv46_fwd -> blresnetv11_bottleneckv112_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm46_fwd -> blresnetv11_conv46_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu43_fwd -> blresnetv11_batchnorm46_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv47_fwd -> blresnetv11_relu43_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm47_fwd -> blresnetv11_conv47_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_relu44_fwd -> blresnetv11_batchnorm47_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_conv48_fwd -> blresnetv11_relu44_fwd [label="256x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm48_fwd -> blresnetv11_conv48_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_relu45_fwd -> blresnetv11_batchnorm48_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv113__plus0 -> blresnetv11_relu45_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv113__plus0 -> blresnetv11_bottleneckv112_activation0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_blmodule2_bilinearresize2d0 -> blresnetv11_bottleneckv113__plus0 [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_conv49_fwd -> blresnetv11_bottleneckv18_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm49_fwd -> blresnetv11_conv49_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu46_fwd -> blresnetv11_batchnorm49_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv50_fwd -> blresnetv11_relu46_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm50_fwd -> blresnetv11_conv50_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_relu47_fwd -> blresnetv11_batchnorm50_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_conv51_fwd -> blresnetv11_relu47_fwd [label="128x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm51_fwd -> blresnetv11_conv51_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_relu48_fwd -> blresnetv11_batchnorm51_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv114__plus0 -> blresnetv11_relu48_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv114__plus0 -> blresnetv11_bottleneckv18_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv114_activation0 -> blresnetv11_bottleneckv114__plus0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv52_fwd -> blresnetv11_bottleneckv114_activation0 [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm52_fwd -> blresnetv11_conv52_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_blmodule2__plus0 -> blresnetv11_blmodule2_bilinearresize2d0 [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_blmodule2__plus0 -> blresnetv11_batchnorm52_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_relu49_fwd -> blresnetv11_blmodule2__plus0 [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_conv53_fwd -> blresnetv11_relu49_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm53_fwd -> blresnetv11_conv53_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_relu50_fwd -> blresnetv11_batchnorm53_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_conv54_fwd -> blresnetv11_relu50_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm54_fwd -> blresnetv11_conv54_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_relu51_fwd -> blresnetv11_batchnorm54_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_conv55_fwd -> blresnetv11_relu51_fwd [label="256x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm55_fwd -> blresnetv11_conv55_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_relu52_fwd -> blresnetv11_batchnorm55_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv115__plus0 -> blresnetv11_relu52_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv115__plus0 -> blresnetv11_relu49_fwd [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_bottleneckv115_activation0 -> blresnetv11_bottleneckv115__plus0 [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_conv56_fwd -> blresnetv11_bottleneckv115_activation0 [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm56_fwd -> blresnetv11_conv56_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_relu53_fwd -> blresnetv11_batchnorm56_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_conv57_fwd -> blresnetv11_relu53_fwd [label="512x14x14" arrowtail=open dir=back]
+	blresnetv11_batchnorm57_fwd -> blresnetv11_conv57_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_relu54_fwd -> blresnetv11_batchnorm57_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_conv58_fwd -> blresnetv11_relu54_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm58_fwd -> blresnetv11_conv58_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_relu55_fwd -> blresnetv11_batchnorm58_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_downsamplepool0_fwd -> blresnetv11_bottleneckv115_activation0 [label="1024x14x14" arrowtail=open dir=back]
+	blresnetv11_downsampleconv0_fwd -> blresnetv11_downsamplepool0_fwd [label="1024x7x7" arrowtail=open dir=back]
+	blresnetv11_downsamplebatchnorm0_fwd -> blresnetv11_downsampleconv0_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv116__plus0 -> blresnetv11_relu55_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv116__plus0 -> blresnetv11_downsamplebatchnorm0_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv116_activation0 -> blresnetv11_bottleneckv116__plus0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_conv59_fwd -> blresnetv11_bottleneckv116_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm59_fwd -> blresnetv11_conv59_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_relu56_fwd -> blresnetv11_batchnorm59_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_conv60_fwd -> blresnetv11_relu56_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm60_fwd -> blresnetv11_conv60_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_relu57_fwd -> blresnetv11_batchnorm60_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_conv61_fwd -> blresnetv11_relu57_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm61_fwd -> blresnetv11_conv61_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_relu58_fwd -> blresnetv11_batchnorm61_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv117__plus0 -> blresnetv11_relu58_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv117__plus0 -> blresnetv11_bottleneckv116_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv117_activation0 -> blresnetv11_bottleneckv117__plus0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_conv62_fwd -> blresnetv11_bottleneckv117_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm62_fwd -> blresnetv11_conv62_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_relu59_fwd -> blresnetv11_batchnorm62_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_conv63_fwd -> blresnetv11_relu59_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm63_fwd -> blresnetv11_conv63_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_relu60_fwd -> blresnetv11_batchnorm63_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_conv64_fwd -> blresnetv11_relu60_fwd [label="512x7x7" arrowtail=open dir=back]
+	blresnetv11_batchnorm64_fwd -> blresnetv11_conv64_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_relu61_fwd -> blresnetv11_batchnorm64_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv118__plus0 -> blresnetv11_relu61_fwd [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv118__plus0 -> blresnetv11_bottleneckv117_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_bottleneckv118_activation0 -> blresnetv11_bottleneckv118__plus0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_pool5_fwd -> blresnetv11_bottleneckv118_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	blresnetv11_flatten0_flatten0 -> blresnetv11_pool5_fwd [label="2048x1x1" arrowtail=open dir=back]
+	blresnetv11_dense0_fwd -> blresnetv11_flatten0_flatten0 [label=2048 arrowtail=open dir=back]
+}

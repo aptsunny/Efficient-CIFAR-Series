@@ -7,12 +7,15 @@ import re
 
 import torch
 import torch.nn as nn
+import numpy as np
 
 from nni.nas.pytorch.mutables import LayerChoice, InputChoice
 
 from blocks import ShuffleNetBlock, ShuffleXceptionBlock, BasicBlock, Bottleneck, ConvBnRelu, \
     ConvBnReluPool, Mul, DynamicBasicBlock, ConvBnReluPool_detail, DynamicResidualBlock, Residual, DynamicResidualBlock_fix
 
+
+# scale_fn = lambda x: x**3
 
 class Superresnet(nn.Module):
     def __init__(self,
@@ -23,6 +26,7 @@ class Superresnet(nn.Module):
                  extra_layers=None,
                  res_layers=None,
                  op_flops_path="/home/ubuntu/0_datasets/op_flops_dict.pkl",
+                 epoch=None,
                  weight=0.125):
         super().__init__()
 
@@ -31,9 +35,14 @@ class Superresnet(nn.Module):
         #     self._op_flops_dict = pickle.load(fp)
         # self.stage_blocks = [3, 1, 3]
 
+
+        # base lr 1e-1
+        self.base_lr = 0.8
+        self.epoch = epoch
+
         # layer1:32->16, layer2:16->8, layer3:8->4
-        self.extra_layers = extra_layers or {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0},
-        self.res_layers = res_layers or {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0},
+        self.extra_layers = extra_layers or {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0}
+        self.res_layers = res_layers or {'prep': 0, 'layer1': 0, 'layer2': 0, 'layer3': 0}
         self.stage_channels = channels or {'prep': 64, 'layer1': 128, 'layer2': 256, 'layer3': 512}
 
         # first_conv_channels = self.stage_channels[0]
@@ -45,6 +54,7 @@ class Superresnet(nn.Module):
         self._input_size = input_size
         self._feature_map_size = input_size
         self._n_classes = n_classes
+
 
         # self.pool = nn.MaxPool2d(2)
         # self._feature_map_size //= 2
@@ -93,6 +103,8 @@ class Superresnet(nn.Module):
         # struct 4
         if mode == 'normal':
             # building first layer
+            # print(self.extra_layers)
+            # print(self.extra_layers['prep'])
             prep_extra = self.extra_layers['prep']
             prep_res = self.res_layers['prep']
 
@@ -111,12 +123,29 @@ class Superresnet(nn.Module):
                     www.append(ConvBnRelu(self.stage_channels['prep'], self.stage_channels['prep'], stride=1, k=3))
 
             self.prep = nn.Sequential(*www)
+            self.prep.active = True
+            # self.prep.layer_index = 0
+            self.prep.layer_index = 4
+
             self.layer1 = DynamicResidualBlock_fix(self.stage_channels['prep'],   self.stage_channels['layer1'],
                                                extra=self.extra_layers['layer1'], res=self.res_layers['layer1'])
+            # self.layer1.active = True
+            # self.layer1.layer_index = 1
+
             self.layer2 = DynamicResidualBlock_fix(self.stage_channels['layer1'], self.stage_channels['layer2'],
                                                extra=self.extra_layers['layer2'], res=self.res_layers['layer2'])
+            # self.layer2.active = True
+            # self.layer2.layer_index = 2
+
             self.layer3 = DynamicResidualBlock_fix(self.stage_channels['layer2'], self.stage_channels['layer3'],
                                                extra=self.extra_layers['layer3'], res=self.res_layers['layer3'])
+
+            # self.layer3.active = True
+            # self.layer3.layer_index = 3
+
+            ## 按squential 设计 -> 每个block的squential设计
+
+
         else:
             # building first layer
             self.prep = nn.Sequential(
@@ -124,15 +153,47 @@ class Superresnet(nn.Module):
                 nn.BatchNorm2d(self.stage_channels['prep'], affine=False),
                 nn.ReLU(inplace=True),
             )
+
+            self.prep.active = True
+            # self.prep.layer_index = 0
+            self.prep.layer_index = 4
+
             self.layer1 = DynamicResidualBlock(self.stage_channels['prep'], self.stage_channels['layer1'])
+            # self.layer1.active = True
+            # self.layer1.layer_index = 1
+
             self.layer2 = DynamicResidualBlock(self.stage_channels['layer1'], self.stage_channels['layer2'])
+            # self.layer2.active = True
+            # self.layer2.layer_index = 2
+
             self.layer3 = DynamicResidualBlock(self.stage_channels['layer2'], self.stage_channels['layer3'])
+            # self.layer3.active = True
+            # self.layer3.layer_index = 3
 
         self.globalpool = nn.MaxPool2d(4)
         self.classifier = nn.Sequential(
             nn.Linear(self.stage_channels['layer3'], n_classes, bias=False),
             Mul(weight))
-        self._initialize_weights()
+
+        self.classifier.active = True
+        self.classifier.layer_index = 4
+
+        self._initialize_weights() # Initial layer-wise learning rate
+
+        # Optimizer
+        self.optim = torch.optim.SGD([{'params':m.parameters(),
+                                         'lr':m.lr,
+                                         'layer_index':m.layer_index} for m in self.modules() if hasattr(m,'active')],
+                                        nesterov=True, momentum=0.9, weight_decay=1e-4)
+
+        # self.t_0 = 0.5
+        # Iteration Counter
+        self.j = 0
+        # A simple dummy variable that indicates we are using an iteration-wise
+        # annealing scheme as opposed to epoch-wise.
+        self.lr_sched = {'itr': 0}
+
+        """"""
 
     def _make_blocks(self, blocks, in_channels, channels):
         result = []
@@ -259,6 +320,104 @@ class Superresnet(nn.Module):
                 nn.init.normal_(m.weight, 0, 0.01)
                 if m.bias is not None:
                     nn.init.constant_(m.bias, 0)
+
+            # Set the layerwise scaling and annealing parameters
+            if hasattr(m,'active'): # 假如active lr_ratio = (0.8 + 0.2 * [0/1/2/3/4 -> 39 ]/39 )^3
+                # m.lr_ratio = (0.5 + 0.5 * float(m.layer_index) / 4)**3
+                # m.lr_ratio = (0.8 + 0.2 * float(m.layer_index) / 4)**3
+                # m.lr_ratio = (0.8 + 0.2 * float(m.layer_index) / 4)**2
+                m.lr_ratio = (0.8 + 0.2 * float(m.layer_index) / 4)
+                # m.lr_ratio = (0.8 + 0.2 * float(4 - m.layer_index) / 4)
+                # m.lr_ratio = (0.5 + 0.5 * float(m.layer_index) / 4)
+                # m.lr_ratio = (0.5 + 0.5 * (4 - float(m.layer_index) )/ 4)**3
+
+                # batchsize = 512, epoch=40
+                m.max_j = self.epoch * 100 * m.lr_ratio ## 50->1000, 400->125 , 512-> 100
+                m.warm_j = 5 * 100 * m.lr_ratio
+
+                # Optionally scale the learning rates to have the same total
+                # distance traveled (modulo the gradients).
+                m.lr = self.base_lr / m.lr_ratio
+
+        # for name, m in self.named_modules():
+        #     print(name)
+
+    # def -> update_lr
+    def step(self):
+        # Loop over all modules
+        for m in self.modules():
+            # If a module is active:
+            if hasattr(m, 'active') and m.active:
+                # If we've passed this layer's freezing point, deactivate it.
+                if self.j > m.max_j:
+                    m.active = False
+                    # Also make sure we remove all this layer from the optimizer
+                    for i, group in enumerate(self.optim.param_groups):
+                        if group['layer_index'] == m.layer_index:
+                            # self.optim.param_groups.remove(group)
+                            self.optim.param_groups[i]['lr'] = 1e-6
+
+
+
+                # If not, update the LR
+                elif self.j <= m.max_j and self.j > m.warm_j:
+                    for i, group in enumerate(self.optim.param_groups):
+                        if group['layer_index'] == m.layer_index:  # 0.05/ 0.512
+                            # self.base_lr
+                            # step
+                            self.optim.param_groups[i]['lr'] = (self.base_lr/ 2 / m.lr_ratio) * (1 + np.cos(np.pi * (self.j - m.warm_j) / m.max_j))
+                            # self.optim.param_groups[i]['lr'] = (self.base_lr/ 2 / m.lr_ratio) * (1 + np.cos(np.pi * self.j / m.max_j))
+                            # self.optim.param_groups[i]['lr'] = (0.05 / m.lr_ratio) * (1 + np.cos(np.pi * self.j / m.max_j))
+
+                            # linear
+                            # self.optim.param_groups[i]['lr'] = 0.1 / m.lr_ratio * (1 - self.j / m.max_j)
+
+                            # print(i, (0.05 / m.lr_ratio) * (1 + np.cos(np.pi * self.j / m.max_j)))
+                            # plotter.plot('learning rate', '{} train'.format(m.layer_index), 'layer-wise learning rate', epoch, self.optim.param_groups[i]['lr'])  # visdom
+                            # plotter.plot('learning rate', '{} train'.format(m.layer_index), 'layer-wise learning rate', iteration, self.optim.param_groups[i]['lr'])  # visdom
+                else:
+                    for i, group in enumerate(self.optim.param_groups):
+                        if group['layer_index'] == m.layer_index:  # 0.05/ 0.512
+                            self.optim.param_groups[i]['lr'] = self.base_lr / m.lr_ratio * (self.j / m.warm_j)
+
+
+
+
+                            # print("{}, {:.3f}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.lr_ratio, m.max_j))
+            # if isinstance(m, nn.Conv2d): # m.weight.shape
+            #     print("{}, {:.3f}, {}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.weight.shape, m.lr_ratio, m.max_j))
+            # elif isinstance(m, nn.BatchNorm2d): # m.weight.shape
+            #     print("{}, {:.3f}, {}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.weight.shape, m.lr_ratio, m.max_j))
+            # elif isinstance(m, nn.Linear): # m.bias.shape
+            #     print("{}, {:.3f}, {}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.bias.shape, m.lr_ratio, m.max_j))
+            # print(m.lr, m.weight.shape, m.lr_ratio, m.max_j)
+
+        # Update the iteration counter
+        self.j += 1
+        # print(self.j)
+
+    def record_lr(self):
+        temp_lr = {'prep': None, 'layer1': None, 'layer2': None, 'layer3': None, 'classifier': None}
+
+        # for m in self.modules():
+        for name, m in self.named_modules():
+            if hasattr(m, 'active') and m.active:
+                for i, group in enumerate(self.optim.param_groups):
+                    if group['layer_index'] == m.layer_index:  # 0.05/ 0.512
+                        temp_lr[name] = self.optim.param_groups[i]['lr']
+                        # print(self.optim.param_groups[i]['lr'])
+
+        # for name, m in self.named_modules():
+        #     if hasattr(m, 'active'):
+                # print(name, m, m.lr_ratio, m.max_j, m.lr)
+                # print("{},\t\t lr_ratio: {:.3f},\t max_iteration: {:.1f},\t Initial learning rate: {:.3f}.".format(name, m.lr_ratio, m.max_j, m.lr))
+                # temp_lr.append(m.lr)
+                # temp_lr[name] = m.lr
+
+
+        return temp_lr
+
+
 
 
 class ShuffleNetV2OneShot(nn.Module):

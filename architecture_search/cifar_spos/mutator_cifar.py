@@ -29,7 +29,7 @@ class SPOSSupernetTrainingMutator(RandomMutator):
         Maximum number of attempts to sample before giving up and use a random candidate.
     """
     def __init__(self, model, flops_func=None, flops_lb=None, flops_ub=None,
-                 flops_bin_num=7, flops_sample_timeout=500, starting_line=2):
+                 flops_bin_num=7, flops_sample_timeout=500, starting_line=1):
         super().__init__(model)
 
         self._flops_func = flops_func
@@ -62,10 +62,12 @@ class SPOSSupernetTrainingMutator(RandomMutator):
         if self._flops_func is not None:
             for times in range(self._flops_sample_timeout):
                 idx = np.random.randint(self._flops_bin_num)
+
                 if self.epoch < self.target_epoch:
                     cand = self.record_cand
                 else:
                     cand = super().sample_search()  # RandomMutator
+
                 if self._flops_bins[idx] <= self._flops_func(cand) <= self._flops_bins[idx + 1]:
                     _logger.debug("Sampled candidate flops %f in %d times.", cand, times)
                     # print('a:', cand)

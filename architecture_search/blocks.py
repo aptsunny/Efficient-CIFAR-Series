@@ -174,6 +174,10 @@ class DynamicResidualBlock_fix(nn.Module):
     def __init__(self, in_planes, planes, extra=None, res=None):
         super(DynamicResidualBlock_fix, self).__init__()
         self.conv1 = ConvBnReluPool(in_planes, planes, stride=2, k=3)
+
+        self.conv1.active = True
+        self.conv1.layer_index = 0
+
         www = []
         if extra==0:
             pass
@@ -185,6 +189,13 @@ class DynamicResidualBlock_fix(nn.Module):
         else:
             for i in range(res):
                 www.append(ConvBnRelu(planes, planes, stride=1, k=3))
+
+        # add layer_index
+        index_=len(www)
+        for i in range(index_):
+            www[i].active = True
+            www[i].layer_index = i+1 # start from 1
+
         self.feature = nn.Sequential(*www)
 
     def forward(self, x):
@@ -200,12 +211,23 @@ class DynamicResidualBlock(nn.Module):
         # b
         self.conv1 = LayerChoice([ConvBnReluPool(in_planes, planes, stride=2, k=3),
                                   ConvBnRelu(in_planes, planes, stride=2, k=3)], key='conv1')
+        self.conv1.active = True
+        self.conv1.layer_index = 0
+
         self.conv2 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
                                   Residual(planes, planes)], key='conv2')
+        self.conv2.active = True
+        self.conv2.layer_index = 1
+
         self.conv3 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
                                   Residual(planes, planes)], key='conv3')
+        self.conv3.active = True
+        self.conv3.layer_index = 2
+
         self.conv4 = LayerChoice([ConvBnRelu(planes, planes, stride=1, k=3),
                                   Residual(planes, planes)], key='conv4')
+        self.conv4.active = True
+        self.conv4.layer_index = 3
 
         # self.conv2 = LayerChoice([Residual(planes, planes)], key='conv2')
         # self.conv3 = LayerChoice([Residual(planes, planes)], key='conv3')

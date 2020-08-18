@@ -16,3 +16,9 @@ architecture_search/logs/*
 architecture_search/*.json
 architecture_search/search_space_zoo/checkpoints/*.json
 hpo_experiment/test.py
+*.params
+*.json
+*.zip
+notebook/dask-worker-space/*
+notebook/checkpoint/*
+*.pdf
