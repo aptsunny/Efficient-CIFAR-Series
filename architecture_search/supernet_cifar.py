@@ -79,7 +79,7 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, default=512) # 512
     parser.add_argument("--epochs", type=int, default=200) #24 # 40 #
     parser.add_argument("--lr-scheduler", type=str, default='linear', help="linear， step")
-    parser.add_argument("--mode", type=str, default='', help="normal")
+    parser.add_argument("--mode", type=str, default='', help=" ") # normal
     parser.add_argument("--layer-wise", type=str, default='inner_decay',
                         help="design/ decay / origin: # design -> [13, 12, 12, 6, 1], decay -> [0, 1, 2, 3, 4] , origin None")
     parser.add_argument("--tag", type=str, default='0.8 linear layerwise2 baseline 200', help="normal")

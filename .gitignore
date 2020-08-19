@@ -22,3 +22,4 @@ hpo_experiment/test.py
 notebook/dask-worker-space/*
 notebook/checkpoint/*
 *.pdf
+notebook/sample/resnet*

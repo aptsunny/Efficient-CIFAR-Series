@@ -1,472 +1,472 @@
 digraph plot {
 	data [label=data fillcolor="#8dd3c7" fixedsize=false height=0.8034 shape=oval style=filled width=1.3]
-	resnetv10_conv0_fwd [label="Convolution
+	resnetv12_conv0_fwd [label="Convolution
 7x7/2x2, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_batchnorm0_fwd [label=resnetv10_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_relu0_fwd [label="Activation
+	resnetv12_batchnorm0_fwd [label=resnetv12_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_relu0_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_pool0_fwd [label="Pooling
+	resnetv12_pool0_fwd [label="Pooling
 max, 3x3/2x2" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv0_fwd [label="Convolution
+	resnetv12_stage1_conv0_fwd [label="Convolution
 1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm0_fwd [label=resnetv10_stage1_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_relu0_fwd [label="Activation
+	resnetv12_stage1_batchnorm0_fwd [label=resnetv12_stage1_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_relu0_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv1_fwd [label="Convolution
+	resnetv12_stage1_conv1_fwd [label="Convolution
 3x3/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm1_fwd [label=resnetv10_stage1_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_relu1_fwd [label="Activation
+	resnetv12_stage1_batchnorm1_fwd [label=resnetv12_stage1_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_relu1_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv2_fwd [label="Convolution
+	resnetv12_stage1_conv2_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm2_fwd [label=resnetv10_stage1_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv3_fwd [label="Convolution
+	resnetv12_stage1_batchnorm2_fwd [label=resnetv12_stage1_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_conv3_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm3_fwd [label=resnetv10_stage1_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1__plus0 [label=resnetv10_stage1__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_activation0 [label="Activation
+	resnetv12_stage1_batchnorm3_fwd [label=resnetv12_stage1_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1__plus0 [label=resnetv12_stage1__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_activation0 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv4_fwd [label="Convolution
+	resnetv12_stage1_conv4_fwd [label="Convolution
 1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm4_fwd [label=resnetv10_stage1_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_relu2_fwd [label="Activation
+	resnetv12_stage1_batchnorm4_fwd [label=resnetv12_stage1_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_relu2_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv5_fwd [label="Convolution
+	resnetv12_stage1_conv5_fwd [label="Convolution
 3x3/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm5_fwd [label=resnetv10_stage1_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_relu3_fwd [label="Activation
+	resnetv12_stage1_batchnorm5_fwd [label=resnetv12_stage1_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_relu3_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv6_fwd [label="Convolution
+	resnetv12_stage1_conv6_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm6_fwd [label=resnetv10_stage1_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1__plus1 [label=resnetv10_stage1__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_activation1 [label="Activation
+	resnetv12_stage1_batchnorm6_fwd [label=resnetv12_stage1_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1__plus1 [label=resnetv12_stage1__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_activation1 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv7_fwd [label="Convolution
+	resnetv12_stage1_conv7_fwd [label="Convolution
 1x1/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm7_fwd [label=resnetv10_stage1_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_relu4_fwd [label="Activation
+	resnetv12_stage1_batchnorm7_fwd [label=resnetv12_stage1_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_relu4_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv8_fwd [label="Convolution
+	resnetv12_stage1_conv8_fwd [label="Convolution
 3x3/1x1, 64" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm8_fwd [label=resnetv10_stage1_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_relu5_fwd [label="Activation
+	resnetv12_stage1_batchnorm8_fwd [label=resnetv12_stage1_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_relu5_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_conv9_fwd [label="Convolution
+	resnetv12_stage1_conv9_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_batchnorm9_fwd [label=resnetv10_stage1_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1__plus2 [label=resnetv10_stage1__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage1_activation2 [label="Activation
+	resnetv12_stage1_batchnorm9_fwd [label=resnetv12_stage1_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1__plus2 [label=resnetv12_stage1__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage1_activation2 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv0_fwd [label="Convolution
+	resnetv12_stage2_conv0_fwd [label="Convolution
 1x1/2x2, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm0_fwd [label=resnetv10_stage2_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu0_fwd [label="Activation
+	resnetv12_stage2_batchnorm0_fwd [label=resnetv12_stage2_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu0_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv1_fwd [label="Convolution
+	resnetv12_stage2_conv1_fwd [label="Convolution
 3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm1_fwd [label=resnetv10_stage2_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu1_fwd [label="Activation
+	resnetv12_stage2_batchnorm1_fwd [label=resnetv12_stage2_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu1_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv2_fwd [label="Convolution
+	resnetv12_stage2_conv2_fwd [label="Convolution
 1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm2_fwd [label=resnetv10_stage2_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv3_fwd [label="Convolution
+	resnetv12_stage2_batchnorm2_fwd [label=resnetv12_stage2_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_conv3_fwd [label="Convolution
 1x1/2x2, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm3_fwd [label=resnetv10_stage2_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2__plus0 [label=resnetv10_stage2__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_activation0 [label="Activation
+	resnetv12_stage2_batchnorm3_fwd [label=resnetv12_stage2_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2__plus0 [label=resnetv12_stage2__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_activation0 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv4_fwd [label="Convolution
+	resnetv12_stage2_conv4_fwd [label="Convolution
 1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm4_fwd [label=resnetv10_stage2_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu2_fwd [label="Activation
+	resnetv12_stage2_batchnorm4_fwd [label=resnetv12_stage2_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu2_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv5_fwd [label="Convolution
+	resnetv12_stage2_conv5_fwd [label="Convolution
 3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm5_fwd [label=resnetv10_stage2_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu3_fwd [label="Activation
+	resnetv12_stage2_batchnorm5_fwd [label=resnetv12_stage2_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu3_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv6_fwd [label="Convolution
+	resnetv12_stage2_conv6_fwd [label="Convolution
 1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm6_fwd [label=resnetv10_stage2_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2__plus1 [label=resnetv10_stage2__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_activation1 [label="Activation
+	resnetv12_stage2_batchnorm6_fwd [label=resnetv12_stage2_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2__plus1 [label=resnetv12_stage2__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_activation1 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv7_fwd [label="Convolution
+	resnetv12_stage2_conv7_fwd [label="Convolution
 1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm7_fwd [label=resnetv10_stage2_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu4_fwd [label="Activation
+	resnetv12_stage2_batchnorm7_fwd [label=resnetv12_stage2_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu4_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv8_fwd [label="Convolution
+	resnetv12_stage2_conv8_fwd [label="Convolution
 3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm8_fwd [label=resnetv10_stage2_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu5_fwd [label="Activation
+	resnetv12_stage2_batchnorm8_fwd [label=resnetv12_stage2_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu5_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv9_fwd [label="Convolution
+	resnetv12_stage2_conv9_fwd [label="Convolution
 1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm9_fwd [label=resnetv10_stage2_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2__plus2 [label=resnetv10_stage2__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_activation2 [label="Activation
+	resnetv12_stage2_batchnorm9_fwd [label=resnetv12_stage2_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2__plus2 [label=resnetv12_stage2__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_activation2 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv10_fwd [label="Convolution
+	resnetv12_stage2_conv10_fwd [label="Convolution
 1x1/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm10_fwd [label=resnetv10_stage2_batchnorm10_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu6_fwd [label="Activation
+	resnetv12_stage2_batchnorm10_fwd [label=resnetv12_stage2_batchnorm10_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu6_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv11_fwd [label="Convolution
+	resnetv12_stage2_conv11_fwd [label="Convolution
 3x3/1x1, 128" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm11_fwd [label=resnetv10_stage2_batchnorm11_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_relu7_fwd [label="Activation
+	resnetv12_stage2_batchnorm11_fwd [label=resnetv12_stage2_batchnorm11_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_relu7_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_conv12_fwd [label="Convolution
+	resnetv12_stage2_conv12_fwd [label="Convolution
 1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_batchnorm12_fwd [label=resnetv10_stage2_batchnorm12_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2__plus3 [label=resnetv10_stage2__plus3 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage2_activation3 [label="Activation
+	resnetv12_stage2_batchnorm12_fwd [label=resnetv12_stage2_batchnorm12_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2__plus3 [label=resnetv12_stage2__plus3 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage2_activation3 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv0_fwd [label="Convolution
+	resnetv12_stage3_conv0_fwd [label="Convolution
 1x1/2x2, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm0_fwd [label=resnetv10_stage3_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu0_fwd [label="Activation
+	resnetv12_stage3_batchnorm0_fwd [label=resnetv12_stage3_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu0_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv1_fwd [label="Convolution
+	resnetv12_stage3_conv1_fwd [label="Convolution
 3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm1_fwd [label=resnetv10_stage3_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu1_fwd [label="Activation
+	resnetv12_stage3_batchnorm1_fwd [label=resnetv12_stage3_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu1_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv2_fwd [label="Convolution
+	resnetv12_stage3_conv2_fwd [label="Convolution
 1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm2_fwd [label=resnetv10_stage3_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv3_fwd [label="Convolution
+	resnetv12_stage3_batchnorm2_fwd [label=resnetv12_stage3_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_conv3_fwd [label="Convolution
 1x1/2x2, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm3_fwd [label=resnetv10_stage3_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3__plus0 [label=resnetv10_stage3__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_activation0 [label="Activation
+	resnetv12_stage3_batchnorm3_fwd [label=resnetv12_stage3_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3__plus0 [label=resnetv12_stage3__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_activation0 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv4_fwd [label="Convolution
+	resnetv12_stage3_conv4_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm4_fwd [label=resnetv10_stage3_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu2_fwd [label="Activation
+	resnetv12_stage3_batchnorm4_fwd [label=resnetv12_stage3_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu2_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv5_fwd [label="Convolution
+	resnetv12_stage3_conv5_fwd [label="Convolution
 3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm5_fwd [label=resnetv10_stage3_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu3_fwd [label="Activation
+	resnetv12_stage3_batchnorm5_fwd [label=resnetv12_stage3_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu3_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv6_fwd [label="Convolution
+	resnetv12_stage3_conv6_fwd [label="Convolution
 1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm6_fwd [label=resnetv10_stage3_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3__plus1 [label=resnetv10_stage3__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_activation1 [label="Activation
+	resnetv12_stage3_batchnorm6_fwd [label=resnetv12_stage3_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3__plus1 [label=resnetv12_stage3__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_activation1 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv7_fwd [label="Convolution
+	resnetv12_stage3_conv7_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm7_fwd [label=resnetv10_stage3_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu4_fwd [label="Activation
+	resnetv12_stage3_batchnorm7_fwd [label=resnetv12_stage3_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu4_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv8_fwd [label="Convolution
+	resnetv12_stage3_conv8_fwd [label="Convolution
 3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm8_fwd [label=resnetv10_stage3_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu5_fwd [label="Activation
+	resnetv12_stage3_batchnorm8_fwd [label=resnetv12_stage3_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu5_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv9_fwd [label="Convolution
+	resnetv12_stage3_conv9_fwd [label="Convolution
 1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm9_fwd [label=resnetv10_stage3_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3__plus2 [label=resnetv10_stage3__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_activation2 [label="Activation
+	resnetv12_stage3_batchnorm9_fwd [label=resnetv12_stage3_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3__plus2 [label=resnetv12_stage3__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_activation2 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv10_fwd [label="Convolution
+	resnetv12_stage3_conv10_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm10_fwd [label=resnetv10_stage3_batchnorm10_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu6_fwd [label="Activation
+	resnetv12_stage3_batchnorm10_fwd [label=resnetv12_stage3_batchnorm10_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu6_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv11_fwd [label="Convolution
+	resnetv12_stage3_conv11_fwd [label="Convolution
 3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm11_fwd [label=resnetv10_stage3_batchnorm11_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu7_fwd [label="Activation
+	resnetv12_stage3_batchnorm11_fwd [label=resnetv12_stage3_batchnorm11_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu7_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv12_fwd [label="Convolution
+	resnetv12_stage3_conv12_fwd [label="Convolution
 1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm12_fwd [label=resnetv10_stage3_batchnorm12_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3__plus3 [label=resnetv10_stage3__plus3 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_activation3 [label="Activation
+	resnetv12_stage3_batchnorm12_fwd [label=resnetv12_stage3_batchnorm12_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3__plus3 [label=resnetv12_stage3__plus3 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_activation3 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv13_fwd [label="Convolution
+	resnetv12_stage3_conv13_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm13_fwd [label=resnetv10_stage3_batchnorm13_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu8_fwd [label="Activation
+	resnetv12_stage3_batchnorm13_fwd [label=resnetv12_stage3_batchnorm13_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu8_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv14_fwd [label="Convolution
+	resnetv12_stage3_conv14_fwd [label="Convolution
 3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm14_fwd [label=resnetv10_stage3_batchnorm14_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu9_fwd [label="Activation
+	resnetv12_stage3_batchnorm14_fwd [label=resnetv12_stage3_batchnorm14_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu9_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv15_fwd [label="Convolution
+	resnetv12_stage3_conv15_fwd [label="Convolution
 1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm15_fwd [label=resnetv10_stage3_batchnorm15_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3__plus4 [label=resnetv10_stage3__plus4 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_activation4 [label="Activation
+	resnetv12_stage3_batchnorm15_fwd [label=resnetv12_stage3_batchnorm15_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3__plus4 [label=resnetv12_stage3__plus4 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_activation4 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv16_fwd [label="Convolution
+	resnetv12_stage3_conv16_fwd [label="Convolution
 1x1/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm16_fwd [label=resnetv10_stage3_batchnorm16_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu10_fwd [label="Activation
+	resnetv12_stage3_batchnorm16_fwd [label=resnetv12_stage3_batchnorm16_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu10_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv17_fwd [label="Convolution
+	resnetv12_stage3_conv17_fwd [label="Convolution
 3x3/1x1, 256" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm17_fwd [label=resnetv10_stage3_batchnorm17_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_relu11_fwd [label="Activation
+	resnetv12_stage3_batchnorm17_fwd [label=resnetv12_stage3_batchnorm17_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_relu11_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_conv18_fwd [label="Convolution
+	resnetv12_stage3_conv18_fwd [label="Convolution
 1x1/1x1, 1024" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_batchnorm18_fwd [label=resnetv10_stage3_batchnorm18_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3__plus5 [label=resnetv10_stage3__plus5 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage3_activation5 [label="Activation
+	resnetv12_stage3_batchnorm18_fwd [label=resnetv12_stage3_batchnorm18_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3__plus5 [label=resnetv12_stage3__plus5 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage3_activation5 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv0_fwd [label="Convolution
+	resnetv12_stage4_conv0_fwd [label="Convolution
 1x1/2x2, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm0_fwd [label=resnetv10_stage4_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_relu0_fwd [label="Activation
+	resnetv12_stage4_batchnorm0_fwd [label=resnetv12_stage4_batchnorm0_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_relu0_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv1_fwd [label="Convolution
+	resnetv12_stage4_conv1_fwd [label="Convolution
 3x3/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm1_fwd [label=resnetv10_stage4_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_relu1_fwd [label="Activation
+	resnetv12_stage4_batchnorm1_fwd [label=resnetv12_stage4_batchnorm1_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_relu1_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv2_fwd [label="Convolution
+	resnetv12_stage4_conv2_fwd [label="Convolution
 1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm2_fwd [label=resnetv10_stage4_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv3_fwd [label="Convolution
+	resnetv12_stage4_batchnorm2_fwd [label=resnetv12_stage4_batchnorm2_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_conv3_fwd [label="Convolution
 1x1/2x2, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm3_fwd [label=resnetv10_stage4_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4__plus0 [label=resnetv10_stage4__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_activation0 [label="Activation
+	resnetv12_stage4_batchnorm3_fwd [label=resnetv12_stage4_batchnorm3_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4__plus0 [label=resnetv12_stage4__plus0 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_activation0 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv4_fwd [label="Convolution
+	resnetv12_stage4_conv4_fwd [label="Convolution
 1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm4_fwd [label=resnetv10_stage4_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_relu2_fwd [label="Activation
+	resnetv12_stage4_batchnorm4_fwd [label=resnetv12_stage4_batchnorm4_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_relu2_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv5_fwd [label="Convolution
+	resnetv12_stage4_conv5_fwd [label="Convolution
 3x3/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm5_fwd [label=resnetv10_stage4_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_relu3_fwd [label="Activation
+	resnetv12_stage4_batchnorm5_fwd [label=resnetv12_stage4_batchnorm5_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_relu3_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv6_fwd [label="Convolution
+	resnetv12_stage4_conv6_fwd [label="Convolution
 1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm6_fwd [label=resnetv10_stage4_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4__plus1 [label=resnetv10_stage4__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_activation1 [label="Activation
+	resnetv12_stage4_batchnorm6_fwd [label=resnetv12_stage4_batchnorm6_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4__plus1 [label=resnetv12_stage4__plus1 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_activation1 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv7_fwd [label="Convolution
+	resnetv12_stage4_conv7_fwd [label="Convolution
 1x1/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm7_fwd [label=resnetv10_stage4_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_relu4_fwd [label="Activation
+	resnetv12_stage4_batchnorm7_fwd [label=resnetv12_stage4_batchnorm7_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_relu4_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv8_fwd [label="Convolution
+	resnetv12_stage4_conv8_fwd [label="Convolution
 3x3/1x1, 512" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm8_fwd [label=resnetv10_stage4_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_relu5_fwd [label="Activation
+	resnetv12_stage4_batchnorm8_fwd [label=resnetv12_stage4_batchnorm8_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_relu5_fwd [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_conv9_fwd [label="Convolution
+	resnetv12_stage4_conv9_fwd [label="Convolution
 1x1/1x1, 2048" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_batchnorm9_fwd [label=resnetv10_stage4_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4__plus2 [label=resnetv10_stage4__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_stage4_activation2 [label="Activation
+	resnetv12_stage4_batchnorm9_fwd [label=resnetv12_stage4_batchnorm9_fwd fillcolor="#bebada" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4__plus2 [label=resnetv12_stage4__plus2 fillcolor="#fccde5" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
+	resnetv12_stage4_activation2 [label="Activation
 relu" fillcolor="#ffffb3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_pool1_fwd [label="Pooling
+	resnetv12_pool1_fwd [label="Pooling
 avg, 1x1/1x1" fillcolor="#80b1d3" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_dense0_fwd [label="FullyConnected
+	resnetv12_dense0_fwd [label="FullyConnected
 1000" fillcolor="#fb8072" fixedsize=false height=0.8034 shape=rect style=filled width=1.3]
-	resnetv10_conv0_fwd -> data [label="3x224x224" arrowtail=open dir=back]
-	resnetv10_batchnorm0_fwd -> resnetv10_conv0_fwd [label="64x112x112" arrowtail=open dir=back]
-	resnetv10_relu0_fwd -> resnetv10_batchnorm0_fwd [label="64x112x112" arrowtail=open dir=back]
-	resnetv10_pool0_fwd -> resnetv10_relu0_fwd [label="64x112x112" arrowtail=open dir=back]
-	resnetv10_stage1_conv0_fwd -> resnetv10_pool0_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm0_fwd -> resnetv10_stage1_conv0_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_relu0_fwd -> resnetv10_stage1_batchnorm0_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv1_fwd -> resnetv10_stage1_relu0_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm1_fwd -> resnetv10_stage1_conv1_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_relu1_fwd -> resnetv10_stage1_batchnorm1_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv2_fwd -> resnetv10_stage1_relu1_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm2_fwd -> resnetv10_stage1_conv2_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv3_fwd -> resnetv10_pool0_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm3_fwd -> resnetv10_stage1_conv3_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1__plus0 -> resnetv10_stage1_batchnorm2_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1__plus0 -> resnetv10_stage1_batchnorm3_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_activation0 -> resnetv10_stage1__plus0 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv4_fwd -> resnetv10_stage1_activation0 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm4_fwd -> resnetv10_stage1_conv4_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_relu2_fwd -> resnetv10_stage1_batchnorm4_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv5_fwd -> resnetv10_stage1_relu2_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm5_fwd -> resnetv10_stage1_conv5_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_relu3_fwd -> resnetv10_stage1_batchnorm5_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv6_fwd -> resnetv10_stage1_relu3_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm6_fwd -> resnetv10_stage1_conv6_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1__plus1 -> resnetv10_stage1_batchnorm6_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1__plus1 -> resnetv10_stage1_activation0 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_activation1 -> resnetv10_stage1__plus1 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv7_fwd -> resnetv10_stage1_activation1 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm7_fwd -> resnetv10_stage1_conv7_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_relu4_fwd -> resnetv10_stage1_batchnorm7_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv8_fwd -> resnetv10_stage1_relu4_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm8_fwd -> resnetv10_stage1_conv8_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_relu5_fwd -> resnetv10_stage1_batchnorm8_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_conv9_fwd -> resnetv10_stage1_relu5_fwd [label="64x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_batchnorm9_fwd -> resnetv10_stage1_conv9_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1__plus2 -> resnetv10_stage1_batchnorm9_fwd [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1__plus2 -> resnetv10_stage1_activation1 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage1_activation2 -> resnetv10_stage1__plus2 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage2_conv0_fwd -> resnetv10_stage1_activation2 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm0_fwd -> resnetv10_stage2_conv0_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu0_fwd -> resnetv10_stage2_batchnorm0_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv1_fwd -> resnetv10_stage2_relu0_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm1_fwd -> resnetv10_stage2_conv1_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu1_fwd -> resnetv10_stage2_batchnorm1_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv2_fwd -> resnetv10_stage2_relu1_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm2_fwd -> resnetv10_stage2_conv2_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv3_fwd -> resnetv10_stage1_activation2 [label="256x56x56" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm3_fwd -> resnetv10_stage2_conv3_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus0 -> resnetv10_stage2_batchnorm2_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus0 -> resnetv10_stage2_batchnorm3_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_activation0 -> resnetv10_stage2__plus0 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv4_fwd -> resnetv10_stage2_activation0 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm4_fwd -> resnetv10_stage2_conv4_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu2_fwd -> resnetv10_stage2_batchnorm4_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv5_fwd -> resnetv10_stage2_relu2_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm5_fwd -> resnetv10_stage2_conv5_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu3_fwd -> resnetv10_stage2_batchnorm5_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv6_fwd -> resnetv10_stage2_relu3_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm6_fwd -> resnetv10_stage2_conv6_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus1 -> resnetv10_stage2_batchnorm6_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus1 -> resnetv10_stage2_activation0 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_activation1 -> resnetv10_stage2__plus1 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv7_fwd -> resnetv10_stage2_activation1 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm7_fwd -> resnetv10_stage2_conv7_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu4_fwd -> resnetv10_stage2_batchnorm7_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv8_fwd -> resnetv10_stage2_relu4_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm8_fwd -> resnetv10_stage2_conv8_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu5_fwd -> resnetv10_stage2_batchnorm8_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv9_fwd -> resnetv10_stage2_relu5_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm9_fwd -> resnetv10_stage2_conv9_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus2 -> resnetv10_stage2_batchnorm9_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus2 -> resnetv10_stage2_activation1 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_activation2 -> resnetv10_stage2__plus2 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv10_fwd -> resnetv10_stage2_activation2 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm10_fwd -> resnetv10_stage2_conv10_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu6_fwd -> resnetv10_stage2_batchnorm10_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv11_fwd -> resnetv10_stage2_relu6_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm11_fwd -> resnetv10_stage2_conv11_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_relu7_fwd -> resnetv10_stage2_batchnorm11_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_conv12_fwd -> resnetv10_stage2_relu7_fwd [label="128x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_batchnorm12_fwd -> resnetv10_stage2_conv12_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus3 -> resnetv10_stage2_batchnorm12_fwd [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2__plus3 -> resnetv10_stage2_activation2 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage2_activation3 -> resnetv10_stage2__plus3 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage3_conv0_fwd -> resnetv10_stage2_activation3 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm0_fwd -> resnetv10_stage3_conv0_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu0_fwd -> resnetv10_stage3_batchnorm0_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv1_fwd -> resnetv10_stage3_relu0_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm1_fwd -> resnetv10_stage3_conv1_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu1_fwd -> resnetv10_stage3_batchnorm1_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv2_fwd -> resnetv10_stage3_relu1_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm2_fwd -> resnetv10_stage3_conv2_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv3_fwd -> resnetv10_stage2_activation3 [label="512x28x28" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm3_fwd -> resnetv10_stage3_conv3_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus0 -> resnetv10_stage3_batchnorm2_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus0 -> resnetv10_stage3_batchnorm3_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_activation0 -> resnetv10_stage3__plus0 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv4_fwd -> resnetv10_stage3_activation0 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm4_fwd -> resnetv10_stage3_conv4_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu2_fwd -> resnetv10_stage3_batchnorm4_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv5_fwd -> resnetv10_stage3_relu2_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm5_fwd -> resnetv10_stage3_conv5_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu3_fwd -> resnetv10_stage3_batchnorm5_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv6_fwd -> resnetv10_stage3_relu3_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm6_fwd -> resnetv10_stage3_conv6_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus1 -> resnetv10_stage3_batchnorm6_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus1 -> resnetv10_stage3_activation0 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_activation1 -> resnetv10_stage3__plus1 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv7_fwd -> resnetv10_stage3_activation1 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm7_fwd -> resnetv10_stage3_conv7_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu4_fwd -> resnetv10_stage3_batchnorm7_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv8_fwd -> resnetv10_stage3_relu4_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm8_fwd -> resnetv10_stage3_conv8_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu5_fwd -> resnetv10_stage3_batchnorm8_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv9_fwd -> resnetv10_stage3_relu5_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm9_fwd -> resnetv10_stage3_conv9_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus2 -> resnetv10_stage3_batchnorm9_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus2 -> resnetv10_stage3_activation1 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_activation2 -> resnetv10_stage3__plus2 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv10_fwd -> resnetv10_stage3_activation2 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm10_fwd -> resnetv10_stage3_conv10_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu6_fwd -> resnetv10_stage3_batchnorm10_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv11_fwd -> resnetv10_stage3_relu6_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm11_fwd -> resnetv10_stage3_conv11_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu7_fwd -> resnetv10_stage3_batchnorm11_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv12_fwd -> resnetv10_stage3_relu7_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm12_fwd -> resnetv10_stage3_conv12_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus3 -> resnetv10_stage3_batchnorm12_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus3 -> resnetv10_stage3_activation2 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_activation3 -> resnetv10_stage3__plus3 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv13_fwd -> resnetv10_stage3_activation3 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm13_fwd -> resnetv10_stage3_conv13_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu8_fwd -> resnetv10_stage3_batchnorm13_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv14_fwd -> resnetv10_stage3_relu8_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm14_fwd -> resnetv10_stage3_conv14_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu9_fwd -> resnetv10_stage3_batchnorm14_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv15_fwd -> resnetv10_stage3_relu9_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm15_fwd -> resnetv10_stage3_conv15_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus4 -> resnetv10_stage3_batchnorm15_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus4 -> resnetv10_stage3_activation3 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_activation4 -> resnetv10_stage3__plus4 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv16_fwd -> resnetv10_stage3_activation4 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm16_fwd -> resnetv10_stage3_conv16_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu10_fwd -> resnetv10_stage3_batchnorm16_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv17_fwd -> resnetv10_stage3_relu10_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm17_fwd -> resnetv10_stage3_conv17_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_relu11_fwd -> resnetv10_stage3_batchnorm17_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_conv18_fwd -> resnetv10_stage3_relu11_fwd [label="256x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_batchnorm18_fwd -> resnetv10_stage3_conv18_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus5 -> resnetv10_stage3_batchnorm18_fwd [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3__plus5 -> resnetv10_stage3_activation4 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage3_activation5 -> resnetv10_stage3__plus5 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage4_conv0_fwd -> resnetv10_stage3_activation5 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm0_fwd -> resnetv10_stage4_conv0_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_relu0_fwd -> resnetv10_stage4_batchnorm0_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv1_fwd -> resnetv10_stage4_relu0_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm1_fwd -> resnetv10_stage4_conv1_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_relu1_fwd -> resnetv10_stage4_batchnorm1_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv2_fwd -> resnetv10_stage4_relu1_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm2_fwd -> resnetv10_stage4_conv2_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv3_fwd -> resnetv10_stage3_activation5 [label="1024x14x14" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm3_fwd -> resnetv10_stage4_conv3_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4__plus0 -> resnetv10_stage4_batchnorm2_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4__plus0 -> resnetv10_stage4_batchnorm3_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_activation0 -> resnetv10_stage4__plus0 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv4_fwd -> resnetv10_stage4_activation0 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm4_fwd -> resnetv10_stage4_conv4_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_relu2_fwd -> resnetv10_stage4_batchnorm4_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv5_fwd -> resnetv10_stage4_relu2_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm5_fwd -> resnetv10_stage4_conv5_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_relu3_fwd -> resnetv10_stage4_batchnorm5_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv6_fwd -> resnetv10_stage4_relu3_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm6_fwd -> resnetv10_stage4_conv6_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4__plus1 -> resnetv10_stage4_batchnorm6_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4__plus1 -> resnetv10_stage4_activation0 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_activation1 -> resnetv10_stage4__plus1 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv7_fwd -> resnetv10_stage4_activation1 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm7_fwd -> resnetv10_stage4_conv7_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_relu4_fwd -> resnetv10_stage4_batchnorm7_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv8_fwd -> resnetv10_stage4_relu4_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm8_fwd -> resnetv10_stage4_conv8_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_relu5_fwd -> resnetv10_stage4_batchnorm8_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_conv9_fwd -> resnetv10_stage4_relu5_fwd [label="512x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_batchnorm9_fwd -> resnetv10_stage4_conv9_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4__plus2 -> resnetv10_stage4_batchnorm9_fwd [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4__plus2 -> resnetv10_stage4_activation1 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_stage4_activation2 -> resnetv10_stage4__plus2 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_pool1_fwd -> resnetv10_stage4_activation2 [label="2048x7x7" arrowtail=open dir=back]
-	resnetv10_dense0_fwd -> resnetv10_pool1_fwd [label="2048x1x1" arrowtail=open dir=back]
+	resnetv12_conv0_fwd -> data [label="3x224x224" arrowtail=open dir=back]
+	resnetv12_batchnorm0_fwd -> resnetv12_conv0_fwd [label="64x112x112" arrowtail=open dir=back]
+	resnetv12_relu0_fwd -> resnetv12_batchnorm0_fwd [label="64x112x112" arrowtail=open dir=back]
+	resnetv12_pool0_fwd -> resnetv12_relu0_fwd [label="64x112x112" arrowtail=open dir=back]
+	resnetv12_stage1_conv0_fwd -> resnetv12_pool0_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm0_fwd -> resnetv12_stage1_conv0_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_relu0_fwd -> resnetv12_stage1_batchnorm0_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv1_fwd -> resnetv12_stage1_relu0_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm1_fwd -> resnetv12_stage1_conv1_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_relu1_fwd -> resnetv12_stage1_batchnorm1_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv2_fwd -> resnetv12_stage1_relu1_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm2_fwd -> resnetv12_stage1_conv2_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv3_fwd -> resnetv12_pool0_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm3_fwd -> resnetv12_stage1_conv3_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1__plus0 -> resnetv12_stage1_batchnorm2_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1__plus0 -> resnetv12_stage1_batchnorm3_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_activation0 -> resnetv12_stage1__plus0 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv4_fwd -> resnetv12_stage1_activation0 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm4_fwd -> resnetv12_stage1_conv4_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_relu2_fwd -> resnetv12_stage1_batchnorm4_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv5_fwd -> resnetv12_stage1_relu2_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm5_fwd -> resnetv12_stage1_conv5_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_relu3_fwd -> resnetv12_stage1_batchnorm5_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv6_fwd -> resnetv12_stage1_relu3_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm6_fwd -> resnetv12_stage1_conv6_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1__plus1 -> resnetv12_stage1_batchnorm6_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1__plus1 -> resnetv12_stage1_activation0 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_activation1 -> resnetv12_stage1__plus1 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv7_fwd -> resnetv12_stage1_activation1 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm7_fwd -> resnetv12_stage1_conv7_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_relu4_fwd -> resnetv12_stage1_batchnorm7_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv8_fwd -> resnetv12_stage1_relu4_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm8_fwd -> resnetv12_stage1_conv8_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_relu5_fwd -> resnetv12_stage1_batchnorm8_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_conv9_fwd -> resnetv12_stage1_relu5_fwd [label="64x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_batchnorm9_fwd -> resnetv12_stage1_conv9_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1__plus2 -> resnetv12_stage1_batchnorm9_fwd [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1__plus2 -> resnetv12_stage1_activation1 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage1_activation2 -> resnetv12_stage1__plus2 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage2_conv0_fwd -> resnetv12_stage1_activation2 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm0_fwd -> resnetv12_stage2_conv0_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu0_fwd -> resnetv12_stage2_batchnorm0_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv1_fwd -> resnetv12_stage2_relu0_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm1_fwd -> resnetv12_stage2_conv1_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu1_fwd -> resnetv12_stage2_batchnorm1_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv2_fwd -> resnetv12_stage2_relu1_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm2_fwd -> resnetv12_stage2_conv2_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv3_fwd -> resnetv12_stage1_activation2 [label="256x56x56" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm3_fwd -> resnetv12_stage2_conv3_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus0 -> resnetv12_stage2_batchnorm2_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus0 -> resnetv12_stage2_batchnorm3_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_activation0 -> resnetv12_stage2__plus0 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv4_fwd -> resnetv12_stage2_activation0 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm4_fwd -> resnetv12_stage2_conv4_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu2_fwd -> resnetv12_stage2_batchnorm4_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv5_fwd -> resnetv12_stage2_relu2_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm5_fwd -> resnetv12_stage2_conv5_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu3_fwd -> resnetv12_stage2_batchnorm5_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv6_fwd -> resnetv12_stage2_relu3_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm6_fwd -> resnetv12_stage2_conv6_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus1 -> resnetv12_stage2_batchnorm6_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus1 -> resnetv12_stage2_activation0 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_activation1 -> resnetv12_stage2__plus1 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv7_fwd -> resnetv12_stage2_activation1 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm7_fwd -> resnetv12_stage2_conv7_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu4_fwd -> resnetv12_stage2_batchnorm7_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv8_fwd -> resnetv12_stage2_relu4_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm8_fwd -> resnetv12_stage2_conv8_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu5_fwd -> resnetv12_stage2_batchnorm8_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv9_fwd -> resnetv12_stage2_relu5_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm9_fwd -> resnetv12_stage2_conv9_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus2 -> resnetv12_stage2_batchnorm9_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus2 -> resnetv12_stage2_activation1 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_activation2 -> resnetv12_stage2__plus2 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv10_fwd -> resnetv12_stage2_activation2 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm10_fwd -> resnetv12_stage2_conv10_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu6_fwd -> resnetv12_stage2_batchnorm10_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv11_fwd -> resnetv12_stage2_relu6_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm11_fwd -> resnetv12_stage2_conv11_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_relu7_fwd -> resnetv12_stage2_batchnorm11_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_conv12_fwd -> resnetv12_stage2_relu7_fwd [label="128x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_batchnorm12_fwd -> resnetv12_stage2_conv12_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus3 -> resnetv12_stage2_batchnorm12_fwd [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2__plus3 -> resnetv12_stage2_activation2 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage2_activation3 -> resnetv12_stage2__plus3 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage3_conv0_fwd -> resnetv12_stage2_activation3 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm0_fwd -> resnetv12_stage3_conv0_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu0_fwd -> resnetv12_stage3_batchnorm0_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv1_fwd -> resnetv12_stage3_relu0_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm1_fwd -> resnetv12_stage3_conv1_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu1_fwd -> resnetv12_stage3_batchnorm1_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv2_fwd -> resnetv12_stage3_relu1_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm2_fwd -> resnetv12_stage3_conv2_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv3_fwd -> resnetv12_stage2_activation3 [label="512x28x28" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm3_fwd -> resnetv12_stage3_conv3_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus0 -> resnetv12_stage3_batchnorm2_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus0 -> resnetv12_stage3_batchnorm3_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_activation0 -> resnetv12_stage3__plus0 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv4_fwd -> resnetv12_stage3_activation0 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm4_fwd -> resnetv12_stage3_conv4_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu2_fwd -> resnetv12_stage3_batchnorm4_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv5_fwd -> resnetv12_stage3_relu2_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm5_fwd -> resnetv12_stage3_conv5_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu3_fwd -> resnetv12_stage3_batchnorm5_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv6_fwd -> resnetv12_stage3_relu3_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm6_fwd -> resnetv12_stage3_conv6_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus1 -> resnetv12_stage3_batchnorm6_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus1 -> resnetv12_stage3_activation0 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_activation1 -> resnetv12_stage3__plus1 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv7_fwd -> resnetv12_stage3_activation1 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm7_fwd -> resnetv12_stage3_conv7_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu4_fwd -> resnetv12_stage3_batchnorm7_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv8_fwd -> resnetv12_stage3_relu4_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm8_fwd -> resnetv12_stage3_conv8_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu5_fwd -> resnetv12_stage3_batchnorm8_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv9_fwd -> resnetv12_stage3_relu5_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm9_fwd -> resnetv12_stage3_conv9_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus2 -> resnetv12_stage3_batchnorm9_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus2 -> resnetv12_stage3_activation1 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_activation2 -> resnetv12_stage3__plus2 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv10_fwd -> resnetv12_stage3_activation2 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm10_fwd -> resnetv12_stage3_conv10_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu6_fwd -> resnetv12_stage3_batchnorm10_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv11_fwd -> resnetv12_stage3_relu6_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm11_fwd -> resnetv12_stage3_conv11_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu7_fwd -> resnetv12_stage3_batchnorm11_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv12_fwd -> resnetv12_stage3_relu7_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm12_fwd -> resnetv12_stage3_conv12_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus3 -> resnetv12_stage3_batchnorm12_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus3 -> resnetv12_stage3_activation2 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_activation3 -> resnetv12_stage3__plus3 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv13_fwd -> resnetv12_stage3_activation3 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm13_fwd -> resnetv12_stage3_conv13_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu8_fwd -> resnetv12_stage3_batchnorm13_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv14_fwd -> resnetv12_stage3_relu8_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm14_fwd -> resnetv12_stage3_conv14_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu9_fwd -> resnetv12_stage3_batchnorm14_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv15_fwd -> resnetv12_stage3_relu9_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm15_fwd -> resnetv12_stage3_conv15_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus4 -> resnetv12_stage3_batchnorm15_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus4 -> resnetv12_stage3_activation3 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_activation4 -> resnetv12_stage3__plus4 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv16_fwd -> resnetv12_stage3_activation4 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm16_fwd -> resnetv12_stage3_conv16_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu10_fwd -> resnetv12_stage3_batchnorm16_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv17_fwd -> resnetv12_stage3_relu10_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm17_fwd -> resnetv12_stage3_conv17_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_relu11_fwd -> resnetv12_stage3_batchnorm17_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_conv18_fwd -> resnetv12_stage3_relu11_fwd [label="256x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_batchnorm18_fwd -> resnetv12_stage3_conv18_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus5 -> resnetv12_stage3_batchnorm18_fwd [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3__plus5 -> resnetv12_stage3_activation4 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage3_activation5 -> resnetv12_stage3__plus5 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage4_conv0_fwd -> resnetv12_stage3_activation5 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm0_fwd -> resnetv12_stage4_conv0_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_relu0_fwd -> resnetv12_stage4_batchnorm0_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv1_fwd -> resnetv12_stage4_relu0_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm1_fwd -> resnetv12_stage4_conv1_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_relu1_fwd -> resnetv12_stage4_batchnorm1_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv2_fwd -> resnetv12_stage4_relu1_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm2_fwd -> resnetv12_stage4_conv2_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv3_fwd -> resnetv12_stage3_activation5 [label="1024x14x14" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm3_fwd -> resnetv12_stage4_conv3_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4__plus0 -> resnetv12_stage4_batchnorm2_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4__plus0 -> resnetv12_stage4_batchnorm3_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_activation0 -> resnetv12_stage4__plus0 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv4_fwd -> resnetv12_stage4_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm4_fwd -> resnetv12_stage4_conv4_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_relu2_fwd -> resnetv12_stage4_batchnorm4_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv5_fwd -> resnetv12_stage4_relu2_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm5_fwd -> resnetv12_stage4_conv5_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_relu3_fwd -> resnetv12_stage4_batchnorm5_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv6_fwd -> resnetv12_stage4_relu3_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm6_fwd -> resnetv12_stage4_conv6_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4__plus1 -> resnetv12_stage4_batchnorm6_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4__plus1 -> resnetv12_stage4_activation0 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_activation1 -> resnetv12_stage4__plus1 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv7_fwd -> resnetv12_stage4_activation1 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm7_fwd -> resnetv12_stage4_conv7_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_relu4_fwd -> resnetv12_stage4_batchnorm7_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv8_fwd -> resnetv12_stage4_relu4_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm8_fwd -> resnetv12_stage4_conv8_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_relu5_fwd -> resnetv12_stage4_batchnorm8_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_conv9_fwd -> resnetv12_stage4_relu5_fwd [label="512x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_batchnorm9_fwd -> resnetv12_stage4_conv9_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4__plus2 -> resnetv12_stage4_batchnorm9_fwd [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4__plus2 -> resnetv12_stage4_activation1 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_stage4_activation2 -> resnetv12_stage4__plus2 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_pool1_fwd -> resnetv12_stage4_activation2 [label="2048x7x7" arrowtail=open dir=back]
+	resnetv12_dense0_fwd -> resnetv12_pool1_fwd [label="2048x1x1" arrowtail=open dir=back]
 }

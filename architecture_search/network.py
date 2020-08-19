@@ -181,10 +181,13 @@ class Superresnet(nn.Module):
         self._initialize_weights() # Initial layer-wise learning rate
 
         # Optimizer
-        self.optim = torch.optim.SGD([{'params':m.parameters(),
-                                         'lr':m.lr,
-                                         'layer_index':m.layer_index} for m in self.modules() if hasattr(m,'active')],
-                                        nesterov=True, momentum=0.9, weight_decay=1e-4)
+        # self.optim = torch.optim.SGD([{'params':m.parameters(),
+        #                                  'lr':m.lr,
+        #                                  'layer_index':m.layer_index} for m in self.modules() if hasattr(m,'active')],
+        #                                 nesterov=True, momentum=0.9, weight_decay=1e-4)
+
+        self.optim = torch.optim.SGD(self.fast_hpo_lr_parameters_freeze(), nesterov=True, momentum=0.9, weight_decay=1e-4)
+
 
         # self.t_0 = 0.5
         # Iteration Counter
@@ -194,6 +197,37 @@ class Superresnet(nn.Module):
         self.lr_sched = {'itr': 0}
 
         """"""
+
+    def fast_hpo_lr_parameters_freeze(self):
+        #
+        kkk = []
+        for m in self.modules():
+
+            # 所有的batchnorm跟着index=4update
+            # if isinstance(m, nn.BatchNorm2d):  # m.weight.shape
+            #     m.active = True
+            #     m.layer_index = 4
+            #     m.lr = 0.01
+            # 这样填进去还要和 初始化的lr契合
+
+            # if isinstance(m, nn.BatchNorm2d):  # m.weight.shape
+            #     m.active = True
+            #     m.layer_index = 4
+            #     m.max_j=40000
+            #     m.warm_j=5000
+            #     m.lr_ratio=1
+
+            if hasattr(m, 'active'):
+                temp = {'params': m.parameters(), 'lr': m.lr, 'layer_index': m.layer_index}
+
+                # if m.layer_index==4 or m.layer_index==3:
+                # if m.layer_index<5:
+                #     temp = {'params': m.parameters(), 'lr': 4e-5, 'layer_index': m.layer_index}
+                # else:
+                #     temp = {'params': m.parameters(), 'lr': m.lr, 'layer_index': m.layer_index}
+                kkk.append(temp)
+                # print(kkk)
+        return kkk
 
     def _make_blocks(self, blocks, in_channels, channels):
         result = []
@@ -310,11 +344,15 @@ class Superresnet(nn.Module):
                     nn.init.constant_(m.bias, 0.0001)
                 nn.init.constant_(m.running_mean, 0)
 
+
+
             elif isinstance(m, nn.BatchNorm1d):
                 nn.init.constant_(m.weight, 1)
                 if m.bias is not None:
                     nn.init.constant_(m.bias, 0.0001)
                 nn.init.constant_(m.running_mean, 0)
+
+
 
             elif isinstance(m, nn.Linear):
                 nn.init.normal_(m.weight, 0, 0.01)
@@ -347,15 +385,23 @@ class Superresnet(nn.Module):
         # Loop over all modules
         for m in self.modules():
             # If a module is active:
+            # if isinstance(m, nn.BatchNorm2d):  # m.weight.shape
+            #     print(m.bias, m.weight)
+
+
+
             if hasattr(m, 'active') and m.active:
                 # If we've passed this layer's freezing point, deactivate it.
+
                 if self.j > m.max_j:
+                # if self.j < m.max_j:
                     m.active = False
                     # Also make sure we remove all this layer from the optimizer
                     for i, group in enumerate(self.optim.param_groups):
                         if group['layer_index'] == m.layer_index:
                             # self.optim.param_groups.remove(group)
                             self.optim.param_groups[i]['lr'] = 1e-6
+
 
 
 
@@ -384,6 +430,8 @@ class Superresnet(nn.Module):
 
 
                             # print("{}, {:.3f}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.lr_ratio, m.max_j))
+
+
             # if isinstance(m, nn.Conv2d): # m.weight.shape
             #     print("{}, {:.3f}, {}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.weight.shape, m.lr_ratio, m.max_j))
             # elif isinstance(m, nn.BatchNorm2d): # m.weight.shape
@@ -392,12 +440,33 @@ class Superresnet(nn.Module):
             #     print("{}, {:.3f}, {}, {:.3f}, {:.3f}".format(m.layer_index, m.lr, m.bias.shape, m.lr_ratio, m.max_j))
             # print(m.lr, m.weight.shape, m.lr_ratio, m.max_j)
 
+            # if isinstance(m, nn.BatchNorm2d):
+            #     if m.weight is not None:
+            #         nn.init.constant_(m.weight, 1)
+            #     if m.bias is not None:
+            #         nn.init.constant_(m.bias, 0.0001)
+            #     nn.init.constant_(m.running_mean, 0)
+
+
+
         # Update the iteration counter
         self.j += 1
         # print(self.j)
 
     def record_lr(self):
         temp_lr = {'prep': None, 'layer1': None, 'layer2': None, 'layer3': None, 'classifier': None}
+
+        # for i, group in enumerate(self.optim.param_groups):
+        #     print(i, group['layer_index'], group['lr'])
+
+        # for name, m in self.named_modules():
+        #     if hasattr(m, 'active') and m.active:
+        #         print('active:', name, m.lr)
+        #     else:
+        #         if hasattr(m, 'lr'):
+        #             print('XXtive:', name, m.lr)
+        #         else:
+        #             print('NO m.lr')
 
         # for m in self.modules():
         for name, m in self.named_modules():

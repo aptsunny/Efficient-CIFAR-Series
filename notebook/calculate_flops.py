@@ -41,6 +41,8 @@ def get_internal_label_info(internal_sym, label_shapes):
 
 if __name__ == '__main__':
     args = parse_args()
+
+    args.symbol_path = args.symbol_path + '-symbol.json'
     sym = mx.sym.load(args.symbol_path)
 
     data_shapes = list()
@@ -59,6 +61,8 @@ if __name__ == '__main__':
             items = shape.replace('\'', '').replace('"', '').split(',')
             label_shapes.append((items[0], tuple([int(s) for s in items[1:]])))
             label_names.append(items[0])
+
+    # print(label_names, label_shapes)
 
     devs = [mx.cpu()]
 
@@ -231,8 +235,11 @@ if __name__ == '__main__':
     if label_names == None:
         label_names = list()
     for k, v in arg_params.items():
+        # print(k, v.shape)
         if k not in data_names and k not in label_names:
             model_size += product(v.shape) * np.dtype(v.dtype()).itemsize
 
-    print('flops: ', str(total_flops / 1000000), ' MFLOPS')
-    print('model size: ', str(model_size / 1024 / 1024), ' MB')
+    # print('flops: ', str(total_flops / 1000000), ' MFLOPS')
+    # print('model size: ', str(model_size / 1024 / 1024), ' MB')
+
+    print('{}, {:.2f}, {:.2f}'.format(args.symbol_path, total_flops / 1000000, model_size / 1024 / 1024/ 4))
